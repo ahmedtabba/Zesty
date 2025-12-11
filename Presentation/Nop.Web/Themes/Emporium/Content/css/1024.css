@@ -593,13 +593,13 @@
 	display: none !important;
 }
 
-.header-menu {
-	text-align: left;
-	position: relative;
-	z-index: 1010;
-	margin: 0 0 3px;
-	background-color: #f6f6f6;
-}
+	.header-menu {
+		text-align: left;
+		position: relative;
+		z-index: 1010;
+		margin: 0 0 3px;
+		background-color: #282034;
+	}
 .header-menu > ul {
 	margin: 0 auto;
 	font-size: 0;

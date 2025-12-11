@@ -1,0 +1,81 @@
+﻿/* Top small bar */
+.top-message-bar {
+    background: #f9b233;
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Main header row */
+.header-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 0;
+    gap: 30px;
+}
+
+.header-left img {
+    max-height: 70px;
+}
+
+/* Search centered and fixed width */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+    .header-center .search-box {
+        width: 100%;
+        max-width: 750px;
+    }
+
+/* Header links */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Categories bar */
+.categories-bar {
+    background: #231e2e;
+    padding: 12px 25px;
+}
+
+.categories-btn {
+    background: #f9b233;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+    .categories-btn .icon-layer {
+        width: 22px;
+        height: 22px;
+        background: url('/Themes/Emporium/Content/images/layers-icon.png') no-repeat center;
+        margin-right: 10px;
+    }
+
+/* Menu */
+.menu-bar {
+    background: #231e2e;
+    padding: 15px 0;
+}
+
+    .menu-bar .top-menu {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+
+        .menu-bar .top-menu a {
+            color: white !important;
+            font-weight: 600;
+        }
