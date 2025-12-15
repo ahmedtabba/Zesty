@@ -9,12 +9,12 @@
     bool showCategoriesInSideMenu = true;
 }
 <div class="header">
-    @* @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore }) *@
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
     <div class="header-upper" style="background-color:orange; display:flex; justify-content:center; align-items:center;">
            @*  @await Component.InvokeAsync("TaxTypeSelector")
             @await Component.InvokeAsync("CurrencySelector")
-            @await Component.InvokeAsync("LanguageSelector")
-            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors }) *@
+            @await Component.InvokeAsync("LanguageSelector")*@
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors }) 
             <p style="color:white; font-family:Dubai;">Free World Wide Shipping </p>
        
     </div>
@@ -39,7 +39,7 @@
             @if (showCategoriesInSideMenu)
 		    {
 		        <div class="category-navigation-list-wrapper">
-			        <span style="background-color:orange" class="category-navigation-title">@T("SevenSpikes.Themes.Emporium.Header.AllCategories")</span>
+			        <span class="category-navigation-title">@* @T("SevenSpikes.Themes.Emporium.Header.AllCategories") *@ALL CATEGORIES</span>
 		            <ul class="category-navigation-list @if (stickyCategoryMenuFlyout){<text>sticky-flyout</text>}"></ul>
 		        </div>
 		    }

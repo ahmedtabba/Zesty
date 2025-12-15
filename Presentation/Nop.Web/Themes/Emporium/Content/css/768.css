@@ -135,19 +135,19 @@
 	backface-visibility: hidden;
 }
 
-.item-box .btn-wrapper {
-	position: absolute;
-	display: block;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	opacity: 0;
-	min-width: 130px;
-	pointer-events: none;
-	transition: opacity .2s ease;
-}
+	.item-box .btn-wrapper {
+		position: absolute;
+		display: block;
+		top: 15%;
+		left: 85%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		opacity: 1;
+		min-width: 130px;
+		pointer-events: none;
+		transition: opacity .2s ease;
+	}
 
 .item-box:hover .btn-wrapper {
 	opacity: 1;

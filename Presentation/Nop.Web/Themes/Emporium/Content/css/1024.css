@@ -80,7 +80,7 @@
 }
 
 .header-upper {
-	background-color: #444444;
+	background-color: orange;
 	text-align: right;
 }
 
@@ -275,9 +275,10 @@
     font-size: 14px;
     cursor: pointer;
     text-transform: uppercase;
-    color: #444444;
+    color: white;
     font-weight: bold;
     transition: all .2s ease;
+	background-color:orange;
 }
 
 .category-navigation-title:before {
@@ -287,7 +288,7 @@
 	font-size: 17px;
 	vertical-align: bottom;
 	font-family: "emporium-icons";
-    color: #8c8c8c;
+    color: #ffff;
     font-weight: normal;
 	text-transform: none;
     transition: all .2s ease;
@@ -473,7 +474,7 @@
     width: 1%;
     vertical-align: top;
     text-align: center;
-	padding-left: 10px;
+	padding-left: 30px;
 	z-index: 1200;
 }
 
@@ -617,14 +618,14 @@
 	font-size: 13px; /*reset zeroing*/
 	cursor: pointer;
 	text-transform: uppercase;
-	color: #8c8c8c;
+	color: white;
 	font-weight: bold;
 	transition: color .2s ease;
 }
 
 .header-menu > ul > li:hover > a,
 .header-menu > ul > li:hover > span {
-	color: #444444;
+	color: orange;
 }
 
 .top-menu {
