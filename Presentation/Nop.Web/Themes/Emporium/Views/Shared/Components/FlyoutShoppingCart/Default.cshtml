@@ -15,14 +15,7 @@
         <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
             <span class="cart-qty">@Model.TotalProducts</span>
             <span class="cart-label">
-                @if (Model.TotalProducts == 0)
-                {
-                    @subZero
-                }
-                else
-                {
-                    @Model.SubTotal
-                }
+               Cart
             </span>
         </a>
     </div>

@@ -465,7 +465,7 @@ namespace Nop.Web.Factories
                 if (featuredProducts != null)
                     model.FeaturedProducts = (await _productModelFactory.PrepareProductOverviewModelsAsync(featuredProducts)).ToList();
             }
-
+                
             return model;
         }
 
