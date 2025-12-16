@@ -3412,6 +3412,17 @@ input + .inputs-icons {
 .item-box .btn-wrapper button:hover {
 	background-color: #97c300;
 }
+	/* ÒÑ ÇáÜ Wishlist ÚäÏ ÇáãÑæÑ ÈÇáãÇæÓ */
+	.item-box .btn-wrapper .add-to-wishlist-button:hover {
+		background-color: #97c300; /* Çááæä ÇáĞí ÊÑíÏå ÚäÏ hover */
+		color: #fff; /* áæä ÇáäÕ */
+	}
+
+	/* ÒÑ ÇáÜ Wishlist ÚäÏãÇ íßæä İí ÍÇáÉ active */
+	.item-box .btn-wrapper .add-to-wishlist-button.active {
+		background-color: #97c300; /* Çááæä ÇáĞí ÊÑíÏå áíÙá ËÇÈÊ */
+		color: #fff; /* áæä ÇáäÕ */
+	}
 
 
 .item-box .btn-wrapper button:hover:before {
