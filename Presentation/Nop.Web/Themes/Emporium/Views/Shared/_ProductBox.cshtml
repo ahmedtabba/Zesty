@@ -30,6 +30,7 @@
     var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
 
     var storeId = (await storeContext.GetCurrentStoreAsync()).Id;
+
 }
 
 <div class="product-item" data-productid="@Model.Id">
@@ -56,10 +57,20 @@
             {
                 <button type="button" title="@T("ShoppingCart.AddToCompareList")" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">@T("ShoppingCart.AddToCompareList")</button>
             }
+            @* @if (!Model.ProductPrice.DisableWishlistButton)
+            {
+                <button type="button" title="@T("ShoppingCart.AddToWishlist")" class="button-2 add-to-wishlist-button  @(Model.IsInWishlist ? "active": "")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>
+            } *@
             @if (!Model.ProductPrice.DisableWishlistButton)
             {
-                <button type="button" title="@T("ShoppingCart.AddToWishlist")" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>
+                <button type="button"
+                        title="@T("ShoppingCart.AddToWishlist")"
+                        class="button-2 add-to-wishlist-button @(Model.IsInWishlist ? "active" : "")"
+                        data-product-id="@Model.Id">
+                    @T("ShoppingCart.AddToWishlist")
+                </button>
             }
+
         </div>
     </div>
     <div class="details">
@@ -134,3 +145,33 @@
         </div>
     </div>
 </div>
+<script>
+    //     document.querySelectorAll(".add-to-wishlist-button").forEach(function(btn){
+    //     btn.addEventListener("click", function(e){
+    //         e.preventDefault(); يمنع reload
+    //         this.classList.add("active"); يغير اللون فوراً
+    //     });
+    // });
+
+        document.querySelectorAll(".add-to-wishlist-button").forEach(btn => {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            const productId = this.dataset.productId;
+
+            fetch('/WishlistToggle/Toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `productId=${productId}`
+            })
+            .then(r => r.json())
+            .then(res => {
+                this.classList.toggle("active", res.isInWishlist);
+            })
+            .catch(() => {
+                alert('Error updating wishlist. Try again.');
+            });
+        });
+    });
+
+
+</script>

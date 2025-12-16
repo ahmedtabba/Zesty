@@ -22,6 +22,7 @@ using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Shipping.Date;
@@ -76,7 +77,8 @@ namespace Nop.Web.Factories
         private readonly OrderSettings _orderSettings;
         private readonly SeoSettings _seoSettings;
         private readonly ShippingSettings _shippingSettings;
-        private readonly VendorSettings _vendorSettings;        
+        private readonly VendorSettings _vendorSettings;
+        private readonly IShoppingCartService _shoppingCartService;
 
         #endregion
 
@@ -117,7 +119,8 @@ namespace Nop.Web.Factories
             OrderSettings orderSettings,
             SeoSettings seoSettings,
             ShippingSettings shippingSettings,
-            VendorSettings vendorSettings)
+            VendorSettings vendorSettings , 
+            IShoppingCartService shoppingCartService)
         {
             _captchaSettings = captchaSettings;
             _catalogSettings = catalogSettings;
@@ -155,6 +158,7 @@ namespace Nop.Web.Factories
             _seoSettings = seoSettings;
             _shippingSettings = shippingSettings;
             _vendorSettings = vendorSettings;
+            _shoppingCartService = shoppingCartService;
             
         }
 
@@ -1241,6 +1245,15 @@ namespace Nop.Web.Factories
         {
             if (products == null)
                 throw new ArgumentNullException(nameof(products));
+            var customer = await _workContext.GetCurrentCustomerAsync();
+            var store = await _storeContext.GetCurrentStoreAsync();
+
+            var wishlist = await _shoppingCartService.GetShoppingCartAsync(
+                customer,
+                ShoppingCartType.Wishlist,
+                store.Id
+            );
+
 
             var models = new List<ProductOverviewModel>();
             foreach (var product in products)
@@ -1256,7 +1269,8 @@ namespace Nop.Web.Factories
                     ProductType = product.ProductType,
                     MarkAsNew = product.MarkAsNew &&
                         (!product.MarkAsNewStartDateTimeUtc.HasValue || product.MarkAsNewStartDateTimeUtc.Value < DateTime.UtcNow) &&
-                        (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow)
+                        (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow),
+                    IsInWishlist = wishlist.Any(w => w.ProductId == product.Id)
                 };
 
                 //price
