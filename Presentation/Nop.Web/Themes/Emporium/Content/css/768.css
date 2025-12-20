@@ -138,8 +138,8 @@
 	.item-box .btn-wrapper {
 		position: absolute;
 		display: block;
-		top: 15%;
-		left: 85%;
+		top: 10%;
+		left: 90%;
 		-webkit-transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
 		transform: translate(-50%, -50%);

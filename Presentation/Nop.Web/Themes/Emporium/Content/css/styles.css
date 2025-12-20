@@ -2484,6 +2484,16 @@ input + .inputs-icons {
     font-size: 0;
 }
 
+.item-box .product-item {
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-box:hover .product-item {
+	transform: scale(1.03);
+	background-color: floralwhite;
+	box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
 .small-products .item-box .product-item > div {
     display: inline-block;
     vertical-align: top;
@@ -3206,11 +3216,36 @@ input + .inputs-icons {
 	width: 49%;
 	float: left;
 	margin: 0 0 2% 2%;
-	border: 1px solid #eeeeee;
 	background-color: #fff;
-	border-radius: 3px;
+	border-radius: 20px;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
+	.item-box .details {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+
+	.item-box .add-info {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.item-box .prices {
+		width: 100%;
+		margin-bottom: 8px;
+	}
+
+	.item-box .add-info product-rating-box {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 
 .item-box:nth-child(2n+1) {
 	margin-left: 0;
@@ -3234,16 +3269,16 @@ input + .inputs-icons {
 	display: block;
 	padding-top: 100%;
 }
-.item-box .picture > a img {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%,-50%);
-	-ms-transform: translate(-50%,-50%);
-	transform: translate(-50%,-50%);
-	max-width: none;
-	height: 100%;
-}
+	.item-box .picture > a img {
+		position: absolute;
+		top: 56%;
+		left: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		-ms-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		max-width: none;
+		height: 100%;
+	}
 
 .item-box .manufacturer-item .picture > a img,
 .item-box .vendor-item .picture > a img {
@@ -3269,7 +3304,6 @@ input + .inputs-icons {
 	margin: 0 0 7px;
 	overflow: hidden;
 	font-size: 15px;
-	font-weight: normal;
 	color: #444444;
 }
 .item-box .product-title a,
@@ -3289,18 +3323,23 @@ input + .inputs-icons {
 .item-box .rating {
 	background: url('../img/rating1.gif') repeat-x;
 	width: 65px;
-	height: 12px;
+	height: 0px;
 }
 .item-box .rating div {
 	background: url('../img/rating2.gif') repeat-x;
 	height: 12px;
 }
-.item-box .description {
-	display: none; /*hidden by design*/
-	height: 30px;
-	margin: 0 0 10px;
-	overflow: hidden;
-}
+	.item-box .description {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		height: 30px;
+		margin: 0 0 10px;
+		overflow: hidden;
+		color: #949496;
+	}
 .item-box .description a {
 	display: block;
 	overflow: hidden;
@@ -3348,7 +3387,7 @@ input + .inputs-icons {
 	font-size: 0;
 }
 .item-box button {
-	height: 40px;
+	height: 34px;
 	padding: 0 5%;
 	vertical-align: middle;
 	border: none;
@@ -3356,51 +3395,104 @@ input + .inputs-icons {
 	overflow: hidden;
 }
 
-.item-box .button-2 {
-	width: 100%;
-	background-color: #f1f1f1;
-	border-radius: 3px;
-	font-weight: bold;
-	font-size: 14px;
-	color: #8c8c8c;
-	text-transform: uppercase;
-	transition: all .2s ease;
-}
+	.item-box .button-2 {
+		width: 185%;
+		background-color: #fcbb5a;
+		border-radius: 20px 0px;
+		font-weight: bold;
+		font-size: 12px;
+		color: #8c8c8c;
+		text-transform: uppercase;
+		transition: all .2s ease;
+		left: 15%;
+	}
+
+	.item-box .product-box-add-to-cart-button {
+		margin-left: auto;
+	}
+
+
+	/* Add to Cart edits for scale and up & down */
+	.item-box .buttons .button-2 {
+		position: relative;
+		overflow: hidden;
+		transition: background-color 0.2s ease;
+	}
+
+		.item-box .buttons .button-2 span {
+			display: inline-block;
+			transition: transform 0.25s ease, opacity 0.25s ease;
+		}
+
+		.item-box .buttons .button-2:before {
+			content: "";
+			width: 25px;
+			height: 25px;
+			background-image: url("/Themes/Emporium/Content/img/shopping_cart_PNG4.png");
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			position: absolute;
+			left: 50%;
+			bottom: -40px;
+			transform: translateX(-50%);
+			opacity: 0;
+			transition: bottom 0.25s ease, opacity 0.25s ease;
+		}
+
+		.item-box .buttons .button-2:hover {
+			background-color: #eebe00;
+		}
+
+			.item-box .buttons .button-2:hover span {
+				transform: translateY(-120%);
+				opacity: 0;
+			}
+
+		
+			.item-box .buttons .button-2:hover:before {
+				bottom: 50%;
+				transform: translate(-50%, 50%);
+				opacity: 1;
+			}
+
+
+
 
 .item-box .buttons .button-2:hover {
 	background-color: #eebe00;
-	color: #fff;
 }
 
 .item-box .product-rating-box {
 	margin-bottom: 10px;
 }
 
-.item-box .btn-wrapper {
-	display: none;
-	font-size: 0;
-}
+	.item-box .btn-wrapper {
+		margin-top: auto;
+		display: flex;
+		font-size: 0;
+	}
 
-.item-box .btn-wrapper .button-2 {
-	margin-left: 4px;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	font-size: 0;
-	border-radius: 30px;
-	background-color: #f1f1f1;
-	border: 0;
-	font-size: 0;
-	backface-visibility: hidden;
-	transition: all .1s ease;
-}
-.item-box .btn-wrapper button:before {
-	transition: all .1s ease;
-	text-transform: none;
-	font-weight: normal;
-	font-size: 18px;
-	color: #8e8e8e;
-}
+	.item-box .btn-wrapper .button-2 {
+		margin-left: 4px;
+		width: 32px;
+		height: 30px;
+		line-height: 32px;
+		font-size: 0;
+		border-radius: 30px;
+		background-color: #f1f1f1;
+		border: 0;
+		font-size: 0;
+		backface-visibility: hidden;
+		transition: all .1s ease;
+	}
+	.item-box .btn-wrapper button:before {
+		transition: all .1s ease;
+		text-transform: none;
+		font-weight: bold;
+		font-size: 18px;
+	}
+
 .item-box .btn-wrapper .add-to-wishlist-button:before {
 	content: "\63";
 }
@@ -3410,23 +3502,23 @@ input + .inputs-icons {
 }
 
 .item-box .btn-wrapper button:hover {
-	background-color: #97c300;
+	color:orange
 }
 	/* “— «·‹ Wishlist ⁄‰œ «·„—Ê— »«·„«Ê” */
 	.item-box .btn-wrapper .add-to-wishlist-button:hover {
-		background-color: #97c300; /* «··Ê‰ «·–Ì  —ÌœÂ ⁄‰œ hover */
-		color: #fff; /* ·Ê‰ «·‰’ */
+		/*background-color: orange;*/ /* «··Ê‰ «·–Ì  —ÌœÂ ⁄‰œ hover */
+		color: orange; /* ·Ê‰ «·‰’ */
 	}
 
 	/* “— «·‹ Wishlist ⁄‰œ„« ÌﬂÊ‰ ›Ì Õ«·… active */
 	.item-box .btn-wrapper .add-to-wishlist-button.active {
-		background-color: #97c300; /* «··Ê‰ «·–Ì  —ÌœÂ ·ÌŸ· À«»  */
-		color: #fff; /* ·Ê‰ «·‰’ */
+/*		background-color: orange;  */
+		color: orange; /* ·Ê‰ «·‰’ */
 	}
 
 
 .item-box .btn-wrapper button:hover:before {
-	color: #fff;
+	color: orange;
 }
 
 .home-page-category-grid,
