@@ -65,7 +65,7 @@
             {
                 <button type="button"
                         title="@T("ShoppingCart.AddToWishlist")"
-                        class="button-2 add-to-wishlist-button @(Model.IsInWishlist ? "active" : "")"
+                        class="button-2  @(Model.IsInWishlist ? "active" : "") add-to-wishlist-button"
                         data-product-id="@Model.Id">
                     @T("ShoppingCart.AddToWishlist")
                 </button>
@@ -83,20 +83,7 @@
                 @Model.Sku
             </div>
         }
-        @if (Model.ReviewOverviewModel.AllowCustomerReviews)
-        {
-            var ratingPercent = 0;
-            if (Model.ReviewOverviewModel.TotalReviews != 0)
-            {
-                ratingPercent = ((Model.ReviewOverviewModel.RatingSum*100)/Model.ReviewOverviewModel.TotalReviews)/5;
-            }
-            <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
-                <div class="rating">
-                    <div style="width: @(ratingPercent)%">
-                    </div>
-                </div>
-            </div>
-        }
+       
         <div class="description">
             @Html.Raw(Model.ShortDescription)
         </div>
@@ -124,6 +111,20 @@
                     </div>
                 }
             </div>
+             @if (Model.ReviewOverviewModel.AllowCustomerReviews)
+        {
+            var ratingPercent = 0;
+            if (Model.ReviewOverviewModel.TotalReviews != 0)
+            {
+                ratingPercent = ((Model.ReviewOverviewModel.RatingSum*100)/Model.ReviewOverviewModel.TotalReviews)/5;
+            }
+            <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
+                <div class="rating">
+                    <div style="width: @(ratingPercent)%">   </div>
+                </div>
+            </div>
+                <span style="color:#949496">(@Model.ReviewOverviewModel.TotalReviews)</span>
+        }
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBoxAddinfoMiddle, additionalData = Model })
             <div class="buttons">
                 @*<button type="button" class="button-1 product-box-detail-button" onclick="setLocation('@Url.RouteUrl("Product", new { SeName = Model.SeName })')">@T("Products.Details")</button>*@
@@ -138,7 +139,7 @@
                     {
                         addToCartText = T("ShoppingCart.PreOrder").Text;
                     }
-                    <button type="button" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@(addToCartText)</button>
+                    <button type="button" style="color:#fff" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;"><span>@(addToCartText)</span></button>
                 }
             </div>
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBoxAddinfoAfter, additionalData = Model })
