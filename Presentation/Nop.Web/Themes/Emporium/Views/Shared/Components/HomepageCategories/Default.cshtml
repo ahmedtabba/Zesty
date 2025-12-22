@@ -9,7 +9,7 @@
             @foreach (var item in Model)
             {
                 <div class="item-box">
-                    <div class="category-item">
+                    @* <div class="category-item"> *@
                         <div class="picture">
                             <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
                                 @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
@@ -26,12 +26,12 @@
                                     <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
                                 }
                             </a>
-                        </div>
-                        <h2 class="title">
+                        @* </div> *@
+                       @*  <h2 class="title">
                             <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
                                 @item.Name
                             </a>
-                        </h2>
+                        </h2> *@
                     </div>
                 </div>
             }
