@@ -594,7 +594,7 @@ label, label + * {
 
 .master-wrapper-content {
 	overflow: hidden;
-	padding: 40px 10px 80px;
+	padding: 0px 10px 80px;
 }
 
 .master-wrapper-content select,
@@ -2201,13 +2201,17 @@ input + .inputs-icons {
 
 .footer {
 	border-top: 3px solid #f6f6f6;
-	background-color: #fff;
+	background-image: url(../img/FotterImg.jpg);
 	text-align: center;
-    overflow: hidden;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: rgba(0,0,0,0.05);
 }
 
 .footer-upper {
-	margin: 55px 0;
+	background-color: #fbb040;
 	overflow: hidden;
 }
 
@@ -2228,7 +2232,7 @@ input + .inputs-icons {
 .footer .newsletter .title {
 	margin: 0 0 13px;
 	font-size: 15px;
-	color: #8c8c8c;
+	color: white;
 	text-transform: none;
 }
 
@@ -2246,8 +2250,10 @@ input + .inputs-icons {
 	float: left;
 	width: calc(100% - 47px);
 	height: 47px;
-	border-radius: 3px 0 0 3px;
+	border-radius: 10px 0 0 10px;
 	border-right: 0;
+	border-width:2px;
+	background-color:transparent;
 }
 
 .newsletter-email .newsletter-subscribe-text:focus {
@@ -2274,13 +2280,9 @@ input + .inputs-icons {
 	padding: 0;
 	border: none;
 	border-radius: 0 3px 3px 0;
-	background: #eebe00 url('../img/subscribe-button.png') center no-repeat;
+	background: white url('../img/sms.png') center no-repeat;
 	font-size: 0;
 	transition: all .2s ease;
-}
-
-.newsletter-email .newsletter-subscribe-button:hover {
-    background-color: #e8af00;
 }
 .newsletter-email .options {
 	height: 0;
@@ -2414,16 +2416,16 @@ input + .inputs-icons {
 .footer .title {
 	margin-bottom: 15px;
 	text-transform: uppercase;
-	color: #444444;
+	color: #fff;
 	font-size: 14px;	
 }
 
 .footer-block .title {
+	color:white;
 	position: relative;
 	margin: 0;
 	padding: 15px 45px;
 	text-transform: uppercase;
-	color: #444444;
 	font-size: 14px;
 	cursor: pointer;
 }
@@ -3219,7 +3221,7 @@ input + .inputs-icons {
 	background-color: #fff;
 	border-radius: 20px;
 	overflow: hidden;
-	display: flex;
+/*	display: flex;*/
 	flex-direction: column;
 }
 	.item-box .details {
@@ -3229,11 +3231,11 @@ input + .inputs-icons {
 	}
 
 
-	.item-box .add-info {
+/*	.item-box .add-info {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-	}
+	}*/
 
 	.item-box .prices {
 		width: 100%;
@@ -3271,7 +3273,7 @@ input + .inputs-icons {
 }
 	.item-box .picture > a img {
 		position: absolute;
-		top: 56%;
+		top: 50%;
 		left: 50%;
 		-webkit-transform: translate(-50%,-50%);
 		-ms-transform: translate(-50%,-50%);
@@ -3319,11 +3321,11 @@ input + .inputs-icons {
 .item-box .product-rating-box {
 	display: inline-block;
 	margin: 0 0 8px;
+	padding-right:60%;
 }
 .item-box .rating {
 	background: url('../img/rating1.gif') repeat-x;
 	width: 65px;
-	height: 0px;
 }
 .item-box .rating div {
 	background: url('../img/rating2.gif') repeat-x;
@@ -3387,7 +3389,7 @@ input + .inputs-icons {
 	font-size: 0;
 }
 .item-box button {
-	height: 34px;
+	height: 30px;
 	padding: 0 5%;
 	vertical-align: middle;
 	border: none;
@@ -3396,7 +3398,7 @@ input + .inputs-icons {
 }
 
 	.item-box .button-2 {
-		width: 185%;
+		width: 66%;
 		background-color: #fcbb5a;
 		border-radius: 20px 0px;
 		font-weight: bold;
@@ -3404,7 +3406,7 @@ input + .inputs-icons {
 		color: #8c8c8c;
 		text-transform: uppercase;
 		transition: all .2s ease;
-		left: 15%;
+		left: 20%;
 	}
 
 	.item-box .product-box-add-to-cart-button {
@@ -3527,9 +3529,9 @@ input + .inputs-icons {
 	margin: 0 auto 45px;
 }  
 
-.home-page-category-grid .item-box {
+/*.home-page-category-grid .item-box {
 	background-color: #f6f6f6;
-}
+}*/
 
 .category-grid .item-box {
 	border: none;
@@ -9810,3 +9812,40 @@ td.latest-post {
 	border-radius: 3px;
 }
 
+/* Add/replace these rules AFTER the existing .footer rule to darken the footer background image
+   - Uses ::before for the image (so we can apply filter)
+   - Uses ::after for a dark overlay to increase text contrast
+   - Adjust `filter` and `rgba()` alpha to control darkness */
+.footer {
+    position: relative;
+    background-color: transparent; /* fallback */
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../img/FotterImg.jpg") center/cover no-repeat;
+    /* make image less visible: lower brightness, add slight desaturation and blur if desired */
+    filter: brightness(.95) blur(1px);
+    transform: translateZ(0);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* dark overlay — increase alpha to make image darker (0.0 - 1.0) */
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Ensure footer content sits above the background layers */
+.footer > * {
+    position: relative;
+    z-index: 2;
+}
