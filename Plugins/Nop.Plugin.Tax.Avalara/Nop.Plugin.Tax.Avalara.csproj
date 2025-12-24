@@ -67,10 +67,10 @@
     <Content Include="Views\EntityUseCode\_EntityUseCodeField.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Log\List.cshtml">
+    <Content Include="Views\Log\List.cshtml" Condition="Exists('$(MSBuildProjectDirectory)\\Views\\Log\\List.cshtml')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Log\View.cshtml">
+    <Content Include="Views\Log\View.cshtml" Condition="Exists('$(MSBuildProjectDirectory)\\Views\\Log\\View.cshtml')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Product\ExportItems.cshtml">
