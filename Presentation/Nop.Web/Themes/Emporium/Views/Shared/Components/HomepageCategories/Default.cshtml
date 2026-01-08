@@ -7,6 +7,7 @@
         justify-content: center;
         align-items: center;
         height: 260px; 
+
     }
 
     .category-slider .item-box {
@@ -38,27 +39,25 @@
         }
 
     .category-slider {
-        padding: 40px 0;
+        padding: 40px 40px;
     }
 
         .category-slider .swiper-pagination {
             bottom: 0 !important;
         }
 
-        .category-slider .swiper-pagination-bullet {
-            background: #ddd;
-            opacity: 1;
-        }
 
-        .category-slider .swiper-pagination-bullet-active {
-            background: #f4a51c;
-        }
+   
 
 </style>
 
-@if (Model.Count > 0)
+@if (Model?.Count > 0)
 {
+    
     <div class="swiper category-slider">
+            <h2 class="custom-title">@T("Home.Categories.Title")</h2>
+            <h4 class="small-Title">@T("Home.Categories.SmallTitle")</h4>
+
         <div class="swiper-wrapper">
             @foreach (var item in Model)
             {
@@ -83,27 +82,52 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-           new Swiper(".category-slider", {
-        loop: true,
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false
-        },
-        spaceBetween: 30,
-        slidesPerView: 4,
-        centeredSlides: false,
-        breakpoints: {
-            0: { slidesPerView: 1 },
-            576: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1200: { slidesPerView: 4 }
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true
-        }
+    // document.addEventListener("DOMContentLoaded", function () {
+    //        new Swiper(".category-slider", {
+    //     loop: true,
+    //     autoplay: {
+    //         delay: 3500,
+    //         disableOnInteraction: false
+    //     },
+    //     spaceBetween: 30,
+    //     slidesPerView: 4,
+    //     centeredSlides: false,
+    //     breakpoints: {
+    //         0: { slidesPerView: 1 },
+    //         576: { slidesPerView: 2 },
+    //         768: { slidesPerView: 3 },
+    //         1200: { slidesPerView: 4 }
+    //     },
+    //     pagination: {
+    //         el: ".swiper-pagination",
+    //         clickable: true
+    //     }
+    // });
+
+    // });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        new Swiper(".category-slider", {
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false
+            },
+            spaceBetween: 30,
+            slidesPerView: 5,      // عدد العناصر التي تظهر في نفس الوقت
+            slidesPerGroup: 2,     // عدد العناصر التي تتحرك مع كل dot
+            centeredSlides: false,
+            breakpoints: {
+                0: { slidesPerView: 1, slidesPerGroup: 2 },
+                576: { slidesPerView: 2, slidesPerGroup: 2 },
+                768: { slidesPerView: 3, slidesPerGroup: 2 },
+                1200: { slidesPerView: 5, slidesPerGroup: 2 }
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            }
+        });
     });
 
-    });
 </script>

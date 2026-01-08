@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nop.Core.Caching;
 using Nop.Core.Domain.News;
 using Nop.Core.Events;
 using Nop.Services.Localization;
@@ -17,6 +14,10 @@ using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.News;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.Filters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Controllers
 {
@@ -34,6 +35,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
@@ -48,7 +50,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IPermissionService permissionService,
             IStoreMappingService storeMappingService,
             IStoreService storeService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            IStaticCacheManager staticCacheManager)
         {
             _customerActivityService = customerActivityService;
             _eventPublisher = eventPublisher;
@@ -60,6 +63,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _storeMappingService = storeMappingService;
             _storeService = storeService;
             _urlRecordService = urlRecordService;
+            _staticCacheManager = staticCacheManager;
         }
 
         #endregion
@@ -132,6 +136,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //prepare model
             var model = await _newsModelFactory.PrepareNewsItemModelAsync(new NewsItemModel(), null);
+            await _staticCacheManager.RemoveByPrefixAsync("Nop.frontend.news");
 
             return View(model);
         }
@@ -169,6 +174,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //prepare model
             model = await _newsModelFactory.PrepareNewsItemModelAsync(model, null, true);
+            await _staticCacheManager.RemoveByPrefixAsync("Nop.frontend.news");
 
             //if we got this far, something failed, redisplay form
             return View(model);
@@ -244,7 +250,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("NewsItems");
 
             await _newsService.DeleteNewsAsync(newsItem);
-
+            await _staticCacheManager.RemoveByPrefixAsync("Nop.frontend.news");
             //activity log
             await _customerActivityService.InsertActivityAsync("DeleteNews",
                 string.Format(await _localizationService.GetResourceAsync("ActivityLog.DeleteNews"), newsItem.Id), newsItem);

@@ -103,6 +103,11 @@ namespace Nop.Web.Factories
             model.Short = newsItem.Short;
             model.Full = newsItem.Full;
             model.AllowComments = newsItem.AllowComments;
+            model.CoverPictureUrl = newsItem.CoverPictureId > 0
+                ? await _pictureService.GetPictureUrlAsync(newsItem.CoverPictureId)
+                : "/images/news/default-cover.png";
+
+
 
             model.PreventNotRegisteredUsersToLeaveComments =
                 await _customerService.IsGuestAsync(await _workContext.GetCurrentCustomerAsync()) &&

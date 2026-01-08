@@ -24,7 +24,10 @@ namespace Nop.Web.Models.News
         public bool PreventNotRegisteredUsersToLeaveComments { get; set; }
         public int NumberOfComments { get; set; }
         public DateTime CreatedOn { get; set; }
+        public int CoverPictureId { get; set; }
 
+        // for the front end use
+        public string CoverPictureUrl { get; set; }
         public IList<NewsCommentModel> Comments { get; set; }
         public AddNewsCommentModel AddNewComment { get; set; }
     }
