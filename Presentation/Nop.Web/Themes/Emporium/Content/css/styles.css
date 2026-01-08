@@ -2496,9 +2496,35 @@ input + .inputs-icons {
 
 .item-box:hover .product-item {
 	transform: scale(1.03);
-	background-color: floralwhite;
+	background-color: #fff7ec;
 	box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
+
+/*edit the product to apear a picture over the product img*/
+.item-box .picture > a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: url("/Themes/Emporium/Content/img/productBoxHover.jpg"); /* «·’Ê—… «·À«» … */
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: 0;
+}
+.item-box:hover .picture > a::after {
+	opacity: 1;
+}
+.item-box .picture > a img {
+	transition: opacity 0.3s ease;
+}
+
+.item-box:hover .picture > a img {
+	opacity: 0;
+}
+
+
 
 .small-products .item-box .product-item > div {
     display: inline-block;
@@ -3277,13 +3303,13 @@ input + .inputs-icons {
 }
 	.item-box .picture > a img {
 		position: absolute;
-		top: 50%;
+		top: 60%;
 		left: 50%;
 		-webkit-transform: translate(-50%,-50%);
 		-ms-transform: translate(-50%,-50%);
 		transform: translate(-50%,-50%);
 		max-width: none;
-		height: 100%;
+		height: 85%;
 	}
 
 .item-box .manufacturer-item .picture > a img,
@@ -3409,7 +3435,7 @@ input + .inputs-icons {
 		border-radius: 18px 0px;
 		font-weight: bold;
 		font-size: 1.6vh;
-		color: #8c8c8c;
+		color: #575758;
 		text-transform: uppercase;
 		transition: all .2s ease;
 		left: 10%;
@@ -3481,19 +3507,19 @@ input + .inputs-icons {
 		font-size: 0;
 	}
 
-	.item-box .btn-wrapper .button-2 {
-		margin-left: 4px;
-		width: 32px;
-		height: 30px;
-		line-height: 32px;
-		font-size: 0;
-		border-radius: 30px;
-		background-color: #f1f1f1;
-		border: 0;
-		font-size: 0;
-		backface-visibility: hidden;
-		transition: all .1s ease;
-	}
+		.item-box .btn-wrapper .button-2 {
+			margin-left: 4px;
+			width: 32px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 0;
+			border-radius: 30px;
+			background-color: #F7F7F7;
+			border: 1px solid #a29496;
+			font-size: 0;
+			backface-visibility: hidden;
+			transition: all .1s ease;
+		}
 	.item-box .btn-wrapper button:before {
 		transition: all .1s ease;
 		text-transform: none;
@@ -3502,7 +3528,8 @@ input + .inputs-icons {
 	}
 
 .item-box .btn-wrapper .add-to-wishlist-button:before {
-	content: "\63";
+	content: "\63";  
+/*	"\63"*/
 }
 
 .item-box .btn-wrapper .add-to-compare-list-button:before {
@@ -3510,23 +3537,23 @@ input + .inputs-icons {
 }
 
 .item-box .btn-wrapper button:hover {
-	color:orange
+	color:#FBB040
+	
 }
 	/* “— «·‹ Wishlist ⁄‰œ «·„—Ê— »«·„«Ê” */
 	.item-box .btn-wrapper .add-to-wishlist-button:hover {
-		/*background-color: orange;*/ /* «··Ê‰ «·–Ì  —ÌœÂ ⁄‰œ hover */
-		color: orange; /* ·Ê‰ «·‰’ */
+		color: #FBB040; /* ·Ê‰ «·‰’ */
 	}
 
 	/* “— «·‹ Wishlist ⁄‰œ„« ÌﬂÊ‰ ›Ì Õ«·… active */
-	.item-box .btn-wrapper .add-to-wishlist-button.active {
-/*		background-color: orange;  */
-		color: orange; /* ·Ê‰ «·‰’ */
-	}
+		.item-box .btn-wrapper .add-to-wishlist-button.active {
+			color: #FBB040; /* ·Ê‰ «·‰’ */
+			border-color: #FBB040;
+		}
 
 
 .item-box .btn-wrapper button:hover:before {
-	color: orange;
+	color: #FBB040;
 }
 
 .home-page-category-grid,
