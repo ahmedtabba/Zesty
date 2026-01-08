@@ -81,6 +81,9 @@ namespace Nop.Web.Areas.Admin.Models.News
 
         [NopResourceDisplayName("Admin.ContentManagement.News.NewsItems.Fields.CreatedOn")]
         public DateTime CreatedOn { get; set; }
+        [NopResourceDisplayName("Admin.ContentManagement.News.NewsItems.Fields.CoverPicture")]
+        public int CoverPictureId { get; set; }
+
 
         #endregion
     }

@@ -424,12 +424,14 @@ script {
 
 body {
 	max-width: 100%;
-	overflow-x: hidden; /* responsive navigation & filters scroll bug fix*/
+	overflow-x: hidden;
 	background-color: #fff;
-	font: normal 12px 'Roboto', sans-serif;
+	font-size: 12px;
+	font-family: 'Bitter', serif;
+	font-weight: 400;
 	color: #000;
-	
 }
+
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -584,12 +586,13 @@ label, label + * {
 	margin: 0 auto 50px;
 }
 
-.product-grid:last-child,
-.category-grid:last-child,
-.topic-block:last-child,
-.news-list-homepage:last-child {
-	margin-bottom: 0;
-}
+	.product-grid:last-child,
+	.category-grid:last-child,
+	.topic-block:last-child,
+	.news-list-homepage:last-child {
+		margin-bottom: 20px;
+		padding: 30px 100px;
+	}
 
 
 .master-wrapper-content {
@@ -2211,7 +2214,7 @@ input + .inputs-icons {
 }
 
 .footer-upper {
-	background-color: #fbb040;
+	background-color: #FBB040;
 	overflow: hidden;
 }
 
@@ -2221,12 +2224,12 @@ input + .inputs-icons {
 
 .footer-block a {
 	font-size: 15px;
-	color: #959595;
+	color: #bcbdbf;
 	transition: color .2s ease;
 }
 
 .footer-block a:hover {
-	color: #97c300;
+	color: #FBB040;
 }
 
 .footer .newsletter .title {
@@ -2305,10 +2308,11 @@ input + .inputs-icons {
 	overflow: hidden;
 }
 
-.footer-middle .social-icons,
-.footer-middle .pay-options {
-	margin-top: 40px;
+.newsletter-email .newsletter-subscribe-text::placeholder {
+	color: wheat;
+	opacity: 1;
 }
+
 
 .pay-options img {
 	margin: 0 2px;
@@ -2332,7 +2336,7 @@ input + .inputs-icons {
 .social-sharing a:before {
 	display: block;
 	font-size: 22px;
-	color: #8e8e8e;
+	color: white;
 	transition: color .2s ease;
 }
 
@@ -2460,7 +2464,7 @@ input + .inputs-icons {
 
 .footer-lower {
 	padding: 30px 20px;
-	background-color: #444444;
+	background-color: #282034;
 }
 
 
@@ -3321,7 +3325,9 @@ input + .inputs-icons {
 .item-box .product-rating-box {
 	display: inline-block;
 	margin: 0 0 8px;
-	padding-right:60%;
+	padding-left:5%; /*60%*/
+	float:left;
+
 }
 .item-box .rating {
 	background: url('../img/rating1.gif') repeat-x;
@@ -3398,15 +3404,15 @@ input + .inputs-icons {
 }
 
 	.item-box .button-2 {
-		width: 66%;
-		background-color: #fcbb5a;
-		border-radius: 20px 0px;
+		width: 55%;
+		background-color: #FBB040;
+		border-radius: 18px 0px;
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 1.6vh;
 		color: #8c8c8c;
 		text-transform: uppercase;
 		transition: all .2s ease;
-		left: 20%;
+		left: 10%;
 	}
 
 	.item-box .product-box-add-to-cart-button {
@@ -9828,7 +9834,7 @@ td.latest-post {
     inset: 0;
     background: url("../img/FotterImg.jpg") center/cover no-repeat;
     /* make image less visible: lower brightness, add slight desaturation and blur if desired */
-    filter: brightness(.95) blur(1px);
+    filter: brightness(0.5);
     transform: translateZ(0);
     z-index: 0;
     pointer-events: none;

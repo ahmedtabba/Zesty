@@ -38,9 +38,7 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageTop })
         @await Component.InvokeAsync("TopicBlock", new { systemName = "HomepageText" })
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
-        @await Component.InvokeAsync("HomepageCategories")
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
-        @await Component.InvokeAsync("HomepageNews")
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
         @await Component.InvokeAsync("HomepagePolls")
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })
@@ -50,8 +48,10 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
 
         <div class="@carouselsWrapperClass">
+        @await Component.InvokeAsync("HomepageCategories")
             @await Component.InvokeAsync("HomepageProducts")
             @await Component.InvokeAsync("HomepageBestSellers")
         </div>
+        @await Component.InvokeAsync("HomepageNews")
     </div>
 </div>
