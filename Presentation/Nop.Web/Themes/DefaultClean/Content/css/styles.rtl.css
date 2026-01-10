@@ -1826,14 +1826,9 @@ label, label + * {
   vertical-align: middle;
 }
 
-.item-box .product-box-add-to-cart-button {
-  width: 60%;
-  background-color: #4ab2f1;
-  text-align: center;
-  font-size: 15px;
-  color: #fff;
-  text-transform: uppercase;
-}
+    .item-box .product-box-add-to-cart-button {
+        margin-right: auto;
+    }
 
 .item-box .product-box-add-to-cart-button:hover,
 .item-box .product-box-add-to-cart-button:focus {

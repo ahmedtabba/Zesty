@@ -153,7 +153,7 @@
 	clear: none;
 }
 .item-box:nth-child(5n+1) {
-	margin-right: 0;
+	margin-right: 2%;
 	clear: both;
 }
 
@@ -163,7 +163,7 @@
 
 .center-2 .item-box:nth-child(3n+1),
 .center-2 .item-box:nth-child(5n+1) {
-	margin-right: 1%;
+	margin-right: 2%;
 	clear: none;
 }
 

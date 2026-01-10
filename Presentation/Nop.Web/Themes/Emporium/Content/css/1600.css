@@ -29,7 +29,7 @@
 }
 
 .item-box:nth-child(5n+1) {
-	margin-left: 1%;
+	margin-left: 2%;
 	clear: none;
 }
 .item-box:nth-child(6n+1) {
@@ -48,7 +48,7 @@
 }
 
 .center-2 .item-box:nth-child(5n+1) {
-	margin-left: 0;
+	margin-left: 2%;
 	clear: both;
 }
 
