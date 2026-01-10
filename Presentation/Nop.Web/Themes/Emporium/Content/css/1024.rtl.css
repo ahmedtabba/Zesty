@@ -38,8 +38,7 @@
 	.category-grid:last-child,
 	.topic-block:last-child,
 	.news-list-homepage:last-child {
-		margin-bottom: 20px;
-		padding: 30px 100px;
+		margin-bottom: 0px;
 	}
 .center-2 .category-grid {
 	margin: 0 0 30px;
@@ -656,13 +655,11 @@
 	clear: both;
 }
 
-.footer-upper {
-	width: 28%;
-	float: right;
-	clear: right;
-	text-align: right;
-	padding-right: 3%;
-}
+	.footer-upper {
+		clear: right;
+		text-align: right;
+		padding-right: 3%;
+	}
 
 .footer-middle {
 	float: left;
