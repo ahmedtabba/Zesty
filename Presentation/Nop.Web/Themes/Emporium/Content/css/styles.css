@@ -461,11 +461,11 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     background-color: #fff;
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 12px;
-    font-family: 'Bitter', serif;
-    font-weight: 400;
     color: #000;
 }
+
 
 table {
     width: 100%;
@@ -2378,9 +2378,9 @@ input + .inputs-icons {
         margin: auto;
     }
 
-.slider-wrapper.theme-custom {
-    margin: 0 auto 30px; /*overrides default slider*/
-}
+/*.slider-wrapper.theme-custom {
+    margin: 0 auto 30px;*/ /*overrides default slider*/
+/*}*/
 
 
 /*********** FOOTER ***********/
@@ -3556,6 +3556,7 @@ input + .inputs-icons {
     border-radius: 20px;
     overflow: hidden;
     flex-direction: column;
+    border: 1px solid #eee;
 }
 
     .item-box .details {
@@ -3741,7 +3742,7 @@ input + .inputs-icons {
     }
 
     .item-box .button-2 {
-        width: 55%;
+        width: 50%;
         background-color: #FBB040;
         border-radius: 18px 0px;
         font-weight: bold;
