@@ -2,10 +2,10 @@
 @media all and (min-width: 768px) {
 
 /* GLOBAL STYLES */
-.master-wrapper-content,
+/*.master-wrapper-content,
 .html-account-page .master-wrapper-content {
 	padding: 0px 20px;
-}
+}*/
 
 .page {
 	clear: both;

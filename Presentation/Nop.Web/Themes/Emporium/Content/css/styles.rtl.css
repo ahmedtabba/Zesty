@@ -2381,9 +2381,9 @@ input + .inputs-icons {
         margin: auto;
     }
 
-.slider-wrapper.theme-custom {
-    margin: 0 auto 30px; /*overrides default slider*/
-}
+/*.slider-wrapper.theme-custom {
+    margin: 0 auto 30px;*/ /*overrides default slider*/
+/*}*/
 
 
 /*********** FOOTER ***********/
@@ -3541,6 +3541,7 @@ input + .inputs-icons {
     border-radius: 20px;
     overflow: hidden;
     flex-direction: column;
+    border: 1px solid #eee
 }
     .item-box .details {
         flex: 1;
@@ -3726,7 +3727,7 @@ input + .inputs-icons {
 
 
     .item-box .button-2 {
-        width: 55%;
+        width: 50%;
         background-color: #FBB040;
         border-radius: 0px 18px;
         font-weight: bold;
