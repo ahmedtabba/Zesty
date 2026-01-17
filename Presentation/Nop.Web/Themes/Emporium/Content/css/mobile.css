@@ -2,7 +2,7 @@
 @media all and (max-width: 1024px) {
 
 .header-upper .header-selectors-wrapper {
-	display: none;
+	display: none !important;
 }
 
 .desktop {
