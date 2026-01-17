@@ -1,6 +1,7 @@
 ﻿(function ($, ssCore) {
 
     $(document).ready(function () {
+        console.log('emporium.js loaded');
 
         var closeMenuSelector = '.close-menu > span.close-menu-btn';
         var closeSideMenu = '.close-side-menu-btn';
@@ -1181,5 +1182,9 @@
                 $(element).removeAttr('style');
             }
         }
+
     });
+
+
+
 })(jQuery, window.sevenSpikesCore = window.sevenSpikesCore || {});

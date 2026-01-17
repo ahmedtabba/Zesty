@@ -691,6 +691,14 @@ namespace Nop.Web.Infrastructure
             endpointRouteBuilder.MapControllerRoute(name: "PageNotFound",
                 pattern: $"{lang}/page-not-found",
                 defaults: new { controller = "Common", action = "PageNotFound" });
+            // ADD CUSTOM ROUTES HERE BEFORE THE DEFAULT ROUTE!!!!! 
+
+            // search term autocomplete with category 
+            endpointRouteBuilder.MapControllerRoute( name: "ProductSearchAutoCompleteWithCategory",
+                pattern: "catalog/searchtermautocompletewithcategory",
+                defaults: new { controller = "CustomCatalog", action = "SearchTermAutoCompleteWithCategory" }
+);
+
         }
 
         #endregion

@@ -102,4 +102,12 @@
     font-style: normal;
     font-display: swap;
 }
+.bestsellers .item-grid {
+    display: block;
+}
+
+.bestsellers .item-box {
+    padding: 10px;
+}
+
 

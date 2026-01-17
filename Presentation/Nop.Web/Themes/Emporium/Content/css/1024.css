@@ -3,6 +3,9 @@
 
 /* GLOBAL STYLES */
 
+
+	
+
 .mobile {
 	display: none !important;
 }
@@ -12,6 +15,7 @@
 	font-size: 12px;
     background: none;
 	color: #fff;
+	display:none;
 }
 
 .admin-header-links a,
@@ -223,7 +227,7 @@
 	overflow: hidden;
 	padding: 0 35px 0 20px;
 	height: 40px;
-	line-height: 40px;
+	line-height: 50px;
 	color: #8c8c8c;
 	font-size: 15px;
 	font-weight: bold;
@@ -325,7 +329,7 @@
 
 
 .header-lower {
-	padding: 20px 0 18px;
+	padding: 20px 0 7px;
 	text-align: center;
 	font-size: 0;
 }
@@ -374,7 +378,7 @@
 
 .header-links a {
 	display: inline-block;
-	font-size: 13px;
+	font-size: 15px;
 	color: #282034;
 	transition: color .2s ease;
 }
@@ -431,7 +435,6 @@
 	}
 
 .ico-cart .cart-label {
-	font-weight: bold;
 	display: inline-block;
 	height: 15px;
 	white-space: nowrap;
@@ -447,22 +450,34 @@
 }
 
 .search-box .search-box-button {
-	width: 47px;
-	height: 47px;
+	width: 80px;
+	height: 45px;
 	border: none;
 	background: #eebe00 url(../img/search-button-desktop.png) center no-repeat;
 	transition: background-color .1s ease;
 }
 
 .search-box form {
-	display: block;
+	display: flex;
+	justify-content:center;
 }
 
+
 .search-box input.search-box-text {
-	height: 47px;
+	height: 45px;
 	color: #8c8c8c;
 	width: calc(100% - 47px);
+	border-radius:0px !important;
 }
+.search-category {
+		top: 0;
+		left: 0;
+		border-radius: 3px 0 0 3px;
+		width: 160px;
+		height: 45px;
+		background-color: #fff;
+		border-right: 0;
+	}
 
 .mobile-flyout-wrapper {
 	position: relative;

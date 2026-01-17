@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
@@ -17,6 +15,9 @@ using Nop.Web.Factories;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Catalog;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nop.Web.Controllers
 {
@@ -356,6 +357,55 @@ namespace Nop.Web.Controllers
                               showlinktoresultsearch = showLinkToResultSearch
                           })
                 .ToList();
+            return Json(result);
+        }
+
+        [CheckLanguageSeoCode(true)]
+        public virtual async Task<IActionResult> SearchTermAutoCompleteWithCategory(string term, int? cid)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return Content("");
+
+            term = term.Trim();
+
+            if (term.Length < _catalogSettings.ProductSearchTermMinimumLength)
+                return Content("");
+
+            var productNumber = _catalogSettings.ProductSearchAutoCompleteNumberOfProducts > 0
+                ? _catalogSettings.ProductSearchAutoCompleteNumberOfProducts
+                : 10;
+
+            var store = await _storeContext.GetCurrentStoreAsync();
+
+            var products = await _productService.SearchProductsAsync(
+                categoryIds: cid.HasValue ? new List<int> { cid.Value } : null,
+                storeId: store.Id,
+                keywords: term,
+                languageId: (await _workContext.GetWorkingLanguageAsync()).Id,
+                visibleIndividuallyOnly: true,
+                pageSize: productNumber
+            );
+
+            var showLinkToResultSearch =
+                _catalogSettings.ShowLinkToAllResultInSearchAutoComplete &&
+                (products.TotalCount > productNumber);
+
+            var models = (await _productModelFactory
+                .PrepareProductOverviewModelsAsync(
+                    products,
+                    false,
+                    _catalogSettings.ShowProductImagesInSearchAutoComplete,
+                    _mediaSettings.AutoCompleteSearchThumbPictureSize))
+                .ToList();
+
+            var result = models.Select(p => new
+            {
+                label = p.Name,
+                producturl = Url.RouteUrl("Product", new { SeName = p.SeName }),
+                productpictureurl = p.DefaultPictureModel.ImageUrl,
+                showlinktoresultsearch = showLinkToResultSearch
+            });
+
             return Json(result);
         }
 

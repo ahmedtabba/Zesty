@@ -24,6 +24,7 @@
 @{ await Html.RenderPartialAsync("_JavaScriptDisabledWarning"); }
 @{ await Html.RenderPartialAsync("_OldInternetExplorerWarning"); }
 <div class="master-wrapper-page">
+        @await Component.InvokeAsync("AdminHeaderLinks")
     <div class="responsive-nav-wrapper-parent">
         <div class="responsive-nav-wrapper">
             <div class="menu-title">
