@@ -226,10 +226,10 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	padding: 0 35px 0 20px;
-	height: 40px;
+	height: 50px;
 	line-height: 50px;
 	color: #8c8c8c;
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: bold;
 	transition: all .2s ease;
 }
@@ -311,6 +311,7 @@
 	margin-top: 0;
 	opacity: 1;
 	pointer-events: auto;
+	width:154%;
 }
 
 .category-navigation-list-wrapper .with-subcategories:after {
