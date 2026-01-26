@@ -27,6 +27,8 @@ namespace Nop.Web.Models.Blogs
         public DateTime CreatedOn { get; set; }
 
         public IList<string> Tags { get; set; }
+        public int PictureId { get; set; }
+        public string PictureUrl { get; set; }
 
         public IList<BlogCommentModel> Comments { get; set; }
         public AddBlogCommentModel AddNewComment { get; set; }

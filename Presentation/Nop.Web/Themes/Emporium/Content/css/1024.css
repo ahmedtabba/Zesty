@@ -254,11 +254,11 @@
 
 }
 
-.category-navigation-list-wrapper ul li:hover > a,
-.category-navigation-list-wrapper ul li:hover > span {
-	background-color: #f6f6f6;
-	color: #97c300;
-}
+	.category-navigation-list-wrapper ul li:hover > a,
+	.category-navigation-list-wrapper ul li:hover > span {
+		background-color: #fef2e0;
+		color: #97c300;
+	}
 
 .category-navigation-list-wrapper ul li:hover > a:after {
 	color: #97c300;
@@ -753,7 +753,7 @@
 /* LEFT/RIGHT COLUMN */
 
 .product-selectors {
-	margin: 0 0 20px;
+	margin: 0 0px 20px;
 }
 
 
@@ -767,6 +767,8 @@
 .block .title {
 	cursor: default;
     padding: 14px 30px;
+	border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .block .title:before {
@@ -954,7 +956,7 @@
 	width: auto;
 	height: 45px;
 	background-color: #fff;
-	border: 1px solid #e7e7e7;
+	border: 1px solid #cbc9ce;
 	border-radius: 2px;
 	font-weight: normal;
     text-transform: none;
@@ -1409,7 +1411,7 @@ td.remove-from-cart label, td.add-to-cart label {
 }
 
 .account-page .buttons {
-	text-align: left;
+	text-align: center;
 }
 
 .html-account-page .page-title {
@@ -1438,7 +1440,7 @@ td.remove-from-cart label, td.add-to-cart label {
 	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: bold;
-	color: #b7b7b7;
+	color: #727274;
 	transition: all .2s ease;
 }
 
@@ -1468,7 +1470,7 @@ td.remove-from-cart label, td.add-to-cart label {
 	font-size: 20px;
 	font-weight: normal;
 	text-transform: none;
-	color: #b7b7b7;
+	color: #727274;
 	transition: all .2s ease;
 }
 

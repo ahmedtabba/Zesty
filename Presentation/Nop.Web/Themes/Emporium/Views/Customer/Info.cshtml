@@ -83,7 +83,10 @@
                     {
                         <div class="inputs">
                             <label asp-for="FirstName" asp-postfix=":"></label>
+                            <div class="input-image-wrapper">
                             <input asp-for="FirstName" />
+                            <img src="../Themes/Emporium/Content/img/z.png" alt="person" class="input-icon-img">
+                            </div>
                             @if (Model.FirstNameRequired)
                             {
                                 <nop-required />
@@ -124,7 +127,10 @@
                     }
                     <div class="inputs">
                         <label asp-for="Email" asp-postfix=":"></label>
+                        <div class="input-image-wrapper">
                         <input asp-for="Email" />
+                        <img src="../Themes/Emporium/Content/img/sms1.png" alt="sms" class="input-icon-img">
+                        </div>
                         <nop-required />
                         <span asp-validation-for="Email"></span>
                     </div>
@@ -174,7 +180,11 @@
                         {
                             <div class="inputs">
                                 <label asp-for="Company" asp-postfix=":"></label>
+
+                                <div class="input-image-wrapper">
                                 <input asp-for="Company" />
+                                 <img src="../Themes/Emporium/Content/img/building.png" alt="person" class="input-icon-img">
+                                </div>
                                 @if (Model.CompanyRequired)
                                 {
                                     <nop-required />

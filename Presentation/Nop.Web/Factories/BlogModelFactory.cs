@@ -109,6 +109,16 @@ namespace Nop.Web.Factories
             model.CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(blogPost.StartDateUtc ?? blogPost.CreatedOnUtc, DateTimeKind.Utc);
             model.Tags = await _blogService.ParseTagsAsync(blogPost);
             model.AddNewComment.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnBlogCommentPage;
+            model.PictureId = blogPost.PictureId;
+
+            if (blogPost.PictureId > 0)
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(blogPost.PictureId);
+                var pictureResult = await _pictureService.GetPictureUrlAsync(picture);
+                model.PictureUrl = pictureResult.Url;
+            }
+
+
 
             //number of blog comments
             var store = await _storeContext.GetCurrentStoreAsync();

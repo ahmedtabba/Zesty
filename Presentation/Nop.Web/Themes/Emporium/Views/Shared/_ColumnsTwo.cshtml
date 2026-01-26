@@ -86,8 +86,8 @@
         {
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })
             <div class="block-wrapper">
-                @await RenderSectionAsync("CatalogFilters", false)
                 @await Component.InvokeAsync("CategoryNavigation", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+                @await RenderSectionAsync("CatalogFilters", false)
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterCategoryNavigation })
                 @await Component.InvokeAsync("ManufacturerNavigation", new { currentManufacturerId = currentManufacturerId })
                 @await Component.InvokeAsync("VendorNavigation")
