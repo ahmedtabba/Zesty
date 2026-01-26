@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core.Domain.Blogs;
 using Nop.Core.Events;
 using Nop.Services.Blogs;
+using Nop.Services.Common;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Messages;
@@ -17,6 +14,10 @@ using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Blogs;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.Filters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Controllers
 {
@@ -34,6 +35,8 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly IGenericAttributeService _genericAttributeService;
+
 
         #endregion
 
@@ -48,7 +51,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IPermissionService permissionService,
             IStoreMappingService storeMappingService,
             IStoreService storeService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            IGenericAttributeService genericAttributeService)
         {
             _blogModelFactory = blogModelFactory;
             _blogService = blogService;
@@ -60,6 +64,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _storeMappingService = storeMappingService;
             _storeService = storeService;
             _urlRecordService = urlRecordService;
+            _genericAttributeService = genericAttributeService;
         }
 
         #endregion
@@ -148,6 +153,14 @@ namespace Nop.Web.Areas.Admin.Controllers
                 blogPost.CreatedOnUtc = DateTime.UtcNow;
                 await _blogService.InsertBlogPostAsync(blogPost);
 
+                // save blog image
+                await _genericAttributeService.SaveAttributeAsync(
+                    blogPost,
+                    "BlogImageId",
+                    model.PictureId
+                );
+
+
                 //activity log
                 await _customerActivityService.InsertActivityAsync("AddNewBlogPost",
                     string.Format(await _localizationService.GetResourceAsync("ActivityLog.AddNewBlogPost"), blogPost.Id), blogPost);
@@ -186,6 +199,11 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //prepare model
             var model = await _blogModelFactory.PrepareBlogPostModelAsync(null, blogPost);
+            model.PictureId = await _genericAttributeService.GetAttributeAsync<int>(
+                blogPost,
+                "BlogImageId"
+                 );
+
 
             return View(model);
         }
@@ -205,6 +223,14 @@ namespace Nop.Web.Areas.Admin.Controllers
             {
                 blogPost = model.ToEntity(blogPost);
                 await _blogService.UpdateBlogPostAsync(blogPost);
+
+                // update blog image
+                await _genericAttributeService.SaveAttributeAsync(
+                    blogPost,
+                    "BlogImageId",
+                    model.PictureId
+                );
+
 
                 //activity log
                 await _customerActivityService.InsertActivityAsync("EditBlogPost",

@@ -2,10 +2,10 @@
 @media all and (min-width: 768px) {
 
 /* GLOBAL STYLES */
-/*.master-wrapper-content,
+.master-wrapper-content,
 .html-account-page .master-wrapper-content {
-	padding: 0px 20px;
-}*/
+	padding: 60px 20px;
+}
 
 .page {
 	clear: both;
@@ -486,7 +486,7 @@
 .request-item,
 .address-grid > div {
 	display: inline-block;
-	width: calc(50% - 12.5px);
+	width: calc(33% - 12.5px);
 	margin: 25px 25px 0 0;
 	text-align: center;
 }

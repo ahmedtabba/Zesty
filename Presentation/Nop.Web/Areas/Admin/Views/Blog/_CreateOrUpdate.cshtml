@@ -20,6 +20,7 @@
                 <nop-card asp-name="blog-post-seo" asp-icon="fas fa-search-plus" asp-title="@T("Admin.Common.SEO")" asp-hide-block-attribute-name="@hideSeoBlockAttributeName" asp-hide="@hideSeoBlock" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.Seo", Model)</nop-card>
 
                 @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.BlogPostDetailsBlock, additionalData = Model })
+
             </nop-cards>
         </div>
     </div>

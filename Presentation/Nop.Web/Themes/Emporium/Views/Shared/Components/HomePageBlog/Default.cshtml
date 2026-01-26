@@ -1,0 +1,39 @@
+﻿@model IList<Nop.Web.Models.Blogs.HomepageBlogModel>
+
+<link rel="stylesheet" href="~/Themes/Emporium/Content/css/homepage-blog.css" />
+
+<div class="latest-blogs">
+    <div class="blogs-grid">
+        @foreach (var blog in Model)
+        {
+            <article class="blog-card">
+                <div class="blog-card-media">
+                    <a asp-route="BlogPost" asp-route-blogPostId="@blog.Id" class="blog-image-link">
+                        <img src="@blog.PictureUrl" alt="@blog.Title" loading="lazy" />
+                    </a>
+                </div>
+
+                <div class="blog-card-body">
+                    <span class="blog-date">
+                        @blog.CreatedOn.ToString("dd MMM yyyy").ToUpper()
+                    </span>
+
+                    <h3 class="blog-title">
+                        <a asp-route="BlogPost" asp-route-blogPostId="@blog.Id">@blog.Title</a>
+                    </h3>
+
+                    <div class="blog-excerpt">
+                        @Html.Raw(blog.ShortDescription)
+                    </div>
+                </div>
+
+                <div class="blog-card-footer">
+                    <a href="@blog.Url" class="blog-read">
+                        READ MORE &gt;
+                    </a>
+
+                </div>
+            </article>
+        }
+    </div>
+</div>

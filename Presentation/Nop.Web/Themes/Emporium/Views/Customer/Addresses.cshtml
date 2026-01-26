@@ -32,7 +32,10 @@
 	<div class="page-body">
 		@if (Model.Addresses.Count > 0)
 		{
-			<div class="address-list">
+			<div class="address-list" >
+				<div class="add-button address-item" style="height:305px">
+					<button type="button" class="button-1 add-address-button" onclick="location.href='@Url.RouteUrl("CustomerAddressAdd")'">@T("Common.AddNew")</button>
+				</div>
 				@for (var i = 0; i < Model.Addresses.Count; i++)
 				{
 					var address = Model.Addresses[i];
@@ -42,7 +45,7 @@
 						continue;
 					}
 
-					<div class="section address-item">
+					<div class="section address-item" style="height:305px">
 						<div class="title">
 							<strong>@address.FirstName @address.LastName</strong>
 						</div>
@@ -144,9 +147,6 @@
 						</div>
 					</div>
 				}
-				<div class="add-button address-item">
-					<button type="button" class="button-1 add-address-button" onclick="location.href='@Url.RouteUrl("CustomerAddressAdd")'">@T("Common.AddNew")</button>
-				</div>
 			</div>
 			<script asp-location="Footer">
                 function deletecustomeraddress(addressId) {

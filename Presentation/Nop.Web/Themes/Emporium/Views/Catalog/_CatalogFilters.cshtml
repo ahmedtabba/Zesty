@@ -9,13 +9,9 @@
 
 <div class="block product-filters">
     <div class="title">
-        <strong>@T("SevenSpikes.NopAjaxFilters.Client.Common.FilterBy")</strong>
+        <p>@T("SevenSpikes.NopAjaxFilters.Client.Common.FilterBy")</p>
     </div>
     <div class="listbox">
-        @if (Model.PriceRangeFilter.Enabled)
-        {
-            @await Html.PartialAsync("_FilterPriceBox", Model.PriceRangeFilter)
-        }
 
         @if (Model.SpecificationFilter.Enabled)
         {
@@ -25,6 +21,10 @@
         @if (Model.ManufacturerFilter.Enabled)
         {
             @await Html.PartialAsync("_FilterManufacturerBox", Model.ManufacturerFilter)
+        }
+        @if (Model.PriceRangeFilter.Enabled)
+        {
+            @await Html.PartialAsync("_FilterPriceBox", Model.PriceRangeFilter)
         }
     </div>
 </div>

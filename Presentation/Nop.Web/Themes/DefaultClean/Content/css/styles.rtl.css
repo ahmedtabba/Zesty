@@ -323,7 +323,7 @@ label, label + * {
 .inputs select, .inputs textarea {
   width: 400px;
   max-width: 100%;
-  background-color: #fff;
+  background-color: #939495;
 }
 
 .inputs.custom-attributes {

@@ -1,0 +1,156 @@
+/* Cards layout */
+.latest-blogs {
+    padding: 30px 60px;
+}
+
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* Card */
+.blog-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+/* Media */
+.blog-card-media {
+    width: 100%;
+    height: 290px;
+    overflow: hidden;
+    background: #f5f5f5;
+    z-index: 1;
+}
+
+.blog-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Body */
+.blog-card-body {
+    padding: 26px 30px 20px;
+    text-align: center;
+    flex: 1 1 auto;
+    z-index: 4; /* above the image */
+    transition: transform .35s ease;
+    /* reserve space for the hidden button so content doesn't overlap awkwardly */
+    padding-bottom: 84px;
+    background: #fff;
+}
+
+/* Content typography */
+.blog-date {
+    display: block;
+    color: #f3a63b; /* orange */
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.blog-title {
+    margin: 0 0 18px;
+    font-size: 22px;
+    line-height: 1.2;
+    color: #222;
+    font-weight: 700;
+}
+
+.blog-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.blog-excerpt {
+    margin: 0;
+    color: #9b9b9b;
+    line-height: 1.7;
+    font-size: 18px;
+    max-height: 132px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; /* important for line clamping */
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+/* Footer read more (absolute so it can slide into view and cover bottom) */
+.blog-card-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72px; /* controls how much bottom area the button occupies */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 5; /* topmost so it covers the image */
+    background: transparent;
+    pointer-events: none;
+    padding-bottom: 0;
+}
+
+.blog-read {
+    display: block;
+    width: calc(100% - 0px);
+    background: #f3a63b;
+    color: #fff;
+    text-align: center;
+    padding: 18px 20px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: .6px;
+    transform: translateY(110%); /* hidden below the card bottom */
+    opacity: 0;
+    transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s ease;
+    pointer-events: none;
+}
+
+/* Hover: lift the entire body up over the image and bring the button up to cover the bottom */
+.blog-card:hover .blog-card-body {
+    transform: translateY(-40px); /* moves the whole white body up over the image */
+}
+
+.blog-card:hover .blog-read {
+    transform: translateY(0); /* button slides into view covering bottom area */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.blog-card:hover .blog-card-body {
+    box-shadow: 0 -6px 30px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .blogs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .blog-card-media { height: 200px; }
+    .blog-card-body { padding-bottom: 84px; }
+    .blog-card-footer { height: 64px; }
+}
+
+@media (max-width: 600px) {
+    .blogs-grid {
+        grid-template-columns: 1fr;
+    }
+    .blog-card-media { height: 160px; }
+    .blog-card-body { padding: 20px 20px 84px; }
+    .blog-read { padding: 12px 16px; transform: translateY(110%); }
+}
