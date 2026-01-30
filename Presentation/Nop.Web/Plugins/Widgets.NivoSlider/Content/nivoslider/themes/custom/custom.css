@@ -182,7 +182,6 @@
 .small-Title {
     font-size: 16px;
     line-height: 18px;
-    font-family: bitter;
     font-weight: 600;
     letter-spacing: 2px;
     text-align: center;
@@ -192,10 +191,9 @@
 	padding:10px;
 }
 .custom-title {
-	font-family: 'Bitter', serif;
 	font-weight: bolder; /* ExtraBold */
 	font-size: 34px;
-	margin: 0 0 20px 0;
+	margin: 35px 0 10px 0;
 	line-height: 100%;
 	letter-spacing: 0;
 	text-align: center;

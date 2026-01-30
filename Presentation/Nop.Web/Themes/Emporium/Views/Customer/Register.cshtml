@@ -7,19 +7,60 @@
     //page class
     NopHtml.AppendPageCssClassParts("html-registration-page");
 }
+<style>
 
+    /* make sure the image exists at the path below:
+           Presentation\Nop.Web\Themes\Emporium\Content\img\background.png
+           Adjust the path in Url.Content(...) if you place it under Content/images instead. */
+    .master-wrapper-content {
+        background-image: url('@Url.Content("~/Themes/Emporium/Content/img/background.png")');
+        background-position: center;
+        background-size: cover;
+    }
+    .form-fields{
+        background-color:#fff;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 1rem !important;
+    }
+
+    .form-fields .inputs {
+    flex: 0 0 calc(50% - 1rem) !important;
+    box-sizing: border-box !important;
+    }
+
+    .registration-page{
+        max-width: 1150px !important;
+    }
+    .registration-page .button-1:only-child{
+        width:120px;
+    }
+
+</style>
 <div class="page registration-page">
     <div class="page-title">
-        <h1>@T("Account.Register")</h1>
+        <h1 style="color:#fff">@T("Account.Register")</h1>
     </div>
     <div asp-validation-summary="ModelOnly" class="message-error"></div>
     <div class="page-body">
-        <form asp-route="Register" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
+        <form style="background-color:#fff; border-radius:14px;" asp-route="Register" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
             <div class="fieldset">
                 <div class="title">
                     <strong>@T("Account.YourPersonalDetails")</strong>
                 </div>
                 <div class="form-fields">
+                    @if (Model.FirstNameEnabled)
+                    {
+                        <div class="inputs">
+                            <label asp-for="FirstName" asp-postfix=":"></label>
+                            <input asp-for="FirstName" />
+                            @if (Model.FirstNameRequired)
+                            {
+                                <nop-required />
+                            }
+                            <span asp-validation-for="FirstName"></span>
+                        </div>
+                    }
                     @if (Model.GenderEnabled)
                     {
                         <div class="inputs">
@@ -36,18 +77,6 @@
                             </div>
                         </div>
                     }
-                    @if (Model.FirstNameEnabled)
-                    {
-                        <div class="inputs">
-                            <label asp-for="FirstName" asp-postfix=":"></label>
-                            <input asp-for="FirstName" />
-                            @if (Model.FirstNameRequired)
-                            {
-                                <nop-required />
-                            }
-                            <span asp-validation-for="FirstName"></span>
-                        </div>
-                    }
                     @if (Model.LastNameEnabled)
                     {
                         <div class="inputs">
@@ -60,6 +89,12 @@
                             <span asp-validation-for="LastName"></span>
                         </div>
                     }
+                    <div class="inputs">
+                        <label asp-for="Email" asp-postfix=":"></label>
+                        <input asp-for="Email" />
+                        <nop-required />
+                        <span asp-validation-for="Email"></span>
+                    </div>
                     @if (Model.DateOfBirthEnabled)
                     {
                         <div class="inputs date-of-birth">
@@ -79,12 +114,6 @@
                             <span asp-validation-for="DateOfBirthYear"></span>
                         </div>
                     }
-                    <div class="inputs">
-                        <label asp-for="Email" asp-postfix=":"></label>
-                        <input asp-for="Email" />
-                        <nop-required />
-                        <span asp-validation-for="Email"></span>
-                    </div>
                     @if (Model.EnteringEmailTwice)
                     {
                         <div class="inputs">
@@ -108,38 +137,60 @@
                         </div>
 
                     }
+                    <div class="inputs">
+                        <label asp-for="Password" asp-postfix=":"></label>
+                        <input asp-for="Password" />
+                        <nop-required />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    @if (Model.CompanyEnabled || Model.DisplayVatNumber)
+                    {
+                            @if (Model.CompanyEnabled)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="Company" asp-postfix=":"></label>
+                                    <input asp-for="Company" />
+                                    @if (Model.CompanyRequired)
+                                    {
+                                        <nop-required />
+                                    }
+                                    <span asp-validation-for="Company"></span>
+                                </div>
+                            }
+                            @if (Model.DisplayVatNumber)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="VatNumber" asp-postfix=":"></label>
+                                    <input asp-for="VatNumber" />
+                                    <span class="vat-note"><em>@T("Account.Fields.VatNumber.Note")</em></span>
+                                </div>
+                            }
+                    }
+                    <div class="inputs">
+                        <label asp-for="ConfirmPassword" asp-postfix=":"></label>
+                        <input asp-for="ConfirmPassword" />
+                        <nop-required />
+                        <span asp-validation-for="ConfirmPassword"></span>
+                    </div>
+
+                    @if (Model.NewsletterEnabled || Model.CustomerAttributes.Count > 0)
+                    {
+                        @if (Model.NewsletterEnabled)
+                        {
+                            <div class="inputs">
+                                <input asp-for="Newsletter" />
+                                <label asp-for="Newsletter"></label>
+                                <span asp-validation-for="Newsletter"></span>
+                            </div>
+                        }
+                        @if (Model.CustomerAttributes.Count > 0)
+                        {
+                            @await Html.PartialAsync("_CustomerAttributes", Model.CustomerAttributes)
+                        }
+                    }
                 </div>
             </div>
-            @if (Model.CompanyEnabled || Model.DisplayVatNumber)
-            {
-                <div class="fieldset">
-                    <div class="title">
-                        <strong>@T("Account.CompanyDetails")</strong>
-                    </div>
-                    <div class="form-fields">
-                        @if (Model.CompanyEnabled)
-                        {
-                            <div class="inputs">
-                                <label asp-for="Company" asp-postfix=":"></label>
-                                <input asp-for="Company" />
-                                @if (Model.CompanyRequired)
-                                {
-                                    <nop-required />
-                                }
-                                <span asp-validation-for="Company"></span>
-                            </div>
-                        }
-                        @if (Model.DisplayVatNumber)
-                        {
-                            <div class="inputs">
-                                <label asp-for="VatNumber" asp-postfix=":"></label>
-                                <input asp-for="VatNumber" />
-                                <span class="vat-note"><em>@T("Account.Fields.VatNumber.Note")</em></span>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
+           
             @if (Model.StreetAddressEnabled ||
                 Model.StreetAddress2Enabled || 
                 Model.ZipPostalCodeEnabled || 
@@ -278,28 +329,7 @@
                     </div>
                 </div>
             }
-            @if (Model.NewsletterEnabled || Model.CustomerAttributes.Count > 0)
-            {
-                <div class="fieldset">
-                    <div class="title">
-                        <strong>@T("Account.Options")</strong>
-                    </div>
-                    <div class="form-fields">
-                        @if (Model.NewsletterEnabled)
-                        {
-                            <div class="inputs">
-                                <input asp-for="Newsletter" />
-                                <label asp-for="Newsletter"></label>
-                                <span asp-validation-for="Newsletter"></span>
-                            </div>
-                        }
-                        @if (Model.CustomerAttributes.Count > 0)
-                        {
-                            @await Html.PartialAsync("_CustomerAttributes", Model.CustomerAttributes)
-                        }
-                    </div>
-                </div>
-            }
+           
             @if (Model.AllowCustomersToSetTimeZone)
             {
                 <div class="fieldset">
@@ -315,23 +345,7 @@
                     </div>
                 </div>
             }
-            <div class="fieldset">
-                <div class="title">
-                    <strong>@T("Account.YourPassword")</strong>
-                </div>
-                <div class="form-fields">
-                    <div class="inputs">
-                        <label asp-for="Password" asp-postfix=":"></label>
-                        <input asp-for="Password" />
-                        <nop-required />
-                        <span asp-validation-for="Password"></span>
-                    </div>
-                    <div class="inputs">
-                        <label asp-for="ConfirmPassword" asp-postfix=":"></label>
-                        <input asp-for="ConfirmPassword" />
-                        <nop-required />
-                        <span asp-validation-for="ConfirmPassword"></span>
-                    </div>
+                   
                     @if (Model.DisplayCaptcha)
                     {
                         <nop-captcha />
@@ -340,8 +354,6 @@
                     {
                         @Html.Raw(Html.GenerateHoneypotInput())
                     }
-                </div>
-            </div>
 
             @if (Model.AcceptPrivacyPolicyEnabled || Model.GdprConsents.Count > 0)
             {
@@ -417,7 +429,7 @@
                     </div>
                 </div>
             }
-            <div class="buttons">
+            <div style="background-color:#fff" class="buttons">
                 <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
             </div>
         </form>

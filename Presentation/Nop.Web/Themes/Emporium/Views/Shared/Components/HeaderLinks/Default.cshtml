@@ -7,6 +7,8 @@
 @inject IStoreContext storeContext
 @inject ISettingService settingService
 
+
+
 @{
     int storeId = (await storeContext.GetCurrentStoreAsync()).Id;
     bool compareProductsEnabled = await settingService.GetSettingByKeyAsync("catalogsettings.compareproductsenabled", true, storeId, true);
@@ -18,19 +20,199 @@
     var isLoginPage = controllerName.Equals("customer", StringComparison.InvariantCultureIgnoreCase) &&
                             actionName.Equals("login", StringComparison.InvariantCultureIgnoreCase);
 }
+
+<style>
+    /* ===============================
+   MY ACCOUNT DROPDOWN (RTL + LTR)
+================================ */
+
+.account-dropdown {
+    position: relative;
+}
+
+    .currency-selector.desktop:before{
+        display:none !important;
+    }
+
+    .language-selector.desktop .select-wrap:before{
+        display: none !important;
+    }
+
+/* زر My Account */
+.account-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* صندوق القائمة */
+.profile-menu-box {
+    position: absolute;
+    top: 100%;
+    inset-inline-end: 0; /* RTL/LTR */
+    background: #fff;
+    min-width: 240px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+    padding: 8px 0;
+}
+
+/* فتح القائمة */
+.profile-menu-box.open {
+    display: flex;
+}
+
+/* الروابط داخل الصندوق */
+.profile-menu-box a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: #222;
+    text-decoration: none;
+    text-align: start; /* RTL/LTR */
+    white-space: nowrap;
+}
+
+.profile-menu-box a:hover {
+    background: #f5f5f5;
+}
+
+/* فاصل */
+.account-divider {
+    height: 1px;
+    background: #eee;
+    margin: 6px 0;
+}
+
+/* Language & Currency wrapper */
+.account-selector {
+    position: relative;
+    padding: 8px 16px;
+}
+
+/* select (لغة / عملة) */
+.account-selector select {
+    width: 100%;
+    padding: 10px 12px;
+    padding-inline-start: 12px;
+    padding-inline-end: 36px;
+
+    border-radius: 14px;
+    border: 2px solid #e5e5e5;
+    background-color: #fff;
+
+    font-weight: 600;
+    color: #6f6a77;
+
+    text-align: start;
+
+    /* إزالة سهم المتصفح */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: none;
+}
+
+
+/* سهم select */
+.account-selector::after {
+    content: "▾";
+    position: absolute;
+    top: 50%;
+    inset-inline-end: 24px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    opacity: .6;
+}
+
+/* Mini login form styles */
+.header-form-holder {
+    padding: 12px 16px;
+    width: 280px;
+    box-sizing: border-box;
+}
+.mini-login-form .mini-input {
+    margin-bottom: 10px;
+}
+.mini-login-form input[type="email"],
+.mini-login-form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.mini-login-form .mini-forgot {
+    text-align: center;
+    margin: 8px 0;
+    font-size: 12px;
+}
+.mini-login-form .mini-forgot a {
+    color: #888;
+    text-decoration: underline;
+}
+.mini-login-form .mini-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+.mini-login-form .mini-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.mini-login-form .button-1.login-button {
+    background: #f4a740;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.mini-login-form .button-2.register-button {
+    background: #f3f3f3;
+    color: #666;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+}
+.mini-login-form .button-2.register-button:hover {
+    background: #eee;
+}
+</style>
+
 <div class="header-links">
     <ul>
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore, additionalData = Model })
         @if (Model.IsAuthenticated)
         {
-            <li>
-                <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account opener">@T("Account.MyAccount")@*@Model.CustomerName*@</a>
+            <li class="account-dropdown">
+                <a href="javascript:void(0)" class="ico-account account-toggle">
+                    @T("Account.MyAccount")
+                </a>
+
                 <div class="profile-menu-box">
-                    <div class="close-side-menu">
-                        <span class="close-side-menu-text">@Model.CustomerName</span>
-                        <span class="close-side-menu-btn">@T("SevenSpikes.Themes.Common.CloseMenu")</span>
-                    </div>
-                    <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@T("Account.MyAccount")@*@Model.CustomerName*@</a>
+                    <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">
+                        @T("Account.MyAccount")
+                    </a>
+
                     @if (Model.AllowPrivateMessages)
                     {
                         <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">
@@ -38,31 +220,123 @@
                             <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
                         </a>
                     }
-                    <a href="@Url.RouteUrl("Logout")" class="ico-logout">@T("Account.Logout")</a>
+
+                    <div class="account-divider"></div>
+                    <a href="@Url.RouteUrl("Logout")" class="ico-logout">
+                        @T("Account.Logout")
+                    </a>
+
+                    <!-- Currency -->
+                    <div class="account-selector">
+                        @await Component.InvokeAsync("CurrencySelector")
+                    </div>
+
+                    <!-- Language -->
+                    <div class="account-selector">
+                        @await Component.InvokeAsync("LanguageSelector")
+                    </div>
+
+                    <div class="account-divider"></div>
+
                 </div>
+
             </li>
+
         }
         else
         {
             var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
                 ? url.ToString()
                 : webHelper.GetRawUrl(Context.Request);
-            <li>
-                <a href="@Url.RouteUrl("CustomerInfo")" class="ico-account opener" data-loginUrl="@Url.Action("Login", "Customer")">@T("Account.MyAccount")@*@Model.CustomerName*@</a>
-                <div class="profile-menu-box @if (shouldShowLoginFormInHeader && !isLoginPage){<text>login-form-in-header</text>}">
-                    <div class="close-side-menu">
-                        <span class="close-side-menu-text">@T("Account.MyAccount")</span>
-                        <span class="close-side-menu-btn">@T("SevenSpikes.Themes.Common.CloseMenu")</span>
+            <li class="account-dropdown">
+                @* For guests: open a mini login/register menu instead of navigating away. *@
+                <a href="javascript:void(0)"
+                   class="ico-account account-toggle opener"
+                   data-login-url="@Url.Action("Login", "Customer")"
+                   data-register-url="@Url.RouteUrl("Register", new { returnUrl })"
+                   data-return-url="@returnUrl">
+                    @T("Account.MyAccount")
+                </a>
+
+        <div class="profile-menu-box
+                     @if (shouldShowLoginFormInHeader && !isLoginPage)
+                     {
+                         <text>login-form-in-header</text>
+                     }">
+
+            <div class="close-side-menu">
+                <span class="close-side-menu-text">
+                    @T("Account.MyAccount")
+                </span>
+                <span class="close-side-menu-btn">
+                    @T("SevenSpikes.Themes.Common.CloseMenu")
+                </span>
+            </div>
+
+            <div class="header-form-holder">
+                @* Mini inline login form for guests *@
+                <form asp-action="Login" asp-controller="Customer" method="post" autocomplete="off" class="mini-login-form" id="mini-login-form">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                    <div class="mini-input">
+                        <input name="Email" type="email" placeholder="@T("Account.Login.Fields.Email")" required />
                     </div>
-                    <div class="header-form-holder">
+                    <div class="mini-input">
+                        <input name="Password" type="password" placeholder="@T("Account.Login.Fields.Password")" required />
+                    </div>
+
+                    <div class="mini-forgot">
+                        <a asp-route="PasswordRecovery">@T("Account.Login.ForgotPassword")</a>
+                    </div>
+
+                    <div class="mini-remember">
+                        <input id="mini-remember" name="RememberMe" type="checkbox" />
+                        <label for="mini-remember">@T("Account.Login.Fields.RememberMe")</label>
+                    </div>
+
+                    <div class="mini-buttons">
+                        <button type="submit" class="button-1 login-button">@T("Account.Login.LoginButton")</button>
+
                         @if (Model.RegistrationType != UserRegistrationType.Disabled)
                         {
-                            <a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register">@T("Account.Register")</a>
+                            <a href="@Url.RouteUrl("Register", new { returnUrl })" class="button-2 register-button">
+                                @T("Account.Register")
+                            </a>
                         }
-                        <a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login">@T("Account.Login")</a>
                     </div>
-                </div>
+                </form>
+
+                <script>
+                    // Validate mini form client-side: if empty fields -> redirect to full login page with a flag
+                    (function () {
+                        var miniForm = document.getElementById('mini-login-form');
+                        if (!miniForm) return;
+                        miniForm.addEventListener('submit', function (e) {
+                            try {
+                                var email = (miniForm.querySelector('input[name="Email"]') || {}).value || '';
+                                var pass = (miniForm.querySelector('input[name="Password"]') || {}).value || '';
+                                if (!email.trim() || !pass.trim()) {
+                                    e.preventDefault();
+                                    var loginUrl = '@Url.RouteUrl("Login")';
+                                    var url = loginUrl + (loginUrl.indexOf('?') === -1 ? '?' : '&') + 'input=missing';
+                                    var ret = encodeURIComponent('@returnUrl');
+                                    if (ret) url += '&returnUrl=' + ret;
+                                    window.location.href = url;
+                                    return false;
+                                }
+                            } catch (ex) {
+                                // ignore and allow submit if something unexpected happens
+                            }
+                        });
+                    })();
+                </script>
+            </div>
+        </div>
             </li>
+
+
+
+
         }
         @if (compareProductsEnabled)
         {
@@ -119,3 +393,21 @@
         </script>
     }
 </div>
+<script>
+    document.querySelectorAll('.account-toggle').forEach(function(toggle){
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            const menu = this.nextElementSibling;
+            menu.classList.toggle('open');
+        });
+    });
+
+    // اغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function(e){
+        document.querySelectorAll('.profile-menu-box.open').forEach(function(menu){
+            if(!menu.parentElement.contains(e.target)){
+                menu.classList.remove('open');
+            }
+        });
+    });
+</script>

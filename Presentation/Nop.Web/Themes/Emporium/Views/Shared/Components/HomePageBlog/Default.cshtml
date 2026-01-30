@@ -2,7 +2,15 @@
 
 <link rel="stylesheet" href="~/Themes/Emporium/Content/css/homepage-blog.css" />
 
+
+
 <div class="latest-blogs">
+    <div class="title">
+        <strong>@T("Latest.Blogs&News")</strong>
+    </div>
+    <div class="view-all">
+        <a href="@Url.RouteUrl("blog")">@T("Blogs.ViewAll")</a>
+    </div>
     <div class="blogs-grid">
         @foreach (var blog in Model)
         {
