@@ -2458,11 +2458,6 @@ label, label + * {
         white-space: nowrap;
     }
 
-    .newsletter-box {
-        flex: 1;
-        min-width: 220px;
-        max-width: 560px;
-    }
 
     .footer-social {
         display: flex;
@@ -2532,6 +2527,7 @@ label, label + * {
             border-width: 2px;
             background-color: transparent;
         }
+       
 
             .newsletter-email .newsletter-subscribe-text:focus {
                 border-color: #e7e7e7;
@@ -2987,7 +2983,7 @@ label, label + * {
         }
 
             .block .title strong {
-                font-weight: 300;
+                font-weight: 600;
                 display: block;
             }
 
@@ -3634,9 +3630,10 @@ label, label + * {
             z-index: 1;
             overflow: hidden;
             background-color: #fff;
-            margin: 0 0 5px;
             border-radius: 2px 2px 0 0;
         }
+
+
 
             .item-box .picture > a {
                 display: block;
@@ -6674,13 +6671,13 @@ label, label + * {
 
         .topic-block-title h2 {
             font-weight: 700;
-            color: #8c8c8c;
+            color: #fff !important;
         }
 
     .topic-block-body p {
         line-height: 1.5;
         font-size: 16px;
-        color: #8c8c8c;
+        color: #fff;
         font-weight: 400;
     }
 
@@ -6697,7 +6694,6 @@ label, label + * {
 
     .topic-page .page-body {
         line-height: 20px;
-        max-width: 1000px;
         margin: 0 auto;
     }
 
@@ -6998,22 +6994,23 @@ label, label + * {
             margin-bottom: 50px;
         }
 
-    .login-page .new-wrapper,
-    .login-page .returning-wrapper form,
-    .registration-page .page-body,
-    .email-a-friend-page .page-body form,
-    .password-recovery-page .page-body,
-    .private-message-send-page .page-body,
-    .contact-page .page-body form,
-    .apply-vendor-page .page-body form,
-    .forum-edit-page .page-body,
-    .form-style,
-    .move-topic-page .page-body {
-        max-width: 600px;
-        margin: 0 auto 30px;
-        border: 1px solid #eee;
-        border-radius: 3px;
-    }
+.login-page .new-wrapper,
+.login-page .returning-wrapper form,
+.registration-page .page-body,
+.email-a-friend-page .page-body form,
+.password-recovery-page .page-body,
+.private-message-send-page .page-body,
+.contact-page .page-body form,
+.apply-vendor-page .page-body form,
+.forum-edit-page .page-body,
+.form-style,
+.move-topic-page .page-body {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    border-radius: 16px;
+}
 
     .registration-page .page-body,
     .email-a-friend-page .page-body form,
@@ -7055,9 +7052,9 @@ label, label + * {
             margin: 0;
             padding: 18px;
             font-size: 18px;
-            color: #8c8c8c;
+            color: #939495;
             background-color: #f9f9f9;
-            border-radius: 3px 3px 0 0;
+            border-radius: 16px 16px 0 0;
             text-align: center;
         }
 
@@ -7105,6 +7102,9 @@ label, label + * {
     .login-page .buttons,
     .registration-page .buttons {
         padding: 10px 20px 20px;
+        border-radius: 14px;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
     }
 
     .login-page .inputs.reversed label,
@@ -7200,7 +7200,7 @@ label, label + * {
         }
 
     .registration-page .fieldset {
-        margin-bottom: 20px;
+        margin-bottom: 0px !important;
     }
 
     .account-page .section > .title,
@@ -9083,7 +9083,7 @@ td.download a {
     position: relative;
     margin: 0 0 20px;
     border: 1px solid #eeeeee;
-    border-radius: 3px;
+    border-radius: 20px;
     overflow: hidden;
 }
 
@@ -9109,17 +9109,17 @@ td.download a {
     display: block;
     margin: 0 0 20px;
     font-size: 25px;
-    font-weight: 300;
+    font-weight: 600;
     color: #444444;
 }
 
 .post-date,
 .news-date {
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 1.3px;
-    color: #97c300;
+    color: #fbb040;
     margin-bottom: 10px;
     text-transform: uppercase;
 }
@@ -9261,8 +9261,8 @@ td.download a {
 .news-items .read-more {
     display: inline-block;
     padding: 0 25px;
-    border-radius: 3px;
-    background-color: #eebe00;
+    border-radius: 8px;
+    background-color: #fbb040;
     height: 45px;
     line-height: 45px;
     color: #fff;

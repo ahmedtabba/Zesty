@@ -15,9 +15,21 @@
     //register URL with return URL (if specified)
     var registerUrl = Url.RouteUrl("Register", new { returnUrl = this.Context.Request.Query["returnUrl"] }, webHelper.GetCurrentRequestProtocol());
 }
+
+<style>
+  
+    /* make sure the image exists at the path below:
+       Presentation\Nop.Web\Themes\Emporium\Content\img\background.png
+       Adjust the path in Url.Content(...) if you place it under Content/images instead. */
+    .master-wrapper-content{
+        background-image: url('@Url.Content("~/Themes/Emporium/Content/img/background.png")');
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 <div class="page login-page">
     <div class="page-title">
-        <h1>@T("Account.Login.Welcome")</h1>
+        <h1 style="color:#fff">@T("Account.Login.Welcome")</h1>
     </div>
     @await Html.PartialAsync("_ExternalAuthentication.Errors")
     <div class="page-body">
@@ -50,7 +62,7 @@
             }
             else
             {
-                <div class="new-wrapper register-block">
+                <div style="background-color:#fff" class="new-wrapper register-block">
                     <div class="title">
                         <strong>@T("Account.Login.NewCustomer")</strong>
                     </div>
@@ -63,7 +75,7 @@
                 </div>
             }
             <div class="returning-wrapper fieldset">
-                <form asp-route="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
+                <form style="background-color:#fff" asp-route="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
                     <div class="title">
                         <strong>@T("Account.Login.ReturningCustomer")</strong>
                     </div>

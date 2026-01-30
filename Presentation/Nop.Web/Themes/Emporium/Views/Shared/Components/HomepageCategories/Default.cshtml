@@ -1,133 +1,93 @@
 ﻿@model IList<CategoryModel>
 
 @inject IViewComponentSelector viewComponentSelector
-<style>
-    .category-slider .swiper-slide {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 260px; 
 
-    }
-
-    .category-slider .item-box {
-        width: 100%;
-        max-width: 160px;
-        text-align: center;
-        background: #fff;
-        border-radius: 16px;
-        /* padding: 20px; */
-       
-        transition: transform .3s ease;
-    }
-
-        .category-slider .item-box:hover {
-            transform: translateY(-6px);
-        }
-
-    .category-slider .picture {
-        height: 190px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-        .category-slider .picture img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: fill;
-        }
-
-    .category-slider {
-        padding: 40px 40px;
-    }
-
-        .category-slider .swiper-pagination {
-            bottom: 0 !important;
-        }
-
-
-   
-
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<link rel="stylesheet" href="~/Themes/Emporium/Content/css/homepage-categories.css" />
 
 @if (Model?.Count > 0)
 {
-    
-    <div class="swiper category-slider">
-            <h2 class="custom-title">@T("Home.Categories.Title")</h2>
-            <h4 class="small-Title">@T("Home.Categories.SmallTitle")</h4>
+    <div class="category-slider-wrap">
+            <div>
+                <h2 class="custom-title">@T("Home.Categories.Title")</h2>
+            </div>
 
-        <div class="swiper-wrapper">
-            @foreach (var item in Model)
-            {
-                <div class="swiper-slide">
-                    <a class="item-box"
-                       href="@Url.RouteUrl("Category", new { SeName = item.SeName })">
-                        <div class="picture">
-                            <img src="@item.PictureModel.ImageUrl"
-                                 alt="@item.PictureModel.AlternateText" />
-                        </div>
-                    </a>
-                </div>
-            }
+            <div>
+                <h4 class="small-Title">@T("Home.Categories.SmallTitle")</h4>
+            </div>
+        <div class="category-slider-header">
         </div>
-        <div class="swiper-pagination"></div>
+
+        <div class="swiper category-slider" aria-label="Homepage categories">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide" role="group" aria-label="@item.Name">
+                        <a class="item-box" href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.Name">
+                            <div class="picture">
+                                <img src="@item.PictureModel.ImageUrl"
+                                     alt="@item.PictureModel.AlternateText ?? item.Name"
+                                     loading="lazy" decoding="async" />
+                            </div>
+
+                            @* <div class="category-name">@item.Name</div> *@
+
+                            @* Optional meta line if available (e.g. product count). safe check *@
+                            @* @if (item is not null)
+                            {
+                                <div class="category-meta"></div>
+                            } *@
+                        </a>
+                    </div>
+                }
+            </div>
+
+            <!-- navigation -->
+            @* <div class="swiper-button-prev" aria-label="Previous"></div>
+            <div class="swiper-button-next" aria-label="Next"></div> *@
+
+            <!-- pagination (dots) -->
+            @* <div class="swiper-pagination" role="navigation" aria-label="Category pagination"></div> *@
+        </div>
     </div>
 
-}
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-    // document.addEventListener("DOMContentLoaded", function () {
-    //        new Swiper(".category-slider", {
-    //     loop: true,
-    //     autoplay: {
-    //         delay: 3500,
-    //         disableOnInteraction: false
-    //     },
-    //     spaceBetween: 30,
-    //     slidesPerView: 4,
-    //     centeredSlides: false,
-    //     breakpoints: {
-    //         0: { slidesPerView: 1 },
-    //         576: { slidesPerView: 2 },
-    //         768: { slidesPerView: 3 },
-    //         1200: { slidesPerView: 4 }
-    //     },
-    //     pagination: {
-    //         el: ".swiper-pagination",
-    //         clickable: true
-    //     }
-    // });
-
-    // });
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
-        new Swiper(".category-slider", {
-            loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false
-            },
-            spaceBetween: 30,
-            slidesPerView: 5,      // عدد العناصر التي تظهر في نفس الوقت
-            slidesPerGroup: 2,     // عدد العناصر التي تتحرك مع كل dot
-            centeredSlides: false,
-            breakpoints: {
-                0: { slidesPerView: 1, slidesPerGroup: 2 },
-                576: { slidesPerView: 2, slidesPerGroup: 2 },
-                768: { slidesPerView: 3, slidesPerGroup: 2 },
-                1200: { slidesPerView: 5, slidesPerGroup: 2 }
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true
-            }
+            new Swiper(".category-slider", {
+                loop: true,
+                autoplay: { delay: 3500, disableOnInteraction: false },
+                spaceBetween: 20,
+                slidesPerView: 5,
+                slidesPerGroup: 1,
+                centeredSlides: false,
+                watchOverflow: true,
+                keyboard: { enabled: true, onlyInViewport: true },
+                preloadImages: false,
+                lazy: { loadOnTransitionStart: true, loadPrevNext: true },
+                navigation: {
+                    nextEl: ".category-slider .swiper-button-next",
+                    prevEl: ".category-slider .swiper-button-prev"
+                },
+                pagination: {
+                    el: ".category-slider .swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true
+                },
+                breakpoints: {
+                    0: { slidesPerView: 1, slidesPerGroup: 1 },
+                    480: { slidesPerView: 2, slidesPerGroup: 1 },
+                    768: { slidesPerView: 3, slidesPerGroup: 1 },
+                    992: { slidesPerView: 4, slidesPerGroup: 1 },
+                    1200: { slidesPerView: 5, slidesPerGroup: 1 }
+                },
+                a11y: {
+                    enabled: true,
+                    prevSlideMessage: 'Previous categories',
+                    nextSlideMessage: 'Next categories',
+                    paginationBulletMessage: 'Go to category {{index}}'
+                }
+            });
         });
-    });
-
-</script>
+    </script>
+}

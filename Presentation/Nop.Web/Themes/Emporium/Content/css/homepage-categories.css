@@ -1,0 +1,190 @@
+/* Homepage categories slider styles (moved out of CSHTML)
+   - Layout, cards, responsive breakpoints
+   - Custom pagination "pill" + colored dots (matches Nivo style)
+*/
+
+.category-slider-wrap {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+/* Header */
+.category-slider-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+
+
+
+.category-slider-header .view-all { margin-left: auto; }
+.category-slider-header .view-all a {
+    display: inline-block;
+    line-height: 32px;
+    color: #97c300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    transition: color .2s ease;
+}
+.category-slider-header .view-all a:hover { color: #7c9a16; }
+
+/* Swiper stage */
+.category-slider {
+    position: relative;
+    padding: 10px 0 40px; /* larger bottom to fit pill pagination */
+}
+
+.category-slider .swiper-wrapper { align-items: stretch; }
+
+.category-slider .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: auto;
+}
+
+/* card */
+.category-slider .item-box {
+    width: 100%;
+    max-width: 210px;
+    background: #fff;
+    border-radius: 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+
+.category-slider .picture {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 210px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f8f8f8;
+}
+
+.category-slider .picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.category-slider .category-name {
+    font-size: 15px;
+    color: #444;
+    font-weight: 700;
+    margin: 6px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-slider .category-meta {
+    font-size: 13px;
+    color: #8c8c8c;
+    margin-top: 4px;
+}
+
+/* Pagination pill + dots (Nivo-like) */
+/* Make pagination an inline pill centered under the slider */
+.category-slider .swiper-pagination {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #2f2430; /* dark pill */
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    z-index: 10;
+    align-items: center;
+}
+
+/* Dots */
+.category-slider .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #bfc4c8; /* grey inactive */
+    border-radius: 50%;
+    opacity: 1; /* keep visible */
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/* Active dot: orange circle */
+.category-slider .swiper-pagination-bullet-active {
+    background: #fbb040; /* orange active */
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+/* Accessibility focus style */
+.category-slider .swiper-pagination-bullet:focus {
+    outline: 2px solid rgba(255,255,255,0.12);
+    outline-offset: 3px;
+}
+
+/* Navigation arrows (keep visible on hover for small screens too) */
+.category-slider .swiper-button-next,
+.category-slider .swiper-button-prev {
+    color: #97c300;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .category-slider .item-box { max-width: 180px; min-height: 230px; }
+    .category-slider .picture { height: 140px; }
+    .category-slider-wrap { padding: 22px 12px; }
+}
+
+@media (max-width: 576px) {
+    .category-slider .item-box { max-width: 150px; min-height: 200px; }
+    .category-slider .picture { height: 110px; }
+    .category-slider .swiper-pagination { gap: 10px; padding: 6px 10px; bottom: -14px; }
+    .category-slider .swiper-pagination-bullet { width: 10px; height: 10px; }
+}
+
+.post-media {
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+    .blog-post .post .post-media .post-image {
+        width: 100%;
+        max-height: 360px;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+    }
+
+@media (min-width:992px) {
+    .post-media .post-image {
+        max-height: 420px;
+    }
+}
+
+

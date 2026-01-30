@@ -7,6 +7,8 @@
     //page class
     NopHtml.AppendPageCssClassParts("html-blog-page");
 }
+
+
 @section left {
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogBefore, additionalData = Model })
     @await Component.InvokeAsync("BlogMonths")
@@ -16,7 +18,6 @@
 }
 <div class="page blog-page">
     <div class="page-title">
-        <a href="@Url.RouteUrl("BlogRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@T("Blog.RSS.Hint")">@T("Blog.RSS")</a>
         <h1>
             @if (string.IsNullOrEmpty(Model.PagingFilteringContext.Tag))
             {
@@ -42,42 +43,49 @@
             {
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageBeforePost, additionalData = item })
                 <div class="post">
+                    @* Blog image at top of the post *@
+                    @if (!string.IsNullOrEmpty(item.PictureUrl))
+                    {
+                        <div class="post-media">
+                            <a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })" title="@item.Title">
+                                <img src="@item.PictureUrl"
+                                     alt="@item.Title"
+                                     loading="lazy"
+                                     decoding="async"
+                                     class="post-image" />
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="post-media">
+                            <a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })" title="@item.Title">
+                                <img src=""
+                                     alt="@item.Title"
+                                     loading="lazy"
+                                     decoding="async"
+                                     class="post-image" />
+                            </a>
+                        </div>
+                    }
+
+
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageBeforePostBody, additionalData = item })
                     <div class="post-details">
                         <div class="post-head">
                             <span class="post-date">@item.CreatedOn.ToString("dd MMM yyyy")</span>
-                            @if (item.AllowComments)
+                            @* @if (item.AllowComments)
                             {
                                 <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})#comments" class="read-comments">@string.Format(T("Blog.CommentsLink").Text, item.NumberOfComments)</a>
-                            }
+                            } *@
                             <a class="post-title" href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})">@item.Title</a>
                         </div>
                         <div class="post-body">
                             @Html.Raw(!string.IsNullOrEmpty(item.BodyOverview) ? item.BodyOverview : item.Body)
                         </div>
                         <div class="buttons">
-                            <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})" class="read-more">@T("Blog.MoreInfo")</a>
+                            <a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })" class="read-more">READ MORE &gt;</a>
                         </div>
-                        @*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageAfterPostBody, additionalData = item })*@
-                        @*<div class="blog-details">
-                            @if (item.Tags.Count > 0)
-                            {
-                                <div class="tags">
-                                    <label>@T("Blog.Tags"):</label>
-                                    <ul>
-                                        @for (var i = 0; i < item.Tags.Count; i++)
-                                        {
-                                            var tag = item.Tags[i];
-                                            <li><a href="@Url.RouteUrl("BlogByTag", new {tag = tag})">@tag</a></li>
-                                            if (i != item.Tags.Count - 1)
-                                            {
-                                                <li class="separator">,</li>
-                                            }
-                                        }
-                                    </ul>
-                                </div>
-                            }
-                        </div>*@
                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageInsidePost, additionalData = item })
                     </div>
                 </div>
@@ -96,3 +104,46 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageAfterPosts, additionalData = Model })
     </div>
 </div>
+
+<style>
+/* Blog list — force consistent image sizing only for the blog list page
+   Scoped by .html-blog-page (added in List.cshtml) so homepage is untouched. */
+.html-blog-page .post-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;        /* modern, consistent shape */
+    max-height: 420px;          /* cap height for large screens */
+    overflow: hidden;
+    background: #f5f5f5;
+    border-radius: 10px;
+    display: block;
+}
+
+.html-blog-page .post-media a,
+.html-blog-page .post-media .post-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Make image cover the frame and stay centered */
+.html-blog-page .post-media .post-image {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    -o-object-position: center;
+    display: block;
+    border-radius: 0; /* image fits inside .post-media radius */
+}
+
+/* Accessibility / focus */
+.html-blog-page .post-media a:focus .post-image,
+.html-blog-page .post-media a:focus {
+    outline: 3px solid rgba(243,166,59,0.16);
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+
+</style>

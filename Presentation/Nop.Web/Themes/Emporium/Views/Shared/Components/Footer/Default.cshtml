@@ -23,14 +23,14 @@
             </div>
         }
 
-        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px; padding-top:10px; padding-right:40px">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px; padding:10px 40px ">
             <div style="display:flex;align-items:center;gap:12px;min-width:320px;flex:1">
-                <span class="newsletter-label" style="color:#fff;font-weight:700;white-space:nowrap">@T("Newsletter")</span>
-                <div class="newsletter-box" style="flex:1;min-width:220px;max-width:560px">@await Component.InvokeAsync("NewsletterBox")</div>
+                <span class="newsletter-label" style="color:#fff;font-weight:700;white-space:nowrap; font-size:16px; position:relative; bottom:5px">@T("Newsletter")</span>
+                <div class="newsletter-box" style="width:420px">@await Component.InvokeAsync("NewsletterBox")</div>
             </div>
 
             <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;flex:0 0 auto">
-                <span class="follow-label" style="color:#fff;font-weight:700;white-space:nowrap"><strong>@T("SevenSpikes.Themes.Emporium.Footer.Follow")</strong></span>
+                <span class="follow-label" style="color:#fff;font-weight:700;white-space:nowrap; font-size:16px"><strong>@T("SevenSpikes.Themes.Emporium.Footer.Follow")</strong></span>
                 @await Component.InvokeAsync("SocialButtons")
             </div>
         </div>
