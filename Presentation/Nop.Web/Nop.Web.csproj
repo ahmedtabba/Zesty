@@ -30,7 +30,6 @@
   <ItemGroup>
     <!-- We copy the entire \App_Data directory. But we ignore JSON files and data protection keys  -->
     <Content Update="App_Data\**" CopyToPublishDirectory="PreserveNewest" />
-    <Content Update="App_Data\DataProtectionKeys\*.xml" CopyToPublishDirectory="Never" />
 
     <Compile Remove="Plugins\**;Themes\**" />
     <Content Remove="Plugins\**;Themes\**" />
@@ -60,7 +59,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Plugins\" />
     <Folder Include="Themes\Emporium\Content\img\Input Ico\" />
   </ItemGroup>
 
