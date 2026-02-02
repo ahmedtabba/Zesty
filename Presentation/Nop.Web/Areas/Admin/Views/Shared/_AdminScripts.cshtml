@@ -2,6 +2,7 @@
 @inject IWebHelper webHelper
 @inject LocalizationSettings localizationSettings
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+@inject Nop.Core.IWorkContext workContext
 
 @using System.Globalization
 @using Nop.Core.Domain.Localization
@@ -114,7 +115,7 @@ else
             $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/ca-gregorian.json", dataType: "json"}),
             $.get({ url: rootAppPath + "lib_npm/cldr-data/main/" + culture + "/timeZoneNames.json", dataType: "json"}),
             $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/timeData.json", dataType: "json"}),
-            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/weekData.json", dataType: "json"}),
+            $.get({ url: rootAppPath + "lib_npm/cldr-data/supplemental/weekData.json", dataType: "json"})
         ).then(function () {
             // Normalize $.get results, we only need the JSON, not the request statuses.
             return [].slice.apply(arguments, [0]).map(function (result) {

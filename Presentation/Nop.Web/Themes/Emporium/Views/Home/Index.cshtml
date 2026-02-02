@@ -27,7 +27,7 @@
         await settingService.GetSettingByKeyAsync("EmporiumThemeSettings.ResponsiveBreakpointsForHomePageProducts", "", (await storeContext.GetCurrentStoreAsync()).Id, true);
     var enableHomePageCarousels = await settingService.GetSettingByKeyAsync("EmporiumThemeSettings.EnableHomepageCarousels", true, (await storeContext.GetCurrentStoreAsync()).Id, true);
 
-    var carouselsWrapperClass = enableHomePageCarousels ? "two-row-carousels small-products" : string.Empty;
+    // var carouselsWrapperClass = enableHomePageCarousels ? "two-row-carousels small-products" : string.Empty;
 }
 
 <input id="home-page-carousel-breakpoints" type="hidden" value="@homePageProductsCarouselBreakPoints" />
@@ -47,11 +47,11 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeProducts })
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
 
-        <div class="@carouselsWrapperClass">
+        
         @await Component.InvokeAsync("HomepageCategories")
             @await Component.InvokeAsync("HomepageProducts")
             @await Component.InvokeAsync("HomepageBestSellers")
-        </div>
+        
         @await Component.InvokeAsync("HomePageBlog")
         @await Component.InvokeAsync("HomepageNews")
     </div>

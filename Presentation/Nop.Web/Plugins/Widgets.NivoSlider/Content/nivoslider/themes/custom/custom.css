@@ -3,6 +3,7 @@
 
 .theme-custom {
 	position: relative;
+	margin: 0 auto 60px;
 }
 .theme-custom .nivoSlider {
 	position: relative;
@@ -22,46 +23,27 @@
 
 /* BULLET NAVIGATION */
 
-/* BULLET NAVIGATION – CUSTOM CAPSULE STYLE */
-
 .theme-custom .nivo-controlNav {
 	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 10;
-
-	display: inline-flex;
-	align-items: center;
-	gap: 16px;
-
-	padding: 8px 10px;
-	border-radius: 40px;
-	background-color: #2b203f;
-
-	width: auto;
-	text-align: initial;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+	padding: 20px 0;
+	text-align: center;
 	font-size: 0;
 }
-
 .theme-custom .nivo-controlNav a {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background-color: #CFD0D2;
-
-	margin: 0;
-	box-shadow: none;
-
-	transition: all 0.25s ease;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin: 0 7px;
+	box-shadow: 0 0 1px 0 rgba(0,0,0,0.2);
+	background-color: #fff;
+	font-size: 0;
 }
-
 .theme-custom .nivo-controlNav a.active {
-	background-color: #FBB040;
-	opacity: 1;
-	transform: scale(1.2);
+	background-color: #4ab2f1;
 }
-
 
 /* DIRECTIONAL NAVIGATION */
 
@@ -124,79 +106,21 @@
 
 /* RESPONSIVE */
 
-/*@media all and (max-width: 1000px) {
+@media all and (max-width: 1000px) {
 .theme-custom {
 	max-width: 600px;
 	margin: -20px auto 40px;
-}*/
+}
 .theme-custom .nivo-directionNav {
 	display: none;
 }
 }
 
-/*@media all and (min-width: 1001px) {
+@media all and (min-width: 1001px) {
 .theme-custom {
 	margin: -30px 0 60px;
-}*/
+}
 .theme-custom .nivo-directionNav {
 	display: none; /* remove to use directional navigation */
 }
 }
-/* =====================================
-   SWIPER PAGINATION – SAME AS NIVO
-===================================== */
-
-.category-slider .swiper-pagination {
-	position: absolute !important;
-	bottom: 20px !important;
-	left: 50% !important;
-	transform: translateX(-50%) !important;
-	z-index: 10;
-	display: inline-flex !important;
-	align-items: center !important;
-	gap: 16px !important;
-	padding: 10px 10px !important;
-	border-radius: 40px !important;
-	background-color: #2b203f !important;
-	width: auto !important;
-	text-align: initial !important;
-}
-
-.category-slider .swiper-pagination-bullet {
-	width: 8px !important;
-	height: 8px !important;
-	border-radius: 50% !important;
-	background-color: #CFD0D2 !important;
-	opacity: 1 !important;
-	margin: 0 !important;
-	box-shadow: none !important;
-	transition: all 0.25s ease !important;
-}
-
-.category-slider .swiper-pagination-bullet-active {
-	background-color: #FBB040 !important;
-	opacity: 1 !important;
-	transform: scale(1.2) !important;
-}
-
-.small-Title {
-    font-size: 16px;
-    line-height: 18px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-align: center;
-    vertical-align: middle;
-	color: #FBB040;
-	text-transform:uppercase;
-	padding:10px;
-}
-.custom-title {
-	font-weight: bolder; /* ExtraBold */
-	font-size: 34px;
-	margin: 35px 0 10px 0;
-	line-height: 100%;
-	letter-spacing: 0;
-	text-align: center;
-	color: #282034;
-}
-
