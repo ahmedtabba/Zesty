@@ -41,6 +41,9 @@
              flex-wrap: nowrap;
              flex-direction: column-reverse;">
             @await Component.InvokeAsync("AdminHeaderLinks")
+            <div class="admin-header-links">
+                <a style="color:white; font-family:Dubai;">Free World Wide Shipping </a>
+            </div>
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
         </div>     
         
