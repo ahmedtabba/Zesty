@@ -60,6 +60,7 @@
 
   <ItemGroup>
     <Folder Include="Themes\Emporium\Content\img\Input Ico\" />
+    <Folder Include="wwwroot\bundles\" />
   </ItemGroup>
 
   <!-- This target execute after "Build" target.
