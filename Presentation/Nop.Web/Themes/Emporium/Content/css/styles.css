@@ -7427,6 +7427,7 @@ label, label + * {
     .address-item {
     width: calc(44% - 12.5px) !important;
     border-color: #cbc9ce !important;
+    min-height:360px!important;
 }
 
     .address-item,
