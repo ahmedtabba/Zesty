@@ -40,7 +40,7 @@
              align-content: space-around;
              flex-wrap: nowrap;
              flex-direction: column-reverse;">
-            @await Component.InvokeAsync("AdminHeaderLinks")
+            @* @await Component.InvokeAsync("AdminHeaderLinks") *@
             <div class="admin-header-links">
                 <a style="color:white; font-family:Dubai;">Free World Wide Shipping </a>
             </div>
@@ -75,7 +75,7 @@
                         @foreach(var category in categories)
                         {
                         var pictureUrl = await PictureService.GetPictureUrlAsync(category.PictureId);
-                            <li class="with-dropdown-in-grid">
+                @*             <li class="with-dropdown-in-grid">
                           <a href="@Url.RouteUrl("Category", new { SeName = await UrlRecordService.GetSeNameAsync(category) })">
                             <div>
                                 <!-- icon -->
@@ -88,7 +88,7 @@
                          </a>
 
                     <div class="plus-button"></div>
-                </li>                            
+                </li>                             *@
                         }
                     </ul>
 		        </div>
