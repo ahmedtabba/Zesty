@@ -33,6 +33,8 @@ namespace Nop.Web.Models.Catalog
 
         public CatalogProductsModel CatalogProductsModel { get; set; }
 
+
+
         #region Nested Classes
 
         public partial record SubCategoryModel : BaseNopEntityModel

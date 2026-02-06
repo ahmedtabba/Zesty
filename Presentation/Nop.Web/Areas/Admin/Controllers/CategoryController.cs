@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Caching;
+using Nop.Core.Domain.Blogs;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Discounts;
 using Nop.Services.Catalog;
+using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Discounts;
 using Nop.Services.ExportImport;
@@ -26,6 +23,11 @@ using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.Filters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Controllers
 {
@@ -52,6 +54,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IWorkContext _workContext;
+        private readonly IGenericAttributeService _genericAttributeService;
 
         #endregion
 
@@ -75,7 +78,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IStoreMappingService storeMappingService,
             IStoreService storeService,
             IUrlRecordService urlRecordService,
-            IWorkContext workContext)
+            IWorkContext workContext,
+            IGenericAttributeService genericAttributeService)
         {
             _aclService = aclService;
             _categoryModelFactory = categoryModelFactory;
@@ -96,6 +100,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _storeService = storeService;
             _urlRecordService = urlRecordService;
             _workContext = workContext;
+            _genericAttributeService = genericAttributeService;
         }
 
         #endregion
@@ -142,6 +147,9 @@ namespace Nop.Web.Areas.Admin.Controllers
             var picture = await _pictureService.GetPictureByIdAsync(category.PictureId);
             if (picture != null)
                 await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(category.Name));
+            var hoverPicture = await _pictureService.GetPictureByIdAsync(category.HoverPictureId ?? 0);
+            if (hoverPicture != null)
+                await _pictureService.SetSeoFilenameAsync(hoverPicture.Id, await _pictureService.GetPictureSeNameAsync(category.Name));
         }
 
         protected virtual async Task SaveCategoryAclAsync(Category category, CategoryModel model)
@@ -250,6 +258,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var category = model.ToEntity<Category>();
+                category.HoverPictureId = model.HoverPictureId;
                 category.CreatedOnUtc = DateTime.UtcNow;
                 category.UpdatedOnUtc = DateTime.UtcNow;
                 await _categoryService.InsertCategoryAsync(category);
@@ -329,6 +338,9 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var prevPictureId = category.PictureId;
+                var prevHoverId = category.HoverPictureId;
+
+                
 
                 //if parent category changes, we need to clear cache for previous parent category
                 if (category.ParentCategoryId != model.ParentCategoryId)
@@ -337,7 +349,9 @@ namespace Nop.Web.Areas.Admin.Controllers
                     await _staticCacheManager.RemoveByPrefixAsync(NopCatalogDefaults.CategoriesChildIdsPrefix, category.ParentCategoryId);
                 }
 
-                category = model.ToEntity(category);
+                category = model.ToEntity(category); 
+                category.HoverPictureId = model.HoverPictureId;
+
                 category.UpdatedOnUtc = DateTime.UtcNow;
                 await _categoryService.UpdateCategoryAsync(category);
 
@@ -374,6 +388,14 @@ namespace Nop.Web.Areas.Admin.Controllers
                     var prevPicture = await _pictureService.GetPictureByIdAsync(prevPictureId);
                     if (prevPicture != null)
                         await _pictureService.DeletePictureAsync(prevPicture);
+                }
+
+
+                if (prevHoverId.HasValue && prevHoverId != category.HoverPictureId)
+                {
+                    var prevHoverPicture = await _pictureService.GetPictureByIdAsync(prevHoverId.Value);
+                    if (prevHoverPicture != null)
+                        await _pictureService.DeletePictureAsync(prevHoverPicture);
                 }
 
                 //update picture seo file name

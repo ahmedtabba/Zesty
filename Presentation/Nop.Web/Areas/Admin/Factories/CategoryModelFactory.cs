@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Discounts;
@@ -10,12 +6,18 @@ using Nop.Services.Catalog;
 using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
+using Nop.Services.Media;
 using Nop.Services.Seo;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Catalog;
 using Nop.Web.Framework.Extensions;
 using Nop.Web.Framework.Factories;
 using Nop.Web.Framework.Models.Extensions;
+using Nop.Web.Models.Media;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Factories
 {
@@ -39,6 +41,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IProductService _productService;
         private readonly IStoreMappingSupportedModelFactory _storeMappingSupportedModelFactory;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly IPictureService _pictureService;
 
         #endregion
 
@@ -56,7 +59,8 @@ namespace Nop.Web.Areas.Admin.Factories
             ILocalizedModelFactory localizedModelFactory,
             IProductService productService,
             IStoreMappingSupportedModelFactory storeMappingSupportedModelFactory,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            IPictureService pictureService)
         {
             _catalogSettings = catalogSettings;
             _currencySettings = currencySettings;
@@ -71,6 +75,7 @@ namespace Nop.Web.Areas.Admin.Factories
             _productService = productService;
             _storeMappingSupportedModelFactory = storeMappingSupportedModelFactory;
             _urlRecordService = urlRecordService;
+            _pictureService = pictureService;
         }
 
         #endregion
@@ -204,6 +209,8 @@ namespace Nop.Web.Areas.Admin.Factories
                     model = category.ToModel<CategoryModel>();
                     model.SeName = await _urlRecordService.GetSeNameAsync(category, 0, true, false);
                 }
+                model.HoverPictureId = category.HoverPictureId;
+               
 
                 //prepare nested search model
                 PrepareCategoryProductSearchModel(model.CategoryProductSearchModel, category);

@@ -42,6 +42,10 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets the meta title
         /// </summary>
         public string MetaTitle { get; set; }
+        /// <summary>
+        /// Gets or sets the identifier of the picture to display when the user hovers over the associated element.
+        /// </summary>
+        public int? HoverPictureId { get; set; }
 
         /// <summary>
         /// Gets or sets the parent category identifier
@@ -132,5 +136,7 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether the price range should be entered manually
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
+
+
     }
 }

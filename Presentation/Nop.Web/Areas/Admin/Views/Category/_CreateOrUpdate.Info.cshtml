@@ -1,4 +1,6 @@
 ﻿@model CategoryModel
+@using Nop.Web.Framework.Models
+
 
 <div class="card-body">
     @(await Html.LocalizedEditorAsync<CategoryModel, CategoryLocalizedModel>("category-name-localized",
@@ -63,4 +65,15 @@
             <span asp-validation-for="PictureId"></span>
         </div>
     </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3">
+            <nop-label asp-for="HoverPictureId" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="HoverPictureId" />
+            <span asp-validation-for="HoverPictureId"></span>
+        </div>
+    </div>
+
 </div>
+

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
+using Nop.Web.Models.Media;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Nop.Web.Areas.Admin.Models.Catalog
 {
@@ -32,6 +33,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
+            
 
             CategoryProductSearchModel = new CategoryProductSearchModel();
         }
@@ -68,6 +70,10 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         [UIHint("Picture")]
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Picture")]
         public int PictureId { get; set; }
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.HoverId")]
+        public int? HoverPictureId { get;  set; }
+
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PageSize")]
         public int PageSize { get; set; }
@@ -129,7 +135,6 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         public CategoryProductSearchModel CategoryProductSearchModel { get; set; }
 
         public string PrimaryStoreCurrencyCode { get; set; }
-
         #endregion
     }
 
