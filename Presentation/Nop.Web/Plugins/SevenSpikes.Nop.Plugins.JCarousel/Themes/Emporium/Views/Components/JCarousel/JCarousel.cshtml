@@ -167,10 +167,21 @@
                     <strong>@carousel.Settings.Title</strong>
                 </div>
             }
+            @if (!string.IsNullOrEmpty(carousel.DataSourceTypeClass) && carousel.DataSourceTypeClass == "category-grid")
+            {
+                <div>
+                    <h2 class="custom-title">@T("Home.Categories.Title")</h2>
+                </div>
+
+                <div>
+                    <h4 class="small-Title">@T("Home.Categories.SmallTitle")</h4>
+                </div>
+            }
+    
             <div class="slick-carousel item-grid" data-slick='@slickSettingsJson' data-numberOfVisibleItems="@numberOfItemsToShow">
                 @foreach (var item in carousel.Items)
                 {
-                    <div class="carousel-item">
+                    <div style="width:230px !important" class="carousel-item">
                         <div class="item-box">
                             @switch (carousel.DataSourceTypeClass)
                             {
@@ -178,6 +189,7 @@
                                     @await Html.PartialAsync("_ProductBox", item.ProductOverviewModel)
                                     break;
                                 case "category-grid":
+
                                     @await Component.InvokeAsync("JCarouselCategoryBox", item.CategoryModel)
                                     break;
                                 case "manufacturer-grid":

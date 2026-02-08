@@ -1,5 +1,12 @@
 ﻿@model CategoryModel.SubCategoryModel
 @inject IViewComponentSelector viewComponentSelector
+@using Nop.Services.Catalog
+@inject ICategoryService categoryService
+@using Nop.Core.Infrastructure
+@using Nop.Services.Catalog
+@using Nop.Services.Media
+
+
 
 @{
     string controllerName = Url.ActionContext.RouteData.Values["controller"].ToString();
@@ -17,10 +24,32 @@
         categoryItemClass = "sub-category-item";
     }
 }
+@{
+    var categoryService = EngineContext.Current.Resolve<ICategoryService>();
+    var pictureService = EngineContext.Current.Resolve<IPictureService>();
+
+    string hoverUrl = Url.Content("~/Themes/Emporium/Content/img/productBoxHover.jpg");
+
+    var category = await categoryService.GetCategoryByIdAsync(Model.Id);
+
+    if (category?.HoverPictureId != null && category.HoverPictureId > 0)
+    {
+        var hoverPicture = await pictureService.GetPictureByIdAsync(category.HoverPictureId.Value);
+
+        if (hoverPicture != null)
+        {
+            var result = await pictureService.GetPictureUrlAsync(hoverPicture);
+            hoverUrl = result.Url;
+        }
+    }
+}
+
+
+
 
 <div class="@categoryItemClass">
     <div class="picture">
-        <a href="@Url.RouteUrl("Category", new { SeName = Model.SeName })" title="@Model.PictureModel.Title">
+        <a href="@Url.RouteUrl("Category", new { SeName = Model.SeName })" title="@Model.PictureModel.Title" style="--hover-bg: url('@hoverUrl')">
             @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
             {
                 @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
@@ -34,11 +63,9 @@
             {
                 <img alt="@Model.PictureModel.AlternateText" src="@Model.PictureModel.ImageUrl" title="@Model.PictureModel.Title" />
             }
+        <h2 class="title">
+                @Model.Name
+        </h2>
         </a>
     </div>
-    <h2 class="title">
-        <a href="@Url.RouteUrl("Category", new { SeName = Model.SeName })" title="@Model.PictureModel.Title">
-            @Model.Name
-        </a>
-    </h2>
 </div>

@@ -3650,7 +3650,7 @@ label, label + * {
 
                 .item-box .picture > a img {
                     position: absolute;
-                    top: 60%;
+                    top: 50%;
                     left: 50%;
                     -webkit-transform: translate(-50%,-50%);
                     -ms-transform: translate(-50%,-50%);
@@ -3929,9 +3929,9 @@ label, label + * {
             margin: 0;
         }
 
-            .category-grid .item-box .picture a:before {
+/*            .category-grid .item-box .picture a:before {
                 padding-top: 73.33%;
-            }
+            }*/
 
     .vendor-item .picture,
     .manufacturer-item .picture {
