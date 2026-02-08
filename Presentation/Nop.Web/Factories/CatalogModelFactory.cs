@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,6 +25,16 @@ using Nop.Web.Framework.Events;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Media;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using System.Xml.XPath;
+using static Nop.Web.Models.Catalog.CategoryModel;
 
 namespace Nop.Web.Factories
 {
@@ -399,6 +400,23 @@ namespace Nop.Web.Factories
                 SeName = await _urlRecordService.GetSeNameAsync(category),
                 CatalogProductsModel = await PrepareCategoryProductsModelAsync(category, command)
             };
+            if (category.HoverPictureId.HasValue && category.HoverPictureId > 0)
+            {
+                var hoverPicture = await _pictureService.GetPictureByIdAsync(category.HoverPictureId.Value);
+
+                if (hoverPicture != null)
+                {
+                    var hoverPictureUrl = await _pictureService.GetPictureUrlAsync(
+                     hoverPicture,
+                     targetSize: 0,
+                     showDefaultPicture: false);
+
+                    model.HoverPictureUrl = hoverPictureUrl.Url;
+
+                }
+            }
+
+
 
             //category breadcrumb
             if (_catalogSettings.CategoryBreadcrumbEnabled)
@@ -427,7 +445,28 @@ namespace Nop.Web.Factories
                         Name = await _localizationService.GetLocalizedAsync(curCategory, y => y.Name),
                         SeName = await _urlRecordService.GetSeNameAsync(curCategory),
                         Description = await _localizationService.GetLocalizedAsync(curCategory, y => y.Description)
+
                     };
+                    if (curCategory.HoverPictureId.HasValue && curCategory.HoverPictureId.Value > 0)
+                    {
+                        var hoverPicture = await _pictureService.GetPictureByIdAsync(curCategory.HoverPictureId.Value);
+
+                        if (hoverPicture != null)
+                        {
+                            var hoverPictureUrl = await _pictureService.GetPictureUrlAsync(
+                                hoverPicture,
+                                targetSize: 0,
+                                showDefaultPicture: false);
+
+                            subCatModel.HoverPictureUrl = hoverPictureUrl.Url;
+                        }
+                    }
+                    else
+                    {
+                        subCatModel.HoverPictureUrl = "/Themes/Emporium/Content/img/productBoxHover.jpg";
+                    }
+
+
 
                     //prepare picture model
                     var categoryPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.CategoryPictureModelKey, curCategory,
