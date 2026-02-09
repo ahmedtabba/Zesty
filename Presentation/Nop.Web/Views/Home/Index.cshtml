@@ -34,5 +34,8 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
         @await Component.InvokeAsync("HomepagePolls")
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })
+
+        @* Add testimonials slider at the end of the homepage *@
+        @await Component.InvokeAsync("Testimonials")
     </div>
 </div>

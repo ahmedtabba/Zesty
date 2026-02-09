@@ -1,0 +1,35 @@
+@model IEnumerable<Nop.Web.Models.Widgets.TestimonialModel>
+@* 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" /> *@
+<link rel="stylesheet" href="~/Themes/Emporium/Content/css/testimonials.css" />
+
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="testimonials-title">What our customers says</h2>
+        <div class="testimonials-subtitle">WHAT ZESTY CUSTOMERS SAYS</div>
+
+        <div class="testimonials-slider">
+            @foreach (var t in Model)
+            {
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-mark">''</div>
+                        <div class="quote-text">@t.Quote</div>
+
+                        <div class="testimonial-meta">
+                            <img class="avatar" src="@("/Themes/Emporium/Content/img/0006123_person_100.jpeg")" alt="@t.Author" />
+                            <div class="meta-text">
+                                <div class="author">@t.Author</div>
+                                <div class="role">@t.Role</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" asp-location="Footer"></script>
+<script src="~/js/testimonials.slider.js" asp-location="Footer"></script>
