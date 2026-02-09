@@ -1,51 +1,43 @@
-/* Testimonials slider styles — scoped, RTL-friendly and professional */
-:root {
-    --testimonials-bg: #faf8f9;
-    --card-bg: #2b2732;
-    --accent: #f2a73a;
-    --dot-inactive: #ddd;
-    --dot-active: #f2a73a;
-    --dots-bg: #282034;
-    --dots-border: #282034;
-}
-
-/* Container */
 .testimonials-section {
     padding: 60px 0 100px;
     text-align: center;
-    position: relative; /* for absolute-positioned dots */
-    background: var(--testimonials-bg);
+    position: relative; /* needed for absolute-positioned dots */
+    overflow: visible; /* allow overflow for elevated center slide */
+}
+.testimonials-title {
+    font-size: 30px;
+    font-weight:700;
+    color:#2b2430;
+    margin-bottom:4px;
+}
+.testimonials-subtitle {
+    color:#f2a73a;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:28px;
+}
+
+.testimonials-slider {
+    max-width: 1200px; /* center the slider container and constrain total width */
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
-/* Title / subtitle */
-.testimonials-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: #2b2430;
-    margin-bottom: 4px;
-}
-.testimonials-subtitle {
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 28px;
-}
-
-/* Slider / slides */
-.testimonials-slider {
-    /* ensure slider contents don't overflow on small screens */
-    margin: 0 auto;
-    max-width: 1200px;
-}
 .testimonials-slider .testimonial-slide {
     padding: 0 18px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: auto;
+    /* each slide wrapper centers the card and gives consistent gutter */
+    width: 100%;
+    max-width: 480px; /* controls visible card width */
 }
 
-/* Card */
+/* card: fixed maximum width, fills slide, keeps clean margin */
 .testimonial-card {
-    background: var(--card-bg);
+    background: #2b2732;
     color: #fff;
     border-radius: 20px;
     padding: 36px;
@@ -53,36 +45,55 @@
     position: relative;
     overflow: hidden;
     transition: transform 0.32s ease, box-shadow 0.32s ease;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
-/* Adjust slick inner padding so center card elevates visually */
-/* Keep !important minimal and scoped */
+/* remove large horizontal padding from slick-list (caused clipping) */
 .testimonials-slider .slick-list {
-    padding: 40px 80px;
-    box-sizing: border-box;
+    padding: 40px 0 !important; /* horizontal padding moved into slides */
 }
 
-/* decorative star overlay (SVG inline) */
+/* make the track and slides behave as flexible centered items */
+.testimonials-slider .slick-track {
+    display: flex;
+    align-items: stretch;
+    /* allow proper centering when centerMode is used */
+}
+
+.testimonials-slider .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: auto;
+}
+
+/* decorative overlay (replace with star image if desired) */
 .testimonial-card::before {
     content: "";
     position: absolute;
+    /* adjust position to suit your design */
     right: -51%;
     top: 0%;
+    /* use a square box for consistent star aspect */
     width: 150%;
     height: 125%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    /* inline SVG star (no rotation). change fill color (%23 = #) or opacity value as needed */
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,2 61,38 98,38 67,59 79,95 50,74 21,95 33,59 2,38 39,38' fill='%23be8c5a' opacity='0.35'/></svg>");
     pointer-events: none;
+    /* keep rounded look if overlapping corners */
     border-radius: 8px;
 }
 
-/* Quote */
 .quote-mark {
     font-size: 100px;
-    color: var(--accent);
+    color: #f2a73a;
     font-weight: 700;
     margin-bottom: -20px;
     text-align: left;
@@ -92,49 +103,62 @@
     font-size: 16px;
     line-height: 1.6;
     color: #ffffff;
-    max-width: 86%;
+    max-width: 100%;
     margin-bottom: 60px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
-/* Meta (avatar + author) */
 .testimonial-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: absolute;
-    left: 36px;
-    bottom: 28px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    position:absolute;
+    left:36px;
+    bottom:28px;
 }
 .avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(255,255,255,0.1);
-    flex: 0 0 auto;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid rgba(255,255,255,0.1);
 }
 .author {
-    font-weight: 700;
-    font-size: 16px;
+    font-weight:700;
+    font-size:16px;
 }
 .role {
-    color: var(--accent);
-    font-size: 13px;
+    color:#f2a73a;
+    font-size:13px;
 }
 
-/* Elevated center slide */
+/* center slide elevated */
 .slick-center .testimonial-card {
-    transform: translateY(-24px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.22);
     z-index: 2;
 }
 
-/* Default (non-center) */
+/* non-center defaults */
 .testimonials-slider .testimonial-card {
     z-index: 1;
 }
 
-/* Scoped dots container — will not affect other sliders */
+/* dots */
+.slick-dots {
+    margin-top: 36px;
+}
+.slick-dots li button:before {
+    color: #ddd;
+}
+.slick-dots li.slick-active button:before {
+    color: #f2a73a;
+}
+
+/* Scoped slick-dots for testimonials - won't affect other sliders */
+
+/* container style */
 .testimonials-section .slick-dots {
     position: absolute;
     bottom: -20px;
@@ -208,29 +232,27 @@
 
 /* responsive adjustments */
 @media (max-width: 992px) {
-    .testimonials-slider .slick-list {
-        padding: 30px 40px;
+    .testimonial-card::before {
+        right: -30%;
+        width: 120%;
+        height: 110%;
+        background-size: contain;
     }
-    .quote-mark { font-size: 72px; }
-    .quote-text { max-width: 100%; margin-bottom: 40px; }
+    .testimonials-slider .slick-list {
+        padding: 30px 0 !important;
+    }
 }
 @media (max-width: 767px) {
     .testimonials-slider .slick-list {
-        padding: 20px 16px;
+        padding: 18px 0 !important;
     }
-    .testimonials-section .slick-dots {
-        bottom: -16px;
-        padding: 5px 8px;
-        gap: 8px;
+    .testimonial-slide, .testimonial-card {
+        max-width: 92%;
+        padding: 0 12px;
     }
-    .testimonials-section .slick-dots li button {
-        width: 14px;
-        height: 14px;
-    }
-    .testimonials-section .slick-dots li button::before {
-        width: 6px;
-        height: 6px;
-    }
+    .quote-mark { font-size: 60px; }
+    .quote-text { margin-bottom: 28px; }
+    .testimonials-section .slick-dots { bottom: -14px; }
 }
 
 /* RTL support
@@ -269,7 +291,7 @@
 }
 
 /* Mirror dots placement (translateX still centers correctly) */
-/* No additional rules required for dots order — Slick will handle ordering,
+/* No additional rules required for dots order � Slick will handle ordering,
    but visual container remains centered. */
 
 /* Ensure scoped rules are stronger than global themes without !important */

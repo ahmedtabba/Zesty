@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Nop.Web.Models.Widgets.TestimonialModel>
+@* 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" /> *@
+<link rel="stylesheet" href="~/Themes/Emporium/Content/css/testimonials.css" />
+<style>
+    .silck-dots{
+        text-align: center;
+        position: absolute;
+        top: auto;
+        bottom: -20px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        z-index: 99;
+        padding: 0;
+        border: 5px solid #282034 !important;
+        background-color: #282034 !important;
+        border-radius: 30px;
+    }
+</style>
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="testimonials-title">What our customers says</h2>
+        <div class="testimonials-subtitle">WHAT ZESTY CUSTOMERS SAYS</div>
+
+        <div class="testimonials-slider">
+            @foreach (var t in Model)
+            {
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="quote-mark">''</div>
+                        <div class="quote-text">@t.Quote</div>
+
+                        <div class="testimonial-meta">
+                            <img class="avatar" src="@("/Themes/Emporium/Content/img/0006123_person_100.jpeg")" alt="@t.Author" />
+                            <div class="meta-text">
+                                <div class="author">@t.Author</div>
+                                <div class="role">@t.Role</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" asp-location="Footer"></script> *@
+<script src="~/js/testimonials.slider.js" asp-location="Footer"></script>

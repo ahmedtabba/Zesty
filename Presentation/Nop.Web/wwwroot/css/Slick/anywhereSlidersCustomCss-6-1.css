@@ -1,0 +1,279 @@
+/* Testimonials slider styles — scoped, RTL-friendly and professional */
+:root {
+    --testimonials-bg: #faf8f9;
+    --card-bg: #2b2732;
+    --accent: #f2a73a;
+    --dot-inactive: #ddd;
+    --dot-active: #f2a73a;
+    --dots-bg: #282034;
+    --dots-border: #282034;
+}
+
+/* Container */
+.testimonials-section {
+    padding: 60px 0 100px;
+    text-align: center;
+    position: relative; /* for absolute-positioned dots */
+    background: var(--testimonials-bg);
+    box-sizing: border-box;
+}
+
+/* Title / subtitle */
+.testimonials-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #2b2430;
+    margin-bottom: 4px;
+}
+.testimonials-subtitle {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+}
+
+/* Slider / slides */
+.testimonials-slider {
+    /* ensure slider contents don't overflow on small screens */
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.testimonials-slider .testimonial-slide {
+    padding: 0 18px;
+    box-sizing: border-box;
+}
+
+/* Card */
+.testimonial-card {
+    background: var(--card-bg);
+    color: #fff;
+    border-radius: 20px;
+    padding: 36px;
+    min-height: 260px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.32s ease, box-shadow 0.32s ease;
+    box-sizing: border-box;
+}
+
+/* Adjust slick inner padding so center card elevates visually */
+/* Keep !important minimal and scoped */
+.testimonials-slider .slick-list {
+    padding: 40px 80px;
+    box-sizing: border-box;
+}
+
+/* decorative star overlay (SVG inline) */
+.testimonial-card::before {
+    content: "";
+    position: absolute;
+    right: -51%;
+    top: 0%;
+    width: 150%;
+    height: 125%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,2 61,38 98,38 67,59 79,95 50,74 21,95 33,59 2,38 39,38' fill='%23be8c5a' opacity='0.35'/></svg>");
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+/* Quote */
+.quote-mark {
+    font-size: 100px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: -20px;
+    text-align: left;
+}
+.quote-text {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+    max-width: 86%;
+    margin-bottom: 60px;
+}
+
+/* Meta (avatar + author) */
+.testimonial-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    left: 36px;
+    bottom: 28px;
+}
+.avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.1);
+    flex: 0 0 auto;
+}
+.author {
+    font-weight: 700;
+    font-size: 16px;
+}
+.role {
+    color: var(--accent);
+    font-size: 13px;
+}
+
+/* Elevated center slide */
+.slick-center .testimonial-card {
+    transform: translateY(-24px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 2;
+}
+
+/* Default (non-center) */
+.testimonials-slider .testimonial-card {
+    z-index: 1;
+}
+
+/* Scoped dots container — will not affect other sliders */
+.testimonials-section .slick-dots {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    margin: 0;
+    padding: 6px 10px;
+    display: inline-flex;
+    gap: 10px;
+    list-style: none;
+    border: 5px solid var(--dots-border);
+    background-color: var(--dots-bg);
+    border-radius: 30px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+/* Dot buttons (reset default visuals) */
+.testimonials-section .slick-dots li {
+    margin: 0;
+    padding: 0;
+}
+.testimonials-section .slick-dots li button {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+}
+
+/* inner circle visual */
+.testimonials-section .slick-dots li button::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dot-inactive);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 180ms ease, transform 180ms ease;
+}
+
+/* active / hover / focus state */
+.testimonials-section .slick-dots li.slick-active button::before,
+.testimonials-section .slick-dots li button:focus::before,
+.testimonials-section .slick-dots li button:hover::before {
+    background: var(--dot-active);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* keyboard focus visible */
+.testimonials-section .slick-dots li button:focus {
+    outline: 2px solid rgba(242,167,58,0.25);
+    border-radius: 50%;
+}
+
+/* reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .testimonial-card,
+    .slick-center .testimonial-card {
+        transition: none;
+    }
+}
+
+/* responsive adjustments */
+@media (max-width: 992px) {
+    .testimonials-slider .slick-list {
+        padding: 30px 40px;
+    }
+    .quote-mark { font-size: 72px; }
+    .quote-text { max-width: 100%; margin-bottom: 40px; }
+}
+@media (max-width: 767px) {
+    .testimonials-slider .slick-list {
+        padding: 20px 16px;
+    }
+    .testimonials-section .slick-dots {
+        bottom: -16px;
+        padding: 5px 8px;
+        gap: 8px;
+    }
+    .testimonials-section .slick-dots li button {
+        width: 14px;
+        height: 14px;
+    }
+    .testimonials-section .slick-dots li button::before {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* RTL support
+   The site may set dir="rtl" on html or body. We mirror positions and flex direction.
+   Also allow a local class .rtl on the .testimonials-section for cases where dir attribute isn't present.
+*/
+
+/* Prefer document-level dir attribute */
+[dir="rtl"] .testimonials-section,
+.testimonials-section.rtl {
+    direction: rtl;
+}
+[dir="rtl"] .testimonials-section .testimonial-meta,
+.testimonials-section.rtl .testimonial-meta {
+    left: auto;
+    right: 36px;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+[dir="rtl"] .testimonial-card::before,
+.testimonials-section.rtl .testimonial-card::before {
+    /* mirror the star overlay */
+    left: -51%;
+    right: auto;
+    /* keep same size */
+}
+
+/* Mirror quote alignment in RTL */
+[dir="rtl"] .testimonials-section .quote-mark,
+.testimonials-section.rtl .quote-mark {
+    text-align: right;
+}
+[dir="rtl"] .testimonials-section .quote-text,
+.testimonials-section.rtl .quote-text {
+    text-align: right;
+}
+
+/* Mirror dots placement (translateX still centers correctly) */
+/* No additional rules required for dots order — Slick will handle ordering,
+   but visual container remains centered. */
+
+/* Ensure scoped rules are stronger than global themes without !important */
+.testimonials-section .slick-dots,
+.testimonials-section .slick-dots li button::before {
+    /* intentionally specific, avoid global conflicts */
+}
