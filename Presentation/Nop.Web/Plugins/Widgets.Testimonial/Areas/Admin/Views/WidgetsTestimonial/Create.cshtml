@@ -1,0 +1,30 @@
+@model TestimonialItemModel
+@{
+    //page title
+    ViewBag.PageTitle = T("Plugins.Widgets.Testimonial.AddNew").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Widgets.Testimonial.List");
+}
+
+<form asp-controller="WidgetsTestimonial" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.Widgets.Testimonial.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Plugins.Widgets.Testimonial.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            <button type="submit" name="save-continue" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.SaveContinue")
+            </button>
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Plugins/Widgets.Testimonial/Areas/Admin/Views/WidgetsTestimonial/_CreateOrUpdate.cshtml", Model)
+</form>

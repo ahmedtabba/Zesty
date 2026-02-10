@@ -1,0 +1,71 @@
+﻿@model TestimonialUIModel
+@{
+    Layout = "";
+
+    NopHtml.AddCssFileParts("~/Plugins/Widgets.Testimonial/Content/css/tg-testimonial.css");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"{TestimonialDefaults.PluginOutputPath}/Content/owl/js/owl.carousel.min.js");
+    NopHtml.AddCssFileParts($"{TestimonialDefaults.PluginOutputPath}/Content/owl/css/owl.carousel.min.css");
+    NopHtml.AddCssFileParts($"{TestimonialDefaults.PluginOutputPath}/Content/owl/css/owl.theme.default.min.css");
+}
+@if (Model.PublicInfoModels.Any())
+{
+    <div class="testimonials">
+        <div class="title">
+            <strong>@T("Plugins.Widgets.Testimonial.Public.Component.Title")</strong>
+        </div>
+
+        <div class="container owl-carousel-wrapper">
+            <div id="testimonials-carousel" class="owl-carousel owl-theme">
+                @foreach (var item in Model.PublicInfoModels)
+                {
+                    <div class="carousel-item item item-box">
+                        <div class="content-left">
+                            <p>
+                                @Html.Raw(item.Description)
+                            </p>
+                            <p class="text-right">
+                                <em>-@item.Name</em>
+                            </p>
+                        </div>
+                        <div class="right-section">
+                            @if (!string.IsNullOrEmpty(item.PictureUrl))
+                            {
+                                <img src="@item.PictureUrl" alt="testimonial">
+                            }
+                            else
+                            {
+                                <img src="/Plugins/Widgets.Testimonial/Content/img/default.jpg" alt="testimonial">
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <script type="text/javascript" asp-location="Footer">
+                $(document).ready(function () {
+                    var owl = $('#testimonials-carousel');
+                    var widgetZone = "@(Model.WidgetZone)";
+                    owl.owlCarousel({
+                        items: widgetZone.indexOf("side_column") >= 0 ? 1 : 2,
+                        loop: true,
+                        autoplay: true,
+                        autoplayHoverPause: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            767: {
+                                items: widgetZone.indexOf("side_column") >= 0 ? 1 : 2
+                            }
+                        }
+                    });
+                    $('.play').on('click', function () {
+                        owl.trigger('play.owl.autoplay', [1000])
+                    })
+                    $('.stop').on('click', function () {
+                        owl.trigger('stop.owl.autoplay')
+                    })
+                });
+            </script>
+        </div>
+    </div>
+}

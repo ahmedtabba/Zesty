@@ -31,8 +31,5 @@
     <PackageReference Include="System.Linq.Async" Version="5.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Nop.Plugin.Widgets.WhatCustomerSays\Nop.Plugin.Widgets.WhatCustomerSays.csproj" />
-  </ItemGroup>
 
 </Project>

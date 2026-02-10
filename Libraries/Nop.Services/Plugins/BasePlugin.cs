@@ -60,5 +60,7 @@ namespace Nop.Services.Plugins
             //for example, requires some other certain plugins to be uninstalled first
             return Task.CompletedTask;
         }
+
+      
     }
 }

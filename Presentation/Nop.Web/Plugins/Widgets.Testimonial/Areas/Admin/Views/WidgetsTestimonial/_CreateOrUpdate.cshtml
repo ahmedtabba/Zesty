@@ -1,0 +1,17 @@
+﻿@model TestimonialItemModel
+
+@{
+    const string hideInfoBlockAttributeName = "TestimonialItemDetailsPage.HideInfoBlock";
+    var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideInfoBlockAttributeName);
+}
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="form-horizontal">
+        <nop-cards id="testimonial-details-cards">
+            <nop-card asp-name="testimonial-info" asp-icon="fas fa-info" asp-title="@T("Plugins.Widgets.Testimonial.Info")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("~/Plugins/Widgets.Testimonial/Areas/Admin/Views/WidgetsTestimonial/_CreateOrUpdate.Info.cshtml", Model)</nop-card>
+        </nop-cards>
+    </div>
+</section>
