@@ -1,0 +1,8 @@
+﻿using Nop.Web.Framework.Models;
+
+namespace Nop.Plugin.Widgets.WhatCustomerSays.Models;
+
+public record WhatCustomerSaysListModel
+    : BasePagedListModel<WhatCustomerSaysModel>
+{
+}

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Testimonials section",
+  "SystemName": "Widgets.Testimonial",
+  "Version": "1.10",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "Techgrains team",
+  "DisplayOrder": 1,
+  "FileName": "Techgrains.Plugin.Widgets.Testimonials.dll",
+  "Description": "This plugin allows you to add/change the contents of main page testimonial items"
+}

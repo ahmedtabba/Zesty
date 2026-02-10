@@ -1,0 +1,10 @@
+{
+  "Group": "Widgets",
+  "FriendlyName": "What Customer Says",
+  "SystemName": "Widgets.WhatCustomerSays",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "SaadNofal",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.WhatCustomerSays.dll"
+}

@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Nop.Plugin.Widgets.WhatCustomerSays\Nop.Plugin.Widgets.WhatCustomerSays.csproj" />
     <ProjectReference Include="..\Nop.Core\Nop.Core.csproj" />
     <ProjectReference Include="..\Nop.Data\Nop.Data.csproj" />
   </ItemGroup>
