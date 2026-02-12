@@ -99,7 +99,7 @@
         transition: all .2s ease;
     }
     .mega-menu .sublist li:hover > a {
-	    color: #97c300;
+	    color: #FBB040;
         background-color: #f1f1f1;
     }
     .mega-menu .sublist-wrap .sublist-wrap {
@@ -182,7 +182,7 @@
         height: auto;
         line-height: 1.2;
         padding: 7px 0;
-        color: #97c300;
+        color: #FBB040;
     }
 
     .category-navigation-list .dropdown .box .title a:hover {
@@ -201,7 +201,7 @@
 
     .category-navigation-list .dropdown .box .subcategory-item a:hover {
         background-color: transparent;
-        color: #97c300;
+        color: #FBB040;
     }
 
     .category-navigation-list .dropdown .box .picture {
@@ -376,7 +376,7 @@
 
     .mega-menu .manufacturers .box:hover .title,
     .mega-menu .vendors .box:hover .title {
-        color: #97c300;
+        color: #FBB040;
     }
 
     .mega-menu .manufacturers .box:hover .picture,

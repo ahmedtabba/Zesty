@@ -98,7 +98,7 @@
 }
 
 .header-selectors-wrapper > div input[type="radio"]:checked + label {
-	color: #97c300;
+	color: #FBB040;
 }
 
 .header-selectors-wrapper > div input[type="radio"] + label:before {
@@ -212,7 +212,7 @@
 	display: inline-block;
 	top: 0;
 	left: 0;
-	background-color: #97c300;
+	background-color: #FBB040;
 	font-size: 10px;
 	height: auto;
 	padding: 0 1px;
@@ -299,7 +299,7 @@
 .mobile-flyout-wrapper .close-side-menu {
 	display: block;
 	padding: 15px 20px;
-	background-color: #97c300;
+	background-color: #FBB040;
 	color: #fff;
 }
 
@@ -506,7 +506,7 @@
 	right: 0;
 }
 .header-menu ul li.back-button {
-	background-color: #97c300;
+	background-color: #FBB040;
 }
 .header-menu .back-button span {
 	padding: 15px 20px !important;

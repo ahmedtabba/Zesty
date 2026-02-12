@@ -66,11 +66,15 @@
 /* فتح القائمة */
 .profile-menu-box.open {
     display: flex;
+
+
+  left:0px !important;
 }
 
 /* الروابط داخل الصندوق */
 .profile-menu-box a {
     display: flex;
+  
     align-items: center;
     gap: 10px;
     padding: 10px 16px;
@@ -394,20 +398,121 @@
     }
 </div>
 <script>
-    document.querySelectorAll('.account-toggle').forEach(function(toggle){
-        toggle.addEventListener('click', function (e) {
+(function(){
+    var toggles = document.querySelectorAll('.account-toggle');
+    var openClass = 'open';
+    var mobileBreakpoint = 768; // treat <=768 as mobile
+    var isRtl = (document.documentElement.dir || document.body.dir || '').toLowerCase() === 'rtl';
+
+    function closeAll(except){
+        document.querySelectorAll('.profile-menu-box.'+openClass).forEach(function(m){
+            if(m !== except) m.classList.remove(openClass);
+        });
+    }
+
+    function positionMenu(toggle, menu){
+        // clear previously set inline styles
+        menu.style.left = '';
+        menu.style.right = '';
+        menu.style.width = '';
+        menu.style.position = '';
+        menu.style.top = '';
+
+        var vw = window.innerWidth;
+        if(vw <= mobileBreakpoint){
+            // Mobile: make it full width and fixed under the header toggle
+            var rect = toggle.getBoundingClientRect();
+            menu.style.position = 'fixed';
+            menu.style.top = (rect.bottom) + 'px';
+            menu.style.left = '0';
+            menu.style.right = '0';
+            menu.style.minWidth = 'unset';
+            menu.style.borderRadius = '0 0 12px 12px';
+            menu.style.zIndex = 99999;
+        } else {
+            // Desktop / tablet: absolute aligned to the toggle's end (respecting RTL)
+            menu.style.position = 'absolute';
+            // ensure menu has a sensible min width
+            var minW = Math.max(240, menu.offsetWidth || 240);
+            menu.style.minWidth = minW + 'px';
+
+            var rect = toggle.getBoundingClientRect();
+            var menuWidth = menu.offsetWidth || minW;
+            var spaceRight = window.innerWidth - rect.right;
+            var spaceLeft = rect.left;
+
+            // Prefer aligning to inset-inline-end (CSS already sets inset-inline-end:0),
+            // but if it would overflow, adjust to keep it inside viewport
+            if(isRtl){
+                // align to end (right)
+                if(spaceRight < menuWidth && spaceLeft > spaceRight){
+                    // shift left so it fits
+                    var shift = Math.min(spaceLeft - 8, menuWidth - spaceRight);
+                    menu.style.right = (0 + shift) + 'px';
+                } else {
+                    menu.style.right = '0';
+                }
+            } else {
+                // LTR: align to end (right side of the parent)
+                if(spaceRight < menuWidth && spaceLeft > spaceRight){
+                    var shiftL = Math.min(spaceLeft - 8, menuWidth - spaceRight);
+                    // Position using left so it doesn't overflow
+                    menu.style.left = Math.max(0, rect.left - shiftL) + 'px';
+                } else {
+                    // keep default end alignment
+                    menu.style.right = '0';
+                }
+            }
+        }
+    }
+
+    toggles.forEach(function(toggle){
+        var menu = toggle.nextElementSibling;
+        if(!menu || !menu.classList.contains('profile-menu-box')) return;
+
+        // prevent clicks inside the menu from closing it
+        menu.addEventListener('pointerdown', function(e){ e.stopPropagation(); });
+        menu.addEventListener('click', function(e){ e.stopPropagation(); });
+
+        // use pointerdown for faster response on touch devices
+        toggle.addEventListener('pointerdown', function(e){
             e.preventDefault();
-            const menu = this.nextElementSibling;
-            menu.classList.toggle('open');
+            var willOpen = !menu.classList.contains(openClass);
+            closeAll(willOpen ? menu : null);
+            if(willOpen){
+                menu.classList.add(openClass);
+                positionMenu(toggle, menu);
+                // focus first focusable element for accessibility
+                var focusable = menu.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+                if(focusable) focusable.focus();
+            } else {
+                menu.classList.remove(openClass);
+            }
+        });
+
+        // keyboard support on toggle
+        toggle.addEventListener('keydown', function(e){
+            if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle.click(); }
+        });
+
+        // reposition on resize/scroll when open
+        window.addEventListener('resize', function(){ if(menu.classList.contains(openClass)) positionMenu(toggle, menu); });
+        window.addEventListener('scroll', function(){ if(menu.classList.contains(openClass)) positionMenu(toggle, menu); }, true);
+    });
+
+    // close when clicking or touching outside
+    document.addEventListener('pointerdown', function(e){
+        document.querySelectorAll('.profile-menu-box.'+openClass).forEach(function(menu){
+            var parent = menu.parentElement;
+            if(!parent.contains(e.target)) menu.classList.remove(openClass);
         });
     });
 
-    // اغلاق القائمة عند الضغط خارجها
-    document.addEventListener('click', function(e){
-        document.querySelectorAll('.profile-menu-box.open').forEach(function(menu){
-            if(!menu.parentElement.contains(e.target)){
-                menu.classList.remove('open');
-            }
-        });
+    // close on Escape
+    document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+            document.querySelectorAll('.profile-menu-box.'+openClass).forEach(function(menu){ menu.classList.remove(openClass); });
+        }
     });
+})();
 </script>

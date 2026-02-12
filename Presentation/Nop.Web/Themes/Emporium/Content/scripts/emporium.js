@@ -153,7 +153,7 @@
                 blocks: [
                     {
                         elementToAttach: '.header-selectors-wrapper',
-                        content: '.admin-header-links',
+                        //content: '.admin-header-links',
                         insertAction: 'prependTo'
                     }
                 ]
@@ -166,7 +166,7 @@
                             blocks: [
                                 {
                                     elementToAttach: '.header-selectors-wrapper',
-                                    content: '.admin-header-links',
+                                    //content: '.admin-header-links',
                                     insertAction: 'prependTo'
                                 },
                                 {
