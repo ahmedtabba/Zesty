@@ -2,70 +2,123 @@
 @{
     Layout = "";
 
+    // plugin original styles (kept in case needed)
     NopHtml.AddCssFileParts("~/Plugins/Widgets.Testimonial/Content/css/tg-testimonial.css");
-    NopHtml.AddScriptParts(ResourceLocation.Footer, $"{TestimonialDefaults.PluginOutputPath}/Content/owl/js/owl.carousel.min.js");
-    NopHtml.AddCssFileParts($"{TestimonialDefaults.PluginOutputPath}/Content/owl/css/owl.carousel.min.css");
-    NopHtml.AddCssFileParts($"{TestimonialDefaults.PluginOutputPath}/Content/owl/css/owl.theme.default.min.css");
+
+    // Reuse Emporium theme testimonial styles to match look-and-feel
+    NopHtml.AddCssFileParts("~/Themes/Emporium/Content/css/testimonials.css");
+
+    // Add our new testimonial card CSS (external file, not inline)
+    NopHtml.AddCssFileParts("~/Plugins/Widgets.Testimonial/Content/css/testimonial-cards.css");
+
+    // Use Slick slider (CDN) to match Emporium CSS which targets slick classes
+    // NopHtml.AddCssFileParts("https:cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+    // NopHtml.AddCssFileParts("https:cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js");
 }
+
 @if (Model.PublicInfoModels.Any())
 {
-    <div class="testimonials">
-        <div class="title">
-            <strong>@T("Plugins.Widgets.Testimonial.Public.Component.Title")</strong>
-        </div>
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="testimonials-title">@T("Plugins.Widgets.Testimonial.Public.Component.Title")</h2>
+            <div class="testimonials-subtitle">@T("Plugins.Widgets.Testimonial.Public.Component.SubTitle")</div>
 
-        <div class="container owl-carousel-wrapper">
-            <div id="testimonials-carousel" class="owl-carousel owl-theme">
+            <!-- slick expects slides as direct children of the slider container -->
+            <div id="testimonials-carousel" class="testimonials-slider">
                 @foreach (var item in Model.PublicInfoModels)
                 {
-                    <div class="carousel-item item item-box">
-                        <div class="content-left">
-                            <p>
-                                @Html.Raw(item.Description)
-                            </p>
-                            <p class="text-right">
-                                <em>-@item.Name</em>
-                            </p>
-                        </div>
-                        <div class="right-section">
-                            @if (!string.IsNullOrEmpty(item.PictureUrl))
-                            {
-                                <img src="@item.PictureUrl" alt="testimonial">
-                            }
-                            else
-                            {
-                                <img src="/Plugins/Widgets.Testimonial/Content/img/default.jpg" alt="testimonial">
-                            }
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-mark">''</div>
+                            <div class="quote-text">@Html.Raw(item.Description)</div>
+
+                            <div class="testimonial-meta">
+                                @if (!string.IsNullOrEmpty(item.PictureUrl))
+                                {
+                                    <img class="avatar" src="@item.PictureUrl" alt="@item.Name" />
+                                }
+                                else
+                                {
+                                    <img class="avatar" src="/Plugins/Widgets.Testimonial/Content/img/default.jpg" alt="@item.Name" />
+                                }
+                                <div class="meta-text">
+                                    <div class="author">@item.Name</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 }
             </div>
+
             <script type="text/javascript" asp-location="Footer">
-                $(document).ready(function () {
-                    var owl = $('#testimonials-carousel');
-                    var widgetZone = "@(Model.WidgetZone)";
-                    owl.owlCarousel({
-                        items: widgetZone.indexOf("side_column") >= 0 ? 1 : 2,
-                        loop: true,
-                        autoplay: true,
-                        autoplayHoverPause: true,
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            767: {
-                                items: widgetZone.indexOf("side_column") >= 0 ? 1 : 2
+                (function() {
+                    function initTestimonials() {
+                        var $slider = $('#testimonials-carousel');
+                        if (!$slider.length) return;
+
+                        var widgetZone = "@(Model.WidgetZone)" || '';
+                        var defaultSlides = widgetZone.indexOf('side_column') >= 0 ? 1 : 3;
+
+                        // detect RTL
+                        var isRtl = (document.documentElement.getAttribute('dir') || '') === 'rtl' || document.body.classList.contains('rtl');
+
+                        // initialize slick once
+                        if ($slider.hasClass('slick-initialized')) return;
+
+                        $slider.slick({
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: defaultSlides,
+                            slidesToScroll: 1,
+                            dots: true,
+                            arrows: false,
+                            autoplay: true,
+                            autoplaySpeed: 5000,
+                            adaptiveHeight: false, // disable adaptiveHeight to keep consistent card heights
+                            rtl: isRtl,
+                            responsive: [
+                                { breakpoint: 992, settings: { slidesToShow: widgetZone.indexOf('side_column') >= 0 ? 1 : 2, centerPadding: '30px' } },
+                                { breakpoint: 767, settings: { slidesToShow: 1, centerPadding: '18px' } }
+                            ]
+                        });
+
+                        // when slides change / setPosition, equalize card heights
+                        function equalizeCards() {
+                            var maxH = 0;
+                            $slider.find('.testimonial-card').each(function() {
+                                $(this).css('height', 'auto');
+                                var h = $(this).outerHeight();
+                                if (h > maxH) maxH = h;
+                            });
+                            if (maxH > 0) {
+                                $slider.find('.testimonial-card').css('height', maxH + 'px');
                             }
                         }
-                    });
-                    $('.play').on('click', function () {
-                        owl.trigger('play.owl.autoplay', [1000])
-                    })
-                    $('.stop').on('click', function () {
-                        owl.trigger('stop.owl.autoplay')
-                    })
-                });
+
+                        $slider.on('setPosition', equalizeCards);
+                        $slider.on('breakpoint', function() { setTimeout(equalizeCards, 50); });
+
+                        // accessibility: keyboard focus on dots
+                        $(document).on('keydown', function(e) {
+                            if (e.key === 'ArrowLeft') $slider.slick('slickPrev');
+                            if (e.key === 'ArrowRight') $slider.slick('slickNext');
+                        });
+
+                        // force initial sizing
+                        setTimeout(function(){ $slider.trigger('setPosition'); }, 60);
+                        // also run on window load in case images change sizes
+                        $(window).on('load', function(){ setTimeout(equalizeCards, 80); });
+                    }
+
+                    // init on ready
+                    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                        setTimeout(initTestimonials, 10);
+                    } else {
+                        document.addEventListener('DOMContentLoaded', initTestimonials);
+                    }
+                })();
             </script>
         </div>
-    </div>
+    </section>
 }

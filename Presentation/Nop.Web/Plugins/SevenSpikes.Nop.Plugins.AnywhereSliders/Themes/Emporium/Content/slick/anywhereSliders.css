@@ -65,7 +65,7 @@
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	width: 0; height: 0;
-	border: 0px solid #97c300;
+	border: 0px solid #FBB040;
 	border-radius: 50%;
 	-webkit-animation: loader 1.6s cubic-bezier(0, 0, 0.09, 0.99) infinite;
 	-moz-animation: loader 1.6s cubic-bezier(0, 0, 0.09, 0.99) infinite;
@@ -109,7 +109,7 @@
     right: 15px;
 }
 .anywhere-slider .slick-arrow:hover {
-    background-color: #97c300;
+    background-color: #FBB040;
 }
 .anywhere-slider .slick-arrow:before {
     display: block;
@@ -171,14 +171,14 @@
 .anywhere-slider .slick-dots button:hover:before {
    width: 10px;
     height: 10px;
-    background-color: #ffb040;
+    background-color: #FBB040;
     opacity: 1;
 }
 .anywhere-slider .slick-active button:before {
 	opacity: 1;
     width: 10px;
     height: 10px;
-    background-color: #ffb040;
+    background-color: #FBB040;
     box-shadow: 0 0 0 3px rgba(0,0,0,.4);
 }
 

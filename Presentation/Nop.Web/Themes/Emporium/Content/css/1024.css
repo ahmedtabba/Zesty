@@ -257,11 +257,11 @@
 	.category-navigation-list-wrapper ul li:hover > a,
 	.category-navigation-list-wrapper ul li:hover > span {
 		background-color: #fef2e0;
-		color: #97c300;
+		color: #FBB040;
 	}
 
 .category-navigation-list-wrapper ul li:hover > a:after {
-	color: #97c300;
+	color: #FBB040;
 }
 
 	.category-navigation-title {
@@ -802,7 +802,7 @@
 }
 
 .block.block-recently-viewed-products .list a:hover {
-    color: #97c300;
+    color: #FBB040;
 }
 
 
@@ -1447,12 +1447,12 @@ td.remove-from-cart label, td.add-to-cart label {
 
 .block-account-navigation.block .list a:hover,
 .block-account-navigation.block .list a:hover:after {
-	color: #97c300;
+	color: #FBB040;
 }
 
 .block-account-navigation.block .list .active a {
-	border-right: 2px solid #97c300;
-	color: #97c300;
+	border-right: 2px solid #FBB040;
+	color: #FBB040;
 }
 
 .block-account-navigation.block .list a:after {
@@ -1479,7 +1479,7 @@ td.remove-from-cart label, td.add-to-cart label {
 }
 
 .block-account-navigation.block .list .active a:after {
-	color: #97c300;
+	color: #FBB040;
 }
 
 .block-account-navigation .customer-info a:after, 

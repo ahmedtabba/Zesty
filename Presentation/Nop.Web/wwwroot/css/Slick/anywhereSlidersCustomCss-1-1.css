@@ -1,7 +1,7 @@
 /* Testimonials slider styles — scoped, RTL-friendly and professional */
 :root {
     --testimonials-bg: #faf8f9;
-    --card-bg: #2b2732;
+    --card-bg: #221f32;
     --accent: #f2a73a;
     --dot-inactive: #ddd;
     --dot-active: #f2a73a;
@@ -9,12 +9,12 @@
     --dots-border: #282034;
 }
 
-/* Container */
+/* Containers */
 .testimonials-section {
-    padding: 60px 0 100px;
+    padding: 40px 0 40px;
     text-align: center;
     position: relative; /* for absolute-positioned dots */
-    background: var(--testimonials-bg);
+    background: #fff;
     box-sizing: border-box;
 }
 
@@ -26,10 +26,15 @@
     margin-bottom: 4px;
 }
 .testimonials-subtitle {
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 28px;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+    vertical-align: middle;
+    color: #FBB040;
+    text-transform: uppercase;
+    padding: 10px;
 }
 
 /* Slider / slides */
@@ -125,7 +130,6 @@
 /* Elevated center slide */
 .slick-center .testimonial-card {
     transform: translateY(-24px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     z-index: 2;
 }
 
@@ -142,7 +146,7 @@
     transform: translateX(-50%);
     z-index: 99;
     margin: 0;
-    padding: 6px 10px;
+    padding: 2px 2px;
     display: inline-flex;
     gap: 10px;
     list-style: none;
@@ -263,10 +267,11 @@
 .testimonials-section.rtl .quote-mark {
     text-align: right;
 }
-[dir="rtl"] .testimonials-section .quote-text,
-.testimonials-section.rtl .quote-text {
-    text-align: right;
-}
+    [dir="rtl"] .testimonials-section .quote-text,
+    .testimonials-section.rtl .quote-text {
+        text-align: right;
+        z-index: 0;
+    }
 
 /* Mirror dots placement (translateX still centers correctly) */
 /* No additional rules required for dots order — Slick will handle ordering,

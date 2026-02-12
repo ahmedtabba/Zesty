@@ -352,7 +352,7 @@
 	padding: 0;
 }
 .compare-products-table .product-price td {
-	color: #97c300;
+	color: #FBB040;
 	font-size: 17px;
 	font-weight: 700;
 }
@@ -602,7 +602,7 @@
 }
 
 .order-progress .active-step.last a span {
-	color: #97c300;
+	color: #FBB040;
 }
 
 .order-progress .active-step.last a:before {

@@ -14,18 +14,15 @@
 }
 
 .testimonials .title {
-    border-bottom: 1px solid #ddd;
-    color: #444;
-    font-size: 30px;
-    font-weight: normal;
-    margin: 0 0 30px;
-    padding: 0 0 15px;
+    font-weight: bolder; /* ExtraBold */
+    font-size: 34px;
+    margin: 35px 0 10px 0;
+    line-height: 100%;
+    letter-spacing: 0;
     text-align: center;
+    color: #282034;
 }
 
-    .testimonials .title strong {
-        font-weight: normal;
-    }
 
 .testimonials .content-left {
     float: left;
@@ -78,6 +75,11 @@
     .owl-carousel .owl-item img {
         max-width: 200px;
     }
+    
+}
+.owl-carousel .owl-item img {
+    width: 100px !important;
+    height: 100px !important;
 }
 
 .side-2 .testimonials .right-section {
