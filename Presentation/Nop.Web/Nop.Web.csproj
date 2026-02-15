@@ -62,6 +62,18 @@
     <Folder Include="Themes\Emporium\Content\img\Input Ico\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Themes\Emporium\Content\img\Asset1.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\Emporium\Content\img\img1.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\Emporium\Content\img\img2.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
   <!-- This target execute after "Build" target.
     We use it to clean up folder with plugins from unnecessary and obsolete libraries. -->
   <Target Name="NopTarget" AfterTargets="Build">

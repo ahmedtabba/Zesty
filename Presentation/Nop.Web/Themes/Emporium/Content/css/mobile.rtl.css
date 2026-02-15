@@ -264,7 +264,7 @@
 .profile-menu-box,
 .store-search-box {
 	position: fixed;
-	top: 0;
+	top: 0 !important;
 	right: -100%;
 	width: 320px;
 	max-width: 100%;

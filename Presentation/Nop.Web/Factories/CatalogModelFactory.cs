@@ -876,6 +876,11 @@ namespace Nop.Web.Factories
                     SeName = await _urlRecordService.GetSeNameAsync(category),
                     IncludeInTopMenu = category.IncludeInTopMenu
                 };
+                var picture = await _pictureService.GetPictureByIdAsync(category.PictureId);
+                var pictureUrl = await _pictureService.GetPictureUrlAsync(picture, 50);
+
+                categoryModel.PictureUrl = pictureUrl.Url;
+
 
                 //number of products in each category
                 if (_catalogSettings.ShowCategoryProductNumber)

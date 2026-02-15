@@ -71,10 +71,10 @@
 		    {
 		        <div class="category-navigation-list-wrapper" >
 			        <span class="category-navigation-title">@* @T("SevenSpikes.Themes.Emporium.Header.AllCategories") *@ALL CATEGORIES</span>
-		            <ul class="category-navigation-list @if (stickyCategoryMenuFlyout){<text>sticky-flyout</text>}">
-                        @foreach(var category in categories)
+		             <ul class="category-navigation-list @if (stickyCategoryMenuFlyout){<text>sticky-flyout</text>}"> 
+                        @* @foreach(var category in categories)
                         {
-                        var pictureUrl = await PictureService.GetPictureUrlAsync(category.PictureId);
+                        var pictureUrl = await PictureService.GetPictureUrlAsync(category.PictureId); *@
                 @*             <li class="with-dropdown-in-grid">
                           <a href="@Url.RouteUrl("Category", new { SeName = await UrlRecordService.GetSeNameAsync(category) })">
                             <div>
@@ -89,8 +89,8 @@
 
                     <div class="plus-button"></div>
                 </li>                             *@
-                        }
-                    </ul>
+                        @* } *@
+                    </ul> 
 		        </div>
 		    }
 		    <div class="close-menu">

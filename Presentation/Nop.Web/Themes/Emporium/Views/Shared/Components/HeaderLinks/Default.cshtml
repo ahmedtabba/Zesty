@@ -66,9 +66,7 @@
 /* فتح القائمة */
 .profile-menu-box.open {
     display: flex;
-
-
-  left:0px !important;
+   min-width:max-content !important;
 }
 
 /* الروابط داخل الصندوق */
@@ -262,7 +260,7 @@
                     @T("Account.MyAccount")
                 </a>
 
-        <div class="profile-menu-box
+           <div class="profile-menu-box
                      @if (shouldShowLoginFormInHeader && !isLoginPage)
                      {
                          <text>login-form-in-header</text>

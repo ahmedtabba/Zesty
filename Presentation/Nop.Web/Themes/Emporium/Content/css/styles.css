@@ -1768,6 +1768,7 @@ label, label + * {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
+            left: 0px !important;
         }
 
         .profile-menu-box > a,
@@ -2594,19 +2595,19 @@ label, label + * {
             }
 
             .newsletter-email .newsletter-subscribe-text::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-                color: #959595;
+                color: #fff;
             }
 
             .newsletter-email .newsletter-subscribe-text::-moz-placeholder { /* Firefox 19+ */
-                color: #959595;
+                color: #fff;
             }
 
             .newsletter-email .newsletter-subscribe-text:-ms-input-placeholder { /* IE 10+ */
-                color: #959595;
+                color: #fff;
             }
 
             .newsletter-email .newsletter-subscribe-text:-moz-placeholder { /* Firefox 18- */
-                color: #959595;
+                color: #fff;
             }
 
         .newsletter-email .newsletter-subscribe-button {
