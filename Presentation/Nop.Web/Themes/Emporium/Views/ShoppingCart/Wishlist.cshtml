@@ -252,7 +252,12 @@
         else
         {
             <div class="no-data">
+
                 @T("Wishlist.CartIsEmpty")
+                <div style="text-align:center">
+                    <img src="../Themes/Emporium/Content/img/EmptyState.png">
+                </div>
+
             </div>
         }
         @if (Model.IsEditable && Model.Items.Count > 0)

@@ -40,8 +40,8 @@
 /* Slider / slides */
 .testimonials-slider {
     /* ensure slider contents don't overflow on small screens */
-    margin: 0 auto;
-    max-width: 1200px;
+    margin: 0 50px;
+    max-width: 1600px;
 }
 .testimonials-slider .testimonial-slide {
     padding: 0 18px;

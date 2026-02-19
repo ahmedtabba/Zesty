@@ -1131,7 +1131,7 @@
             productsContainter.slick({
                 rtl: isRtl,
                 infinite: true,
-                rows: 2,
+                rows: 1,
                 slidesToShow: 4,
                 slidesToScroll: 1,
                 arrows: true,
