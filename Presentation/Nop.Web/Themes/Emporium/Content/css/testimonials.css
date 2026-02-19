@@ -23,8 +23,8 @@
 }
 
 .testimonials-slider {
-    max-width: 1200px; /* center the slider container and constrain total width */
-    margin: 0 auto;
+    max-width: 1600px; /* center the slider container and constrain total width */
+    margin: 0 50px;
     box-sizing: border-box;
 }
 

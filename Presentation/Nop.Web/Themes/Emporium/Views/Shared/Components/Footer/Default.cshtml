@@ -23,7 +23,7 @@
             </div>
         }
 
-        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px; padding:10px 40px ">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px; padding:10px 40px; flex-wrap:wrap; ">
             <div style="display:flex;align-items:center;gap:12px;min-width:320px;flex:1">
                 <span class="newsletter-label" style="color:#fff;font-weight:700;white-space:nowrap; font-size:16px; position:relative; bottom:5px">@T("Newsletter")</span>
                 <div class="newsletter-box" style="width:420px">@await Component.InvokeAsync("NewsletterBox")</div>

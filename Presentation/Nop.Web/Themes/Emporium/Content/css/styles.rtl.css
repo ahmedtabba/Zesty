@@ -504,7 +504,7 @@ input[type="email"],
 input[type="tel"],
 textarea, select {
     height: 45px;
-    border: 1px solid #fff;
+    border: 1px solid #c6c8cb;
     border-radius: 7px !important;
     padding: 0 20px;
     vertical-align: middle;
@@ -2595,8 +2595,8 @@ label, label + * {
             display: none !important;
         }
 
-    .footer-middle {
-        margin-bottom: 50px;
+    .footer-middle {    
+        margin: 50px;
         overflow: hidden;
     }
 
@@ -3585,7 +3585,6 @@ label, label + * {
         gap: 15px;
     }
      .item-grid.bestsellers-slick{
-        display:flex;
         justify-content:center;
         padding:0px 70px;
     }

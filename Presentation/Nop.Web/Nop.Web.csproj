@@ -63,7 +63,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Themes\DefaultClean\Content\images\EmptyState.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="Themes\Emporium\Content\img\Asset1.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Themes\Emporium\Content\img\EmptyState.png">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
     <Content Update="Themes\Emporium\Content\img\img1.png">
