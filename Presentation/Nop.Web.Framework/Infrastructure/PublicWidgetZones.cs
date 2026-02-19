@@ -101,7 +101,7 @@
         public static string LeftSideColumnAfter => "left_side_column_after";
         public static string LeftSideColumnAfterBlogArchive => "left_side_column_after_blog_archive";
         public static string LeftSideColumnAfterCategoryNavigation => "left_side_column_after_category_navigation";
-        public static string LeftSideColumnBefore => "left_side_column_before";
+        public static string LeftSbideColumnBefore => "left_side_column_before";
         public static string LeftSideColumnBlogAfter => "left_side_column_blog_after";
         public static string LeftSideColumnBlogBefore => "left_side_column_blog_before";
         public static string MainColumnAfter => "main_column_after";
