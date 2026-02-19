@@ -71,7 +71,22 @@
                 </button>
             }
 
-        </div>
+        </div>  
+        @if (Model.ProductPrice.OldPrice != null && Model.ProductPrice.OldPriceValue > Model.ProductPrice.PriceValue)
+        {
+            var discount = Math.Round((Model.ProductPrice.OldPriceValue.Value - Model.ProductPrice.PriceValue.Value) / Model.ProductPrice.OldPriceValue.Value * 100);
+            <div class="sale-badge">
+                SALE @discount%
+            </div>
+        }
+        @if (Model.MarkAsNew && Model.ProductPrice.OldPrice == null)
+        {
+            <div class="new-badge">
+                NEW
+            </div>
+        }
+
+
     </div>
     <div class="details">
         <h2 class="product-title">
@@ -127,10 +142,11 @@
                     <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
                         <div class="rating">
                             <div style="width: @(ratingPercent)%; display:flex">
-                                <span style="padding-inline-start:70px; color:#727274">
-                                    (@Model.ReviewOverviewModel.TotalReviews)
-                                </span>
+                    <span style="padding-inline-start:70px; color:#727274; font-size: 10px">
+                        (@Model.ReviewOverviewModel.TotalReviews)
+                    </span>
                             </div>
+                                
                         </div>
 
                     </div>
