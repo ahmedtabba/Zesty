@@ -8169,6 +8169,8 @@ label, label + * {
     position: relative;
     width: 980px;
     padding: 25px 5px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .footer-lower:after {

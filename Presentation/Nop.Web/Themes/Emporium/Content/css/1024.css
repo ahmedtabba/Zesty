@@ -675,9 +675,11 @@
 	text-align: left;
 }
 
-.footer-lower {
-	clear: both;
-}
+	.footer-lower {
+		clear: both;
+		display: flex;
+		justify-content: space-between;
+	}
 
 .footer-logo {
 	margin-top: 0;
