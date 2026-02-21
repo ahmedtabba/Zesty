@@ -2557,9 +2557,16 @@ label, label + * {
         transition: color .2s ease;
     }
 
-        .footer-block a:hover {
-            color: #FBB040;
-        }
+.footer-powered-by{
+    margin:0px 40px !important;
+}
+.footer-disclaimer {
+    margin: 0px 40px !important;
+}
+
+.footer-block a:hover {
+    color: #FBB040;
+}
 
     .footer .newsletter .title {
         margin: 0 0 13px;

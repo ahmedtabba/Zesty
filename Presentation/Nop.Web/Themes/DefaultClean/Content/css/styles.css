@@ -8118,11 +8118,13 @@ label, label + * {
     text-align: left;
   }
 
-  .footer-lower {
-    position: relative;
-    width: 980px;
-    padding: 25px 5px;
-  }
+    .footer-lower {
+        position: relative;
+        width: 980px;
+        padding: 25px 5px;
+        display: flex;
+        justify-content: space-between;
+    }
 
   .footer-lower:after {
     content: "";
