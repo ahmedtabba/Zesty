@@ -24,20 +24,21 @@
 
 .testimonials-slider {
     max-width: 1600px; /* center the slider container and constrain total width */
-    margin: 0 50px;
+/*    margin: 0 50px;*/
     box-sizing: border-box;
 }
 
+
 .testimonials-slider .testimonial-slide {
-    padding: 0 18px;
+/*    padding: 0 18px;*/
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: stretch;
     height: auto;
     /* each slide wrapper centers the card and gives consistent gutter */
-    width: 100%;
-    max-width: 480px; /* controls visible card width */
+    width: 600px!important;
+    max-width: 1800px; /* controls visible card width */
 }
 
 /* card: fixed maximum width, fills slide, keeps clean margin */
@@ -58,7 +59,7 @@
 
 /* remove large horizontal padding from slick-list (caused clipping) */
 .testimonials-slider .slick-list {
-    padding: 40px 0 !important; /* horizontal padding moved into slides */
+    padding: 40px 80px !important; /* horizontal padding moved into slides */
 }
 
 /* make the track and slides behave as flexible centered items */

@@ -18,15 +18,31 @@
     @await Component.InvokeAsync("BlogTags")
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter, additionalData = Model })
 }*@
+<style>
+    .post-footer .share-post{
+        margin: 0px !important;
+    }
+</style>
 <div class="page blogpost-page">
     @await Component.InvokeAsync("Widget", new { widgetZone = "blogpost_page_top", additionalData = Model.Id })
-    <a class="back-to-all-button" href="@Url.RouteUrl("Blog")">@T("SevenSpikes.Themes.Emporium.Common.BackToAll")</a>
     <div class="page-title">
         <h1>@Model.Title</h1>
     </div>
     <div class="page-body">
-        <div class="post-date">
-            @Model.CreatedOn.ToString("dd MMM yyyy")
+
+        <div style="display:flex;justify-content:space-between;align-items:center;width:100%">
+            <div style="flex:1; text-align:left">
+              <a class="back-to-all-button" href="@Url.RouteUrl("Blog")">@T("SevenSpikes.Themes.Emporium.Common.BackToAll")</a>
+            </div>
+             <div class="post-date" style="flex:1 ; text-align:center">
+              @Model.CreatedOn.ToString("dd MMM yyyy")
+             </div>
+            <div style="flex:1; text-align:right; margin-bottom:20px" >
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeComments, additionalData = Model })
+            </div>
+        </div>
+        <div  >
+            <img style="width:100%; height: 600px; margin-bottom: 20px; border-radius:24px" src="@Model.PictureUrl" />
         </div>
         <div class="post-body">
             @await Component.InvokeAsync("Widget", new { widgetZone = "blogpost_page_before_image", additionalData = Model.Id })
@@ -50,7 +66,7 @@
                 </ul>
             </div>
         }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeComments, additionalData = Model })
+        @await Component.InvokeAsync("HomePageBlog")
         @if (Model.AllowComments)
         {
             <div class="fieldset new-comment" id="comments">

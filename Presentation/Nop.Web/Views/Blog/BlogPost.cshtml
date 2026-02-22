@@ -27,6 +27,9 @@
         <div class="post-date">
             @Model.CreatedOn.ToString("D")
         </div>
+        <div>
+            <img src="@Model.PictureUrl" />
+        </div>
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeBody, additionalData = Model })
         <div class="post-body">
             @Html.Raw(Model.Body)
@@ -144,6 +147,7 @@
                 </div>
             }
         }
+      
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageAfterComments, additionalData = Model })
     </div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBottom, additionalData = Model })

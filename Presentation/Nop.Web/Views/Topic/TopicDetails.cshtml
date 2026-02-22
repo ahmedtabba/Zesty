@@ -87,16 +87,16 @@
     </div>
 }
 <div class="page topic-page" id="ph-topic">
-    <div class="page-title" id="ph-title">
+    @* <div class="page-title" id="ph-title">
         <h1>@Model.Title</h1>
-    </div>
+    </div> *@
     <div class="page-body">
 
-        <div style="border-radius:8px;margin-left:auto;margin-right:auto">
-             <div style="display:flex;gap:20px;justify-content:space-between;align-items:flex-start">
-                  <img src="../Themes/Emporium/Content/img/img1.png" style="flex:1;min-width:280px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1)" />
+        <div>
+             <div >
+                  @* <img src="../Themes/Emporium/Content/img/img1.png" style="flex:1;min-width:280px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1)" /> *@
                   @Html.Raw(Model.Body)
-                <img src="../Themes/Emporium/Content/img/img2.png" style="flex:1;min-width:280px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1)" />
+                @* <img src="../Themes/Emporium/Content/img/img2.png" style="flex:1;min-width:280px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.1)" /> *@
              </div>
         </div>
     </div>
