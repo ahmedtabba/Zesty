@@ -7,9 +7,21 @@
     //page class
     NopHtml.AppendPageCssClassParts("html-contact-page");
 }
+
+<style>
+
+    /* make sure the image exists at the path below:
+           Presentation\Nop.Web\Themes\Emporium\Content\img\background.png
+           Adjust the path in Url.Content(...) if you place it under Content/images instead. */
+    .master-wrapper-content {
+        background-image: url('@Url.Content("~/Themes/Emporium/Content/img/background.png")');
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 <div class="page contact-page">
     <div class="page-title">
-        <h1>@T("PageTitle.ContactUs")</h1>
+        <h1 style="color:#fff">@T("PageTitle.ContactUs")</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync("TopicBlock", new { systemName = "ContactUs" })
@@ -22,7 +34,7 @@
         }
         else
         {
-            <form asp-route="ContactUs" method="post">
+            <form style="background-color:#fff" asp-route="ContactUs" method="post">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
                 <div class="fieldset">
                     <div class="form-fields">
@@ -60,7 +72,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" name="send-email" class="button-1 contact-us-button">@T("ContactUs.Button")</button>
+                    <button style="width:20%" type="submit" name="send-email" class="button-1 contact-us-button">@T("ContactUs.Button")</button>
                 </div>
             </form>
         }

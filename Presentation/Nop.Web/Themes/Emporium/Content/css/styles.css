@@ -3816,7 +3816,7 @@ label, label + * {
             }
 
         .item-box .old-price {
-            font-size: 14px;
+            font-size: 16px;
             color: #999;
             text-decoration: line-through;
         }
@@ -9262,7 +9262,6 @@ td.download a {
 .news-item-page .news-body {
     margin: 0 auto;
     padding: 0 20px;
-    max-width: 900px;
     text-align: justify;
 }
 

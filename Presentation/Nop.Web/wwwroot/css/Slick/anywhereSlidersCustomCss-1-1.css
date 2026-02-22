@@ -40,11 +40,11 @@
 /* Slider / slides */
 .testimonials-slider {
     /* ensure slider contents don't overflow on small screens */
-    margin: 0 50px;
-    max-width: 1600px;
+/*    margin: 0 50px;*/
+    max-width: 2600px;
 }
 .testimonials-slider .testimonial-slide {
-    padding: 0 18px;
+/*    padding: 0 18px;*/
     box-sizing: border-box;
 }
 
