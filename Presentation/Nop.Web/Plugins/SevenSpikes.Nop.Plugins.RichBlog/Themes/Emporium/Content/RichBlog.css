@@ -22,7 +22,7 @@
 .rich-blog-homepage .blog-post {
 	margin: 0 0 2%;
     border: 1px solid #eee;
-    border-radius: 5px 5px 3px 3px !important;
+    border-radius: 24px !important;
     overflow: hidden;
 }
 
@@ -446,12 +446,12 @@
 
     .rich-blog-homepage .blog-post {
         float: left;
-        width: 32%;
+        width: 28%;
         margin-left: 2%;
     }
 
     .rich-blog-homepage .blog-post:nth-child(3n+1) {
-        margin-left: 0%;
+        margin-left: 8%;
     }
 
     .blog-search-results li {
@@ -502,7 +502,9 @@
 
     .rich-blog-homepage .blog-post {
         position: relative;
+        height: 600px !important;
     }
+    .rich-blog-homepage .blog-post
     .rich-blog-homepage .post-title {
         height: auto;
         margin-bottom: 25px;
@@ -520,7 +522,7 @@
         text-overflow: ellipsis;
         transition: all .3s ease;
     }
-    .rich-blog-homepage .read-more:before {
+/*    .rich-blog-homepage .read-more:before {
         content: "\43";
         display: inline-block;
         vertical-align: bottom;
@@ -529,7 +531,7 @@
         color: #fff;
         font-weight: normal;
         text-transform: none;
-    }
+    }*/
     .rich-blog-homepage .post-details {
         position:relative;
         padding: 50px 30px;
