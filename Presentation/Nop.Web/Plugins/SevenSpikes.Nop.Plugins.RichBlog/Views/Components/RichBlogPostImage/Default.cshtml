@@ -1,4 +1,4 @@
-﻿@model RichBlogImageModel
+﻿@* @model RichBlogImageModel
 
 @if (!string.IsNullOrEmpty(Model.BlogPostUrl) && !string.IsNullOrEmpty(Model.BlogPostImageUrl))
 {
@@ -12,4 +12,4 @@
             <a href="@Model.BlogPostUrl" alt="@Model.BlogPostTitle"><img src="@Model.BlogPostImageUrl" title="@Model.BlogPostTitle" alt="@Model.BlogPostTitle" /></a>
         }
     </div>
-}
+} *@

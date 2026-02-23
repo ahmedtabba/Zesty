@@ -177,6 +177,14 @@
                     <h4 class="small-Title">@T("Home.Categories.SmallTitle")</h4>
                 </div>
             }
+              @if (!string.IsNullOrEmpty(carousel.DataSourceTypeClass) && carousel.DataSourceTypeClass == "product-grid")
+            {
+
+                <div>
+                    <h4 class="small-Title">@T("Home.Bestsellers.SmallTitle")</h4>
+                </div>
+            }
+    
     
             <div class="slick-carousel item-grid" data-slick='@slickSettingsJson' data-numberOfVisibleItems="@numberOfItemsToShow">
                 @foreach (var item in carousel.Items)

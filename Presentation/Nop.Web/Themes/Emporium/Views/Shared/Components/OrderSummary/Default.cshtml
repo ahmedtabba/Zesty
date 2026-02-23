@@ -367,6 +367,9 @@
         <div class="no-data">
             @T("ShoppingCart.CartIsEmpty")
         </div>
+        <div style="text-align:center">
+            <img src="../Themes/Emporium/Content/img/cartempty.png">
+        </div>
     }
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderSummaryContentAfter, additionalData = Model })
 </div>

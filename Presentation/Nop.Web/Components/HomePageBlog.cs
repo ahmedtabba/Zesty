@@ -5,6 +5,7 @@ using Nop.Services.Blogs;
 using Nop.Services.Common;
 using Nop.Services.Media;
 using Nop.Services.Seo;
+using Nop.Services.Configuration;
 using Nop.Web.Framework.Components;
 using Nop.Web.Models.Blogs;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ public class HomePageBlog : NopViewComponent
     private readonly IWebHelper _webHelper;
     private readonly IWorkContext _workContext;
     private readonly IStoreContext _storeContext;
+    private readonly ISettingService _settingService;
 
     public HomePageBlog(
         IBlogService blogService,
@@ -25,7 +27,8 @@ public class HomePageBlog : NopViewComponent
         IUrlRecordService urlRecordService,
         IWebHelper webHelper,
         IWorkContext workContext,
-        IStoreContext storeContext)
+        IStoreContext storeContext,
+        ISettingService settingService)
     {
         _blogService = blogService;
         _pictureService = pictureService;
@@ -33,6 +36,7 @@ public class HomePageBlog : NopViewComponent
         _webHelper = webHelper;
         _workContext = workContext;
         _storeContext = storeContext;
+        _settingService = settingService;
     }
 
     public async Task<IViewComponentResult> InvokeAsync()
@@ -41,11 +45,15 @@ public class HomePageBlog : NopViewComponent
         var language = await _workContext.GetWorkingLanguageAsync();
         var store = await _storeContext.GetCurrentStoreAsync();
 
+        // get number of blog posts to show from RichBlog settings (per store)
+        var numberOfBlogPosts = await _settingService.GetSettingByKeyAsync<int>(
+            "RichBlogSettings.NumberOfBlogPostsToShow", 3, store.Id);
+
         var blogs = await _blogService.GetAllBlogPostsAsync(
             store.Id,
             language.Id,
             pageIndex: 0,
-            pageSize: 6,
+            pageSize: numberOfBlogPosts,
             showHidden: false);
 
         var model = new List<HomepageBlogModel>();
