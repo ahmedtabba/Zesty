@@ -315,14 +315,17 @@
 	width: 300px;
 	text-align: center;
 }
-.product-prices-box {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: auto;
-	width: 300px;
-	text-align: center;
-}
+	.product-prices-box {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: auto;
+		width: 300px;
+		text-align: center;
+		border: 2px solid;
+		border-color: #d7d8db;
+		border-radius: 8px;
+	}
 
 .grouped-product-box {
 	position: absolute;
@@ -342,7 +345,7 @@
 
 .product-prices-box > div:first-child {
 	border: 1px solid #eeeeee;
-	border-radius: 3px;
+	border-radius: 8px;
 	padding: 0 10px 10px;
 }
 

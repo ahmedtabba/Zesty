@@ -16,7 +16,7 @@
         {
             <article class="blog-card">
                 <div class="blog-card-media">
-                    <a asp-route="BlogPost" asp-route-blogPostId="@blog.Id" class="blog-image-link">
+                    <a href="@blog.Url" class="blog-image-link" >
                         <img src="@blog.PictureUrl" alt="@blog.Title" loading="lazy" />
                     </a>
                 </div>
@@ -27,7 +27,7 @@
                     </span>
 
                     <h3 class="blog-title">
-                        <a asp-route="BlogPost" asp-route-blogPostId="@blog.Id">@blog.Title</a>
+                        <a href="@blog.Url">@blog.Title</a>
                     </h3>
 
                     <div class="blog-excerpt">
