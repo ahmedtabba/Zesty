@@ -1077,7 +1077,7 @@ label, label + * {
         .data-table th,
         .forums-table-section th {
             border-top: 1px solid #eee;
-            background-color: #f9f9f9;
+            background-color: #f0f0f1;
             padding: 20px;
             white-space: nowrap;
             font-size: 17px;
@@ -1105,6 +1105,11 @@ label, label + * {
             display: inline-block;
             width: 80px;
         }
+.product-picture a img {
+    border: 2px solid;
+    border-color: #d8d7db;
+    border-radius: 24px;
+}
 
     .data-table td {
         font-size: 17px;
@@ -1778,7 +1783,7 @@ label, label + * {
     }
 
     .flyout-lower {
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         border-radius: 0 3px 3px 0;
     }
 
@@ -2029,7 +2034,7 @@ label, label + * {
 
     .login-form-in-header .external-authentication > * {
         padding: 20px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         border-radius: 0 0 3px 3px;
     }
 
@@ -2219,7 +2224,7 @@ label, label + * {
         .login-form-in-header .forgot-password a {
             display: block;
             width: 100%;
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
             padding: 5px 10px;
             font-size: 11px;
             color: #8c8c8c;
@@ -2375,7 +2380,7 @@ label, label + * {
         }
 
             .ui-autocomplete a.ui-state-focus {
-                background-color: #f6f6f6;
+                background-color: #f0f0f1;
             }
 
         .ui-autocomplete img {
@@ -2435,7 +2440,7 @@ label, label + * {
     /*********** FOOTER ***********/
     /*added new*/
     .footer {
-        border-top: 3px solid #f6f6f6;
+        border-top: 3px solid #f0f0f1;
         background-image: url(../img/FotterImg.jpg);
         text-align: center;
         overflow: hidden;
@@ -2703,7 +2708,7 @@ label, label + * {
     .footer-block ul {
         display: none;
         padding: 10px 0;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
         .footer-block ul li {
@@ -3154,7 +3159,7 @@ label, label + * {
     }
 
     .home-page-polls .answer:hover label {
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
     .home-page-polls .poll {
@@ -3979,7 +3984,7 @@ label, label + * {
     .advantages-item {
         padding: 10px 15px;
         margin-bottom: 5px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         overflow: hidden;
         text-align: right;
     }
@@ -4364,7 +4369,7 @@ label, label + * {
         font-size: 13px;
         color: #8c8c8c;
         text-transform: uppercase;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         border-radius: 2px;
     }
 
@@ -4856,7 +4861,7 @@ label, label + * {
     }
 
     .ui-datepicker-calendar th {
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
     .ui-datepicker-calendar th,
@@ -4965,7 +4970,7 @@ label, label + * {
             margin-left: -6px;
             width: 0;
             height: 0;
-            border-bottom: 6px solid #f6f6f6;
+            border-bottom: 6px solid #f0f0f1;
             border-right: 6px solid transparent;
             border-left: 6px solid transparent;
         }
@@ -4978,7 +4983,7 @@ label, label + * {
     }
 
     .image-squares .tooltip-header {
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         height: 25px;
         border-top-right-radius: 4px;
         border-top-left-radius: 4px;
@@ -5420,7 +5425,7 @@ label, label + * {
     .product-specs-box {
         margin: 0 -10px;
         padding: 0 10px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         clear: both;
     }
 
@@ -5657,7 +5662,7 @@ label, label + * {
                 }
 
         .ui-tabs .ui-tabs-panel {
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
             padding: 40px 20px;
             margin: 0 -10px;
         }
@@ -6374,7 +6379,7 @@ label, label + * {
         margin: 30px 0 0;
         padding: 15px;
         border-radius: 3px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
     .product-review-item .reply-header {
@@ -6483,7 +6488,7 @@ label, label + * {
 
     .wishlist-page .share-info {
         margin: 70px -10px 50px;
-        background-color: #f9f9f9;
+        background-color: #f0f0f1;
         padding: 30px 20px;
     }
 
@@ -6512,7 +6517,7 @@ label, label + * {
         font-weight: 700;
         border-radius: 3px;
         color: #8c8c8c;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         font-size: 13px;
         height: 45px;
         line-height: 45px;
@@ -6611,7 +6616,7 @@ label, label + * {
             font-size: 17px;
             color: #8c8c8c;
             font-weight: 300;
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
         }
 
     .compare-section.product .title {
@@ -7071,7 +7076,7 @@ label, label + * {
             padding: 18px;
             font-size: 18px;
             color: #939495;
-            background-color: #f9f9f9;
+            background-color: #f0f0f1;
             border-radius: 16px 16px 0 0;
             text-align: center;
         }
@@ -7159,7 +7164,7 @@ label, label + * {
         margin: 30px -10px 0;
         padding: 30px 0;
         width: calc(100% + 20px);
-        background-color: #f9f9f9;
+        background-color: #f0f0f1;
         text-align: center;
     }
 
@@ -7186,7 +7191,7 @@ label, label + * {
 
     .select-navigation {
         padding: 20px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         text-align: center;
     }
 
@@ -7912,7 +7917,7 @@ label, label + * {
         padding: 30px 20px;
         margin: 20px 0 0;
         border-radius: 3px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         font-size: 15px;
         color: #444;
     }
@@ -7934,7 +7939,7 @@ label, label + * {
     .totals {
         border-radius: 3px;
         padding: 50px 20px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
         .totals > div {
@@ -8040,7 +8045,7 @@ label, label + * {
                 font-size: 18px;
                 font-weight: 300;
                 text-align: center;
-                background-color: #f6f6f6;
+                background-color: #f0f0f1;
                 border-radius: 3px 3px 0 0;
                 cursor: pointer;
                 overflow: hidden;
@@ -8240,12 +8245,13 @@ label, label + * {
     .checkout-page .address-grid {
         overflow: hidden;
         font-size: 0;
+        text-align:center;
     }
 
     .address-grid > div {
         max-width: 550px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 5%;
     }
 
 
@@ -8397,7 +8403,7 @@ label, label + * {
         .shipping-method .method-list li,
         .payment-method .method-list li {
             position: relative;
-            border: 1px solid #eee;
+            border: 1.6px solid #cbc9ce;
             border-radius: 3px;
             padding: 22px 70px 22px 22px;
             max-width: 560px;
@@ -8507,8 +8513,8 @@ label, label + * {
         margin: -45px -20px 30px;
         height: 60px;
         line-height: 60px;
-        background-color: #f9f9f9;
-        border-radius: 3px 3px 0 0;
+        background-color: #f0f0f1;
+        border-radius: 10px 10px 0 0;
     }
 
     .order-review-data > div .info-list .name,
@@ -8583,7 +8589,7 @@ label, label + * {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
             padding: 0 40px;
             text-align: center;
         }
@@ -8782,8 +8788,8 @@ label, label + * {
     .shipment-details-area > div {
         padding: 45px 20px;
         margin: 0 0 20px;
-        border: 1px solid #eee;
-        border-radius: 3px;
+         border: 1.6px solid #cbc9ce;
+        border-radius: 10px;
         text-align: center;
     }
 
@@ -8988,7 +8994,7 @@ label, label + * {
     }
 
     .search-page .search-input form {
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
         margin: 0 -10px 40px;
         padding: 30px 0;
     }
@@ -9358,7 +9364,7 @@ label, label + * {
     .new-comment,
     .comment-list {
         margin: 70px -10px 0;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
         .new-comment > *,
@@ -9677,7 +9683,7 @@ label, label + * {
         margin: 0 -10px 30px;
         padding: 30px;
         max-width: 800px;
-        background-color: #f6f6f6;
+        background-color: #f0f0f1;
     }
 
     .forum-search-page .search-error {
@@ -9942,7 +9948,7 @@ label, label + * {
 
         .topic-post .post-head {
             padding: 0 17px;
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
             text-align: right;
             height: 45px;
         }
@@ -10114,7 +10120,7 @@ label, label + * {
         .topic-post .quote,
         .latest-posts .quote {
             margin: 10px 0;
-            background-color: #f6f6f6;
+            background-color: #f0f0f1;
             border-radius: 3px;
             padding: 15px 10px;
         }

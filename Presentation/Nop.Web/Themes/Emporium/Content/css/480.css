@@ -182,7 +182,7 @@
 	vertical-align: top;
 	width: calc(50% - 12.5px);
 	margin-left: 25px;
-	max-width: 590px;
+	max-width: 450px;
 }
 
 .order-review-data > div:nth-child(2n + 1),
