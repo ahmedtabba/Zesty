@@ -45,26 +45,35 @@ namespace Nop.Plugin.Widgets.NivoSlider.Components
                 Text1 = nivoSliderSettings.Text1,
                 Link1 = nivoSliderSettings.Link1,
                 AltText1 = nivoSliderSettings.AltText1,
+                Picture1ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct1Id),
 
                 Picture2Url = await GetPictureUrlAsync(nivoSliderSettings.Picture2Id),
                 Text2 = nivoSliderSettings.Text2,
                 Link2 = nivoSliderSettings.Link2,
                 AltText2 = nivoSliderSettings.AltText2,
+                Picture2ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct2Id),
+
 
                 Picture3Url = await GetPictureUrlAsync(nivoSliderSettings.Picture3Id),
                 Text3 = nivoSliderSettings.Text3,
                 Link3 = nivoSliderSettings.Link3,
                 AltText3 = nivoSliderSettings.AltText3,
+                Picture3ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct3Id),
+
 
                 Picture4Url = await GetPictureUrlAsync(nivoSliderSettings.Picture4Id),
                 Text4 = nivoSliderSettings.Text4,
                 Link4 = nivoSliderSettings.Link4,
                 AltText4 = nivoSliderSettings.AltText4,
+                Picture4ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct4Id),
+
 
                 Picture5Url = await GetPictureUrlAsync(nivoSliderSettings.Picture5Id),
                 Text5 = nivoSliderSettings.Text5,
                 Link5 = nivoSliderSettings.Link5,
-                AltText5 = nivoSliderSettings.AltText5
+                AltText5 = nivoSliderSettings.AltText5,
+                Picture5ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct5Id),
+
             };
 
             if (string.IsNullOrEmpty(model.Picture1Url) && string.IsNullOrEmpty(model.Picture2Url) &&

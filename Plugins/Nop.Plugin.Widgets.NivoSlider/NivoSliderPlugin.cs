@@ -71,24 +71,55 @@ namespace Nop.Plugin.Widgets.NivoSlider
         /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task InstallAsync()
         {
-            //pictures
             var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
 
-            //settings
+            // إعداد الصور والإعدادات الافتراضية لكل 5 بانرات
             var settings = new NivoSliderSettings
             {
-                Picture1Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")), MimeTypes.ImagePJpeg, "banner_1")).Id,
+                Picture1Id = (await _pictureService.InsertPictureAsync(
+                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")),
+                    MimeTypes.ImagePJpeg, "banner_1")).Id,
+                PictureProduct1Id = 0, // أو ID منتج افتراضي
                 Text1 = "",
                 Link1 = _webHelper.GetStoreLocation(),
-                Picture2Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")), MimeTypes.ImagePJpeg, "banner_2")).Id,
+                AltText1 = "",
+
+                Picture2Id = (await _pictureService.InsertPictureAsync(
+                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")),
+                    MimeTypes.ImagePJpeg, "banner_2")).Id,
+                PictureProduct2Id = 0,
                 Text2 = "",
-                Link2 = _webHelper.GetStoreLocation()
-                //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(_fileProvider.Combine(sampleImagesPath,"banner3.jpg")), MimeTypes.ImagePJpeg, "banner_3").Id,
-                //Text3 = "",
-                //Link3 = _webHelper.GetStoreLocation(),
+                Link2 = _webHelper.GetStoreLocation(),
+                AltText2 = "",
+
+                Picture3Id = (await _pictureService.InsertPictureAsync(
+                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner3.jpg")),
+                    MimeTypes.ImagePJpeg, "banner_3")).Id,
+                PictureProduct3Id = 0,
+                Text3 = "",
+                Link3 = _webHelper.GetStoreLocation(),
+                AltText3 = "",
+
+                Picture4Id = (await _pictureService.InsertPictureAsync(
+                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner4.jpg")),
+                    MimeTypes.ImagePJpeg, "banner_4")).Id,
+                PictureProduct4Id = 0,
+                Text4 = "",
+                Link4 = _webHelper.GetStoreLocation(),
+                AltText4 = "",
+
+                Picture5Id = (await _pictureService.InsertPictureAsync(
+                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner5.jpg")),
+                    MimeTypes.ImagePJpeg, "banner_5")).Id,
+                PictureProduct5Id = 0,
+                Text5 = "",
+                Link5 = _webHelper.GetStoreLocation(),
+                AltText5 = "",
             };
+
             await _settingService.SaveSettingAsync(settings);
 
+            // إعداد اللغات (Locales)
             await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
             {
                 ["Plugins.Widgets.NivoSlider.Picture1"] = "Picture 1",

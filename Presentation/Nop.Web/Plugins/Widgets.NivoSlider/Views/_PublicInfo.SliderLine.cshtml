@@ -2,6 +2,7 @@
 
 @{
     var pictureUrl = ViewData["pictureUrl"]?.ToString() ?? "";
+    var productUrl = ViewData["productUrl"]?.ToString() ?? "";
     var link = ViewData["link"]?.ToString() ?? "";
     var dataTransition = ViewData["dataTransition"]?.ToString() ?? "";
     var text = ViewData["text"]?.ToString() ?? "";
@@ -13,6 +14,10 @@
         {
             <a href="@link" aria-label="@alttext">
                 <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
+                @if(!string.IsNullOrEmpty(productUrl))
+                {
+                    <img src="@productUrl" class="nivo-slide-product" alt="@alttext" title="@text" />
+                }
             </a>
         }
         else
