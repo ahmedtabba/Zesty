@@ -832,6 +832,7 @@ label, label + * {
             margin-bottom: 0;
             border-radius: 12px !important;
             border-color: #d2d1d5;
+            overflow:hidden;
         }
 
     .page {

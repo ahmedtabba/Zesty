@@ -415,6 +415,21 @@ namespace Nop.Web.Factories
 
                 }
             }
+            if (category.HoverIconId.HasValue && category.HoverIconId > 0)
+            {
+                var hoverPicture = await _pictureService.GetPictureByIdAsync(category.HoverIconId.Value);
+
+                if (hoverPicture != null)
+                {
+                    var hoverPictureUrl = await _pictureService.GetPictureUrlAsync(
+                     hoverPicture,
+                     targetSize: 0,
+                     showDefaultPicture: false);
+
+                    model.HoverIconUrl = hoverPictureUrl.Url;
+
+                }
+            }
 
 
 
@@ -464,6 +479,24 @@ namespace Nop.Web.Factories
                     else
                     {
                         subCatModel.HoverPictureUrl = "/Themes/Emporium/Content/img/productBoxHover.jpg";
+                    }
+                    if (curCategory.HoverIconId.HasValue && curCategory.HoverIconId.Value > 0)
+                    {
+                        var hoverPicture = await _pictureService.GetPictureByIdAsync(curCategory.HoverIconId.Value);
+
+                        if (hoverPicture != null)
+                        {
+                            var hoverPictureUrl = await _pictureService.GetPictureUrlAsync(
+                                hoverPicture,
+                                targetSize: 0,
+                                showDefaultPicture: false);
+
+                            subCatModel.HoverIconUrl = hoverPictureUrl.Url;
+                        }
+                    }
+                    else
+                    {
+                        subCatModel.HoverIconUrl = "";
                     }
 
 

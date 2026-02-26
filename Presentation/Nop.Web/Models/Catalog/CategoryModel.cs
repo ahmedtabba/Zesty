@@ -22,6 +22,7 @@ namespace Nop.Web.Models.Catalog
         public string MetaTitle { get; set; }
         public string SeName { get; set; }
         public string HoverPictureUrl { get; set; }
+        public string HoverIconUrl { get; set; }
         
         public PictureModel PictureModel { get; set; }
 
@@ -52,6 +53,7 @@ namespace Nop.Web.Models.Catalog
 
             public string Description { get; set; }
             public string HoverPictureUrl { get; set; }
+            public string HoverIconUrl { get; set; }
             public PictureModel PictureModel { get; set; }
         }
 

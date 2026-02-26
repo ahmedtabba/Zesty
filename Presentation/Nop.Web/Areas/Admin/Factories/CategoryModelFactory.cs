@@ -210,7 +210,8 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.SeName = await _urlRecordService.GetSeNameAsync(category, 0, true, false);
                 }
                 model.HoverPictureId = category.HoverPictureId;
-               
+                model.HoverIconId = category.HoverIconId ?? 0;
+
 
                 //prepare nested search model
                 PrepareCategoryProductSearchModel(model.CategoryProductSearchModel, category);

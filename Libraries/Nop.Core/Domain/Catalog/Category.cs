@@ -48,6 +48,12 @@ namespace Nop.Core.Domain.Catalog
         public int? HoverPictureId { get; set; }
 
         /// <summary>
+        /// Gets or sets the identifier of the icon to display when the user hovers over the associated element.
+        /// </summary>
+        public int? HoverIconId { get; set; }
+
+
+        /// <summary>
         /// Gets or sets the parent category identifier
         /// </summary>
         public int ParentCategoryId { get; set; }

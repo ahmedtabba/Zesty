@@ -1,5 +1,5 @@
 .testimonials-section {
-    padding: 60px 0 100px;
+    padding: 0px;
     text-align: center;
     position: relative; /* needed for absolute-positioned dots */
     overflow: visible; /* allow overflow for elevated center slide */
@@ -24,7 +24,6 @@
 
 .testimonials-slider {
     max-width: 1600px; /* center the slider container and constrain total width */
-/*    margin: 0 50px;*/
     box-sizing: border-box;
 }
 
@@ -59,7 +58,7 @@
 
 /* remove large horizontal padding from slick-list (caused clipping) */
 .testimonials-slider .slick-list {
-    padding: 40px 80px !important; /* horizontal padding moved into slides */
+    padding: 40px 0px !important; /* horizontal padding moved into slides */
 }
 
 /* make the track and slides behave as flexible centered items */
@@ -91,7 +90,7 @@
     background-position: center;
     background-size: contain;
     /* inline SVG star (no rotation). change fill color (%23 = #) or opacity value as needed */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,2 61,38 98,38 67,59 79,95 50,74 21,95 33,59 2,38 39,38' fill='%23be8c5a' opacity='0.35'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,2 61,38 98,38 67,59 79,95 50,74 21,95 33,59 2,38 39,38' fill='%%23ff8800' opacity='0.35'/></svg>");
     pointer-events: none;
     /* keep rounded look if overlapping corners */
     border-radius: 8px;

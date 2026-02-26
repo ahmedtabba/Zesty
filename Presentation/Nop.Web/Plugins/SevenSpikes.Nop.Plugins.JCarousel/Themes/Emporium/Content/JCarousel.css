@@ -677,10 +677,21 @@
 }
 
 /* عند الهوفر */
-.category-item:hover .picture > a::after {
+/*.category-item:hover .picture > a::after {
     opacity: 1;
 }
 .carousel-item .item-box:hover .picture > a img {
+    opacity: 1;
+    transform: translate(-50%, -60%);
+}*/
+.carousel-item .item-box .picture .cat-icon > img{
+    opacity: 0;
+}
+.carousel-item .item-box:hover .picture .cat-main > img {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+}
+.carousel-item .item-box:hover .picture .cat-icon >  img {
     opacity: 1;
     transform: translate(-50%, -60%);
 }
