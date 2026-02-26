@@ -71,7 +71,12 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 Text5 = nivoSliderSettings.Text5,
                 Link5 = nivoSliderSettings.Link5,
                 AltText5 = nivoSliderSettings.AltText5,
-                ActiveStoreScopeConfiguration = storeScope
+                ActiveStoreScopeConfiguration = storeScope,
+                PictureProduct1Id = nivoSliderSettings.PictureProduct1Id,
+                PictureProduct2Id = nivoSliderSettings.PictureProduct2Id,
+                PictureProduct3Id = nivoSliderSettings.PictureProduct3Id,
+                PictureProduct4Id = nivoSliderSettings.PictureProduct4Id,
+                PictureProduct5Id = nivoSliderSettings.PictureProduct5Id
             };
 
             if (storeScope > 0)
@@ -96,6 +101,12 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 model.Text5_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.Text5, storeScope);
                 model.Link5_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.Link5, storeScope);
                 model.AltText5_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.AltText5, storeScope);
+                model.PictureProduct1Id_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.PictureProduct1Id, storeScope);
+                model.PictureProduct2Id_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.PictureProduct2Id, storeScope);
+                model.PictureProduct3Id_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.PictureProduct3Id, storeScope);
+                model.PictureProduct4Id_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.PictureProduct4Id, storeScope);
+                model.PictureProduct5Id_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.PictureProduct5Id, storeScope);
+
             }
 
             return View("~/Plugins/Widgets.NivoSlider/Views/Configure.cshtml", model);
@@ -120,24 +131,37 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 nivoSliderSettings.Picture4Id,
                 nivoSliderSettings.Picture5Id
             };
+            var previousPictureProductsIds = new[] 
+            {
+                nivoSliderSettings.PictureProduct1Id,
+                nivoSliderSettings.PictureProduct2Id,
+                nivoSliderSettings.PictureProduct3Id,
+                nivoSliderSettings.PictureProduct4Id,
+                nivoSliderSettings.PictureProduct5Id
+            };
 
             nivoSliderSettings.Picture1Id = model.Picture1Id;
+            nivoSliderSettings.PictureProduct1Id = model.PictureProduct1Id;
             nivoSliderSettings.Text1 = model.Text1;
             nivoSliderSettings.Link1 = model.Link1;
             nivoSliderSettings.AltText1 = model.AltText1;
             nivoSliderSettings.Picture2Id = model.Picture2Id;
+            nivoSliderSettings.PictureProduct2Id = model.PictureProduct2Id;
             nivoSliderSettings.Text2 = model.Text2;
             nivoSliderSettings.Link2 = model.Link2;
             nivoSliderSettings.AltText2 = model.AltText2;
             nivoSliderSettings.Picture3Id = model.Picture3Id;
+            nivoSliderSettings.PictureProduct3Id = model.PictureProduct3Id;
             nivoSliderSettings.Text3 = model.Text3;
             nivoSliderSettings.Link3 = model.Link3;
             nivoSliderSettings.AltText3 = model.AltText3;
             nivoSliderSettings.Picture4Id = model.Picture4Id;
+            nivoSliderSettings.PictureProduct4Id = model.PictureProduct4Id;
             nivoSliderSettings.Text4 = model.Text4;
             nivoSliderSettings.Link4 = model.Link4;
             nivoSliderSettings.AltText4 = model.AltText4;
             nivoSliderSettings.Picture5Id = model.Picture5Id;
+            nivoSliderSettings.PictureProduct5Id = model.PictureProduct5Id;
             nivoSliderSettings.Text5 = model.Text5;
             nivoSliderSettings.Link5 = model.Link5;
             nivoSliderSettings.AltText5 = model.AltText5;
@@ -165,6 +189,12 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.Text5, model.Text5_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.Link5, model.Link5_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.AltText5, model.AltText5_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.PictureProduct1Id, model.PictureProduct1Id_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.PictureProduct2Id, model.PictureProduct2Id_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.PictureProduct3Id, model.PictureProduct3Id_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.PictureProduct4Id, model.PictureProduct4Id_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(nivoSliderSettings, x => x.PictureProduct5Id, model.PictureProduct5Id_OverrideForStore, storeScope, false);
+
 
             //now clear settings cache
             await _settingService.ClearCacheAsync();
@@ -178,9 +208,23 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 nivoSliderSettings.Picture4Id,
                 nivoSliderSettings.Picture5Id
             };
+            var currentPictureProductIds = new[]
+            {
+                nivoSliderSettings.PictureProduct1Id,
+                nivoSliderSettings.PictureProduct2Id,
+                nivoSliderSettings.PictureProduct3Id,
+                nivoSliderSettings.PictureProduct4Id,
+                nivoSliderSettings.PictureProduct5Id
+            };
 
             //delete an old picture (if deleted or updated)
             foreach (var pictureId in previousPictureIds.Except(currentPictureIds))
+            { 
+                var previousPicture = await _pictureService.GetPictureByIdAsync(pictureId);
+                if (previousPicture != null)
+                    await _pictureService.DeletePictureAsync(previousPicture);
+            }
+            foreach (var pictureId in previousPictureProductsIds.Except(currentPictureProductIds))
             { 
                 var previousPicture = await _pictureService.GetPictureByIdAsync(pictureId);
                 if (previousPicture != null)
