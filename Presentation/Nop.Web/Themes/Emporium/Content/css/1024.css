@@ -769,8 +769,6 @@
 .block .title {
 	cursor: default;
     padding: 14px 30px;
-	border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
 }
 
 .block .title:before {

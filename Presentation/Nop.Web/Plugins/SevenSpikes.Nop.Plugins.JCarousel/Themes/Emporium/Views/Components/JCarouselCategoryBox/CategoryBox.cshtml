@@ -28,20 +28,39 @@
     var categoryService = EngineContext.Current.Resolve<ICategoryService>();
     var pictureService = EngineContext.Current.Resolve<IPictureService>();
 
-    string hoverUrl = Url.Content("~/Themes/Emporium/Content/img/productBoxHover.jpg");
+   string hoverUrl = Url.Content("~/Themes/Emporium/Content/img/productBoxHover.jpg");
+string hoverIconUrl = "";
 
-    var category = await categoryService.GetCategoryByIdAsync(Model.Id);
+var category = await categoryService.GetCategoryByIdAsync(Model.Id);
 
-    if (category?.HoverPictureId != null && category.HoverPictureId > 0)
+
+/* Hover Picture */
+
+if (category?.HoverPictureId != null && category.HoverPictureId > 0)
+{
+    var hoverPicture = await pictureService.GetPictureByIdAsync(category.HoverPictureId.Value);
+
+    if (hoverPicture != null)
     {
-        var hoverPicture = await pictureService.GetPictureByIdAsync(category.HoverPictureId.Value);
-
-        if (hoverPicture != null)
-        {
-            var result = await pictureService.GetPictureUrlAsync(hoverPicture);
-            hoverUrl = result.Url;
-        }
+        var result = await pictureService.GetPictureUrlAsync(hoverPicture);
+        hoverUrl = result.Url;
     }
+}
+
+
+/* Hover Icon */
+
+if (category?.HoverIconId != null && category.HoverIconId > 0)
+{
+    var hoverIcon = await pictureService.GetPictureByIdAsync(category.HoverIconId.Value);
+
+    if (hoverIcon != null)
+    {
+        var result = await pictureService.GetPictureUrlAsync(hoverIcon);
+        hoverIconUrl = result.Url;
+    }
+}
+   
 }
 
 
@@ -52,12 +71,21 @@
         <a href="@Url.RouteUrl("Category", new { SeName = Model.SeName })" title="@Model.PictureModel.Title" style="--hover-bg: url('@hoverUrl')">
             @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
             {
+                <div class="cat-main">
                 @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
                 {
                     ("src", Model.PictureModel.ImageUrl),
                     ("alt", Model.PictureModel.AlternateText),
                     ("title", Model.PictureModel.Title)
                 })
+                </div>
+                <div class="cat-icon">
+                    @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                {
+                    ("src", hoverIconUrl)
+                })
+
+                </div>
             }
             else
             {

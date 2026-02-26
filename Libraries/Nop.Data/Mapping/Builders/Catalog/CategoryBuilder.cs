@@ -21,7 +21,8 @@ namespace Nop.Data.Mapping.Builders.Catalog
                 .WithColumn(nameof(Category.MetaKeywords)).AsString(400).Nullable()
                 .WithColumn(nameof(Category.MetaTitle)).AsString(400).Nullable()
                 .WithColumn(nameof(Category.PageSizeOptions)).AsString(200).Nullable()
-                .WithColumn(nameof(Category.HoverPictureId)).AsInt32().Nullable();
+                .WithColumn(nameof(Category.HoverPictureId)).AsInt32().Nullable()
+                .WithColumn(nameof(Category.HoverIconId)).AsInt32().Nullable();
         }
 
         #endregion

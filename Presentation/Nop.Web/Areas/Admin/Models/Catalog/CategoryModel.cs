@@ -73,6 +73,9 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         [UIHint("Picture")]
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.HoverId")]
         public int? HoverPictureId { get;  set; }
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.HoverIconId")]
+        public int? HoverIconId { get;  set; }
 
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PageSize")]

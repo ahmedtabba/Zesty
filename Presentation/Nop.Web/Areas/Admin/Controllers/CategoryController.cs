@@ -148,6 +148,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (picture != null)
                 await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(category.Name));
             var hoverPicture = await _pictureService.GetPictureByIdAsync(category.HoverPictureId ?? 0);
+            var hoverIcon = await _pictureService.GetPictureByIdAsync(category.HoverIconId ?? 0);
             if (hoverPicture != null)
                 await _pictureService.SetSeoFilenameAsync(hoverPicture.Id, await _pictureService.GetPictureSeNameAsync(category.Name));
         }
@@ -259,6 +260,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             {
                 var category = model.ToEntity<Category>();
                 category.HoverPictureId = model.HoverPictureId;
+                category.HoverIconId = model.HoverIconId;
                 category.CreatedOnUtc = DateTime.UtcNow;
                 category.UpdatedOnUtc = DateTime.UtcNow;
                 await _categoryService.InsertCategoryAsync(category);
@@ -339,6 +341,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             {
                 var prevPictureId = category.PictureId;
                 var prevHoverId = category.HoverPictureId;
+                var prevHoverIconId = category.HoverIconId;
 
                 
 
@@ -351,6 +354,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
                 category = model.ToEntity(category); 
                 category.HoverPictureId = model.HoverPictureId;
+                category.HoverIconId = model.HoverIconId;
 
                 category.UpdatedOnUtc = DateTime.UtcNow;
                 await _categoryService.UpdateCategoryAsync(category);
@@ -396,6 +400,12 @@ namespace Nop.Web.Areas.Admin.Controllers
                     var prevHoverPicture = await _pictureService.GetPictureByIdAsync(prevHoverId.Value);
                     if (prevHoverPicture != null)
                         await _pictureService.DeletePictureAsync(prevHoverPicture);
+                }
+                if (prevHoverIconId.HasValue && prevHoverIconId != category.HoverIconId)
+                {
+                    var prevHoverIcon = await _pictureService.GetPictureByIdAsync(prevHoverIconId.Value);
+                    if (prevHoverIcon != null)
+                        await _pictureService.DeletePictureAsync(prevHoverIcon);
                 }
 
                 //update picture seo file name
