@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\MSi\Desktop\NopCommerce\مجلد جديد\Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\SevenSpikes.Nop.Plugins.AnywhereSliders.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD71DD73-6BA2-4B8B-8DD8-CEEE0EC8E68A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>SevenSpikes.Nop.Plugins.AnywhereSliders</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>4.5.322.25</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>SevenSpikes.Nop.Plugins.AnywhereSliders</RootNamespace>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions" />
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <Reference Include="Microsoft.AspNetCore.Http.Features" />
+    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions" />
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core" />
+    <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" />
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <Reference Include="Microsoft.Extensions.Primitives" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.ComponentModel.Annotations" />
+    <Reference Include="System.Data.Common" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Linq.Async" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Linq.Queryable" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Web.HttpUtility" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Services\ISliderService.cs" />
+    <Compile Include="Services\SliderService.cs" />
+    <Compile Include="Models\SlidePublicModel.cs" />
+    <Compile Include="Models\SliderImageLocalizedModel.cs" />
+    <Compile Include="Models\SliderCachedModel.cs" />
+    <Compile Include="Models\SlidersModel.cs" />
+    <Compile Include="Models\Sliders\SlideModel.cs" />
+    <Compile Include="Models\Sliders\SliderImageLocalizedModel.cs" />
+    <Compile Include="Infrastructure\AnywhereSlidersPlugin.cs" />
+    <Compile Include="Infrastructure\DependancyRegistrar.cs" />
+    <Compile Include="Infrastructure\NopStartup.cs" />
+    <Compile Include="Infrastructure\RouteProvider.cs" />
+    <Compile Include="Infrastructure\Constants\CacheKeys.cs" />
+    <Compile Include="Infrastructure\Constants\Plugin.cs" />
+    <Compile Include="Infrastructure\Constants\Views.cs" />
+    <Compile Include="Infrastructure\Cache\AnywhereSlidersModelCacheEventConsumer.cs" />
+    <Compile Include="Helpers\CustomCssHelper.cs" />
+    <Compile Include="Helpers\ICustomCssHelper.cs" />
+    <Compile Include="Domain\ResponsiveBreakpointDTO.cs" />
+    <Compile Include="Domain\Sliders\Slide.cs" />
+    <Compile Include="Domain\Sliders\Slider.cs" />
+    <Compile Include="Domain\Enums\SlideType.cs" />
+    <Compile Include="Data\Migrations\AddPauseOnHoverMigration.cs" />
+    <Compile Include="Data\Migrations\AddPreLoadFirstSlideMigration.cs" />
+    <Compile Include="Data\Migrations\SchemaMigration.cs" />
+    <Compile Include="Data\Migrations\SlidersDataMigration.cs" />
+    <Compile Include="Data\Mapping\NameCompatability.cs" />
+    <Compile Include="Data\Mapping\Builders\SlideBuilder.cs" />
+    <Compile Include="Data\Mapping\Builders\SliderBuilder.cs" />
+    <Compile Include="Components\AnywhereSlidersComponent.cs" />
+    <Compile Include="Areas\Admin\Validators\SliderValidator.cs" />
+    <Compile Include="Areas\Admin\Validators\SlideValidator.cs" />
+    <Compile Include="Areas\Admin\Models\Widget\ConfigureWidgetModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SlideListModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SlideModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SlideLocalizedModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderCategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderListModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderManufacturerModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderSearchModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SliderToWidgetModel.cs" />
+    <Compile Include="Areas\Admin\Models\Sliders\SlideSearchModel.cs" />
+    <Compile Include="Areas\Admin\Helpers\ISlidePictureHelper.cs" />
+    <Compile Include="Areas\Admin\Helpers\SlidePictureHelper.cs" />
+    <Compile Include="Areas\Admin\Factories\ISlideAdminModelFactory.cs" />
+    <Compile Include="Areas\Admin\Factories\ISliderAdminModelFactory.cs" />
+    <Compile Include="Areas\Admin\Factories\SlideAdminModelFactory.cs" />
+    <Compile Include="Areas\Admin\Factories\SliderAdminModelFactory.cs" />
+    <Compile Include="Areas\Admin\Extensions\MappingExtensions.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnywhereSlidersAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidesAdminController.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

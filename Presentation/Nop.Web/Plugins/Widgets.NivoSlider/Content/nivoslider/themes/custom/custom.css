@@ -108,12 +108,15 @@
 
 @media all and (max-width: 1000px) {
 .theme-custom {
-	max-width: 600px;
+/*	max-width: 600px;*/
 	margin: -20px auto 40px;
 }
-.theme-custom .nivo-directionNav {
-	display: none;
-}
+/*.nivoSlider .nivo-product-image{
+	width: 180px !important;
+}*/
+	.theme-custom .nivo-directionNav {
+		display: none;
+	}
 }
 
 @media all and (min-width: 1001px) {
