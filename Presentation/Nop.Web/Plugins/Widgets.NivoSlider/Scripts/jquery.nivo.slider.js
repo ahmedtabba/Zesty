@@ -16,6 +16,7 @@
         var vars = {
             currentSlide: 0,
             currentImage: '',
+            currentProductImage: '',
             totalSlides: 0,
             running: false,
             paused: false,
@@ -74,14 +75,39 @@
         }
 
         // Set first background
+        // Main image
         var sliderImg = $('<img/>').addClass('nivo-main-image');
         sliderImg.attr('src', vars.currentImage.attr('src')).show();
         slider.append(sliderImg);
+
+        // Product image
+        var sliderProductImg = $('<img/>').addClass('nivo-product-image');
+
+        var productSrc = vars.currentImage.attr('data-product');
+
+        if (productSrc) {
+            sliderProductImg
+                .removeClass('show-product');
+
+            setTimeout(function () {
+                sliderProductImg
+                    .attr('src', productSrc)
+                    .show()
+                    .addClass('show-product');
+            }, 50);
+        }
+
+        slider.append(sliderProductImg);
 
         // Detect Window Resize
         $(window).resize(function () {
             slider.children('img').width(slider.width());
             sliderImg.attr('src', vars.currentImage.attr('src'));
+            var productSrc = vars.currentImage.attr('data-product');
+
+            if (productSrc) {
+                sliderProductImg.attr('src', productSrc);
+            }
             sliderImg.stop().height('auto');
             $('.nivo-slice').remove();
             $('.nivo-box').remove();
@@ -188,6 +214,21 @@
         // Event when Animation finishes
         slider.bind('nivo:animFinished', function () {
             sliderImg.attr('src', vars.currentImage.attr('src'));
+            var productSrc = vars.currentImage.attr('data-product');
+
+            if (productSrc) {
+                sliderProductImg
+                    .removeClass('show-product');
+
+                setTimeout(function () {
+                    sliderProductImg
+                        .attr('src', productSrc)
+                        .show()
+                        .addClass('show-product');
+                }, 50);
+            } else {
+                sliderProductImg.hide();
+            }
             vars.running = false;
             // Hide child links
             $(kids).each(function () {
@@ -312,6 +353,15 @@
                     sliderImg.attr('src', vars.currentImage.attr('src'));
                 }
             }
+            var productSrc = vars.currentImage.attr('data-product');
+
+            if (productSrc) {
+                sliderProductImg
+                    .attr('src', productSrc)
+                    .show();
+            } else {
+                sliderProductImg.hide();
+            }
 
             vars.currentSlide++;
             // Trigger the slideshowEnd callback
@@ -326,6 +376,7 @@
             } else {
                 vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
             }
+
 
             // Set active links
             if (settings.controlNav) {
@@ -640,7 +691,7 @@
         boxCols: 8,
         boxRows: 4,
         animSpeed: 500,
-        pauseTime: 3000,
+        pauseTime: 6000,
         startSlide: 0,
         directionNav: true,
         controlNav: true,

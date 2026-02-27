@@ -112,3 +112,38 @@
 .nivo-controlNav a.active {
 	font-weight:bold;
 }
+
+/* إظهار صورة المنتج فوق صورة السلايدر */
+.nivoSlider .nivo-product-image {
+	top: 15% !important;
+	left: 70% !important;
+	z-index: 6;
+	display: block !important;
+	width: clamp(120px, 20%, 400px) !important;
+	opacity: 0;
+	transform: translateX(120%);
+}
+	.nivoSlider .nivo-product-image.show-product {
+		animation: productSlideIn 0.8s ease-out forwards;
+	}
+
+
+/* Keyframes */
+@keyframes productSlideIn {
+
+	0% {
+		transform: translateX(120%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+/* إبقاء صورة السلايدر الأساسية ظاهرة */
+.nivoSlider .nivo-main-image {
+	display: block;
+}
+
+/* إخفاء الصور الأصلية فقط داخل السلايدر */
