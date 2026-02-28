@@ -20,9 +20,10 @@ namespace Nop.Plugin.Widgets.NivoSlider.Components
         private readonly IPictureService _pictureService;
         private readonly IWebHelper _webHelper;
 
-        public WidgetsNivoSliderViewComponent(IStoreContext storeContext, 
-            IStaticCacheManager staticCacheManager, 
-            ISettingService settingService, 
+        public WidgetsNivoSliderViewComponent(
+            IStoreContext storeContext,
+            IStaticCacheManager staticCacheManager,
+            ISettingService settingService,
             IPictureService pictureService,
             IWebHelper webHelper)
         {
@@ -33,7 +34,6 @@ namespace Nop.Plugin.Widgets.NivoSlider.Components
             _webHelper = webHelper;
         }
 
-        /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
             var store = await _storeContext.GetCurrentStoreAsync();
@@ -41,59 +41,66 @@ namespace Nop.Plugin.Widgets.NivoSlider.Components
 
             var model = new PublicInfoModel
             {
+                // SLIDE 1
                 Picture1Url = await GetPictureUrlAsync(nivoSliderSettings.Picture1Id),
+                Picture1ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct1Id),
                 Text1 = nivoSliderSettings.Text1,
+                CaptionHtml1 = nivoSliderSettings.CaptionHtml1,
                 Link1 = nivoSliderSettings.Link1,
                 AltText1 = nivoSliderSettings.AltText1,
-                Picture1ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct1Id),
 
+                // SLIDE 2
                 Picture2Url = await GetPictureUrlAsync(nivoSliderSettings.Picture2Id),
+                Picture2ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct2Id),
                 Text2 = nivoSliderSettings.Text2,
+                CaptionHtml2 = nivoSliderSettings.CaptionHtml2,
                 Link2 = nivoSliderSettings.Link2,
                 AltText2 = nivoSliderSettings.AltText2,
-                Picture2ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct2Id),
 
-
+                // SLIDE 3
                 Picture3Url = await GetPictureUrlAsync(nivoSliderSettings.Picture3Id),
+                Picture3ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct3Id),
                 Text3 = nivoSliderSettings.Text3,
+                CaptionHtml3 = nivoSliderSettings.CaptionHtml3,
                 Link3 = nivoSliderSettings.Link3,
                 AltText3 = nivoSliderSettings.AltText3,
-                Picture3ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct3Id),
 
-
+                // SLIDE 4
                 Picture4Url = await GetPictureUrlAsync(nivoSliderSettings.Picture4Id),
+                Picture4ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct4Id),
                 Text4 = nivoSliderSettings.Text4,
+                CaptionHtml4 = nivoSliderSettings.CaptionHtml4,
                 Link4 = nivoSliderSettings.Link4,
                 AltText4 = nivoSliderSettings.AltText4,
-                Picture4ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct4Id),
 
-
+                // SLIDE 5
                 Picture5Url = await GetPictureUrlAsync(nivoSliderSettings.Picture5Id),
+                Picture5ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct5Id),
                 Text5 = nivoSliderSettings.Text5,
+                CaptionHtml5 = nivoSliderSettings.CaptionHtml5,
                 Link5 = nivoSliderSettings.Link5,
                 AltText5 = nivoSliderSettings.AltText5,
-                Picture5ProductUrl = await GetPictureUrlAsync(nivoSliderSettings.PictureProduct5Id),
-
             };
 
-            if (string.IsNullOrEmpty(model.Picture1Url) && string.IsNullOrEmpty(model.Picture2Url) &&
-                string.IsNullOrEmpty(model.Picture3Url) && string.IsNullOrEmpty(model.Picture4Url) &&
+            if (string.IsNullOrEmpty(model.Picture1Url) &&
+                string.IsNullOrEmpty(model.Picture2Url) &&
+                string.IsNullOrEmpty(model.Picture3Url) &&
+                string.IsNullOrEmpty(model.Picture4Url) &&
                 string.IsNullOrEmpty(model.Picture5Url))
-                //no pictures uploaded
                 return Content("");
 
             return View("~/Plugins/Widgets.NivoSlider/Views/PublicInfo.cshtml", model);
         }
 
-        /// <returns>A task that represents the asynchronous operation</returns>
         protected async Task<string> GetPictureUrlAsync(int pictureId)
         {
-            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(ModelCacheEventConsumer.PICTURE_URL_MODEL_KEY, 
-                pictureId, _webHelper.IsCurrentConnectionSecured() ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(
+                ModelCacheEventConsumer.PICTURE_URL_MODEL_KEY,
+                pictureId,
+                _webHelper.IsCurrentConnectionSecured() ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
 
             return await _staticCacheManager.GetAsync(cacheKey, async () =>
             {
-                //little hack here. nulls aren't cacheable so set it to ""
                 var url = await _pictureService.GetPictureUrlAsync(pictureId, showDefaultPicture: false) ?? "";
                 return url;
             });

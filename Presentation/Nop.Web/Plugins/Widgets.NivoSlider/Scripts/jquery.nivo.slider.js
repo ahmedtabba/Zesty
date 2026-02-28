@@ -83,6 +83,7 @@
         // Product image
         var sliderProductImg = $('<img/>').addClass('nivo-product-image');
 
+
         var productSrc = vars.currentImage.attr('data-product');
 
         if (productSrc) {
@@ -98,6 +99,14 @@
         }
 
         slider.append(sliderProductImg);
+
+        // Caption overlay (على الجهة الثانية)
+        var sliderOverlay = $('<div/>').addClass('nivo-overlay-caption');
+        var overlayHtml = vars.currentImage.attr('data-caption-html');
+        if (overlayHtml) {
+            sliderOverlay.html(overlayHtml).hide(); // نخفّيه بالبداية
+        }
+        slider.append(sliderOverlay);
 
         // Detect Window Resize
         $(window).resize(function () {
@@ -378,7 +387,20 @@
 
             }
 
+            var overlayHtml = nextImage.attr('data-caption-html');
+            if (overlayHtml) {
+                sliderOverlay.stop().fadeOut(settings.animSpeed / 2, function () {
+                    sliderOverlay.html(overlayHtml).fadeIn(settings.animSpeed / 2);
+                });
+            } else {
+                sliderOverlay.stop().fadeOut(settings.animSpeed / 2);
+            }
+
             vars.currentSlide++;
+
+
+
+
             // Trigger the slideshowEnd callback
             if (vars.currentSlide === vars.totalSlides) {
                 vars.currentSlide = 0;

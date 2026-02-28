@@ -12,7 +12,7 @@ using Nop.Web.Framework.Infrastructure;
 namespace Nop.Plugin.Widgets.NivoSlider
 {
     /// <summary>
-    /// PLugin
+    /// Nivo Slider Plugin
     /// </summary>
     public class NivoSliderPlugin : BasePlugin, IWidgetPlugin
     {
@@ -22,7 +22,8 @@ namespace Nop.Plugin.Widgets.NivoSlider
         private readonly IWebHelper _webHelper;
         private readonly INopFileProvider _fileProvider;
 
-        public NivoSliderPlugin(ILocalizationService localizationService,
+        public NivoSliderPlugin(
+            ILocalizationService localizationService,
             IPictureService pictureService,
             ISettingService settingService,
             IWebHelper webHelper,
@@ -36,30 +37,26 @@ namespace Nop.Plugin.Widgets.NivoSlider
         }
 
         /// <summary>
-        /// Gets widget zones where this widget should be rendered
+        /// Widget zones where the slider will appear
         /// </summary>
-        /// <returns>
-        /// A task that represents the asynchronous operation
-        /// The task result contains the widget zones
-        /// </returns>
         public Task<IList<string>> GetWidgetZonesAsync()
         {
-            return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.HomepageTop });
+            return Task.FromResult<IList<string>>(
+                new List<string> { PublicWidgetZones.HomepageTop });
         }
 
         /// <summary>
-        /// Gets a configuration page URL
+        /// Configuration page URL
         /// </summary>
         public override string GetConfigurationPageUrl()
         {
-            return _webHelper.GetStoreLocation() + "Admin/WidgetsNivoSlider/Configure";
+            return _webHelper.GetStoreLocation() +
+                   "Admin/WidgetsNivoSlider/Configure";
         }
 
         /// <summary>
-        /// Gets a name of a view component for displaying widget
+        /// View component name
         /// </summary>
-        /// <param name="widgetZone">Name of the widget zone</param>
-        /// <returns>View component name</returns>
         public string GetWidgetViewComponentName(string widgetZone)
         {
             return "WidgetsNivoSlider";
@@ -68,74 +65,106 @@ namespace Nop.Plugin.Widgets.NivoSlider
         /// <summary>
         /// Install plugin
         /// </summary>
-        /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task InstallAsync()
         {
-            var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
+            var imagesPath = _fileProvider.MapPath(
+                "~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
 
-            // إعداد الصور والإعدادات الافتراضية لكل 5 بانرات
             var settings = new NivoSliderSettings
             {
+                // Slide 1
                 Picture1Id = (await _pictureService.InsertPictureAsync(
-                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")),
-                    MimeTypes.ImagePJpeg, "banner_1")).Id,
-                PictureProduct1Id = 0, // أو ID منتج افتراضي
+                    await _fileProvider.ReadAllBytesAsync(
+                        _fileProvider.Combine(imagesPath, "banner1.jpg")),
+                    MimeTypes.ImagePJpeg,
+                    "banner_1")).Id,
+
+                PictureProduct1Id = 0,
                 Text1 = "",
+                CaptionHtml1 = "",
                 Link1 = _webHelper.GetStoreLocation(),
                 AltText1 = "",
 
+                // Slide 2
                 Picture2Id = (await _pictureService.InsertPictureAsync(
-                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")),
-                    MimeTypes.ImagePJpeg, "banner_2")).Id,
+                    await _fileProvider.ReadAllBytesAsync(
+                        _fileProvider.Combine(imagesPath, "banner2.jpg")),
+                    MimeTypes.ImagePJpeg,
+                    "banner_2")).Id,
+
                 PictureProduct2Id = 0,
                 Text2 = "",
+                CaptionHtml2 = "",
                 Link2 = _webHelper.GetStoreLocation(),
                 AltText2 = "",
 
+                // Slide 3
                 Picture3Id = (await _pictureService.InsertPictureAsync(
-                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner3.jpg")),
-                    MimeTypes.ImagePJpeg, "banner_3")).Id,
+                    await _fileProvider.ReadAllBytesAsync(
+                        _fileProvider.Combine(imagesPath, "banner3.jpg")),
+                    MimeTypes.ImagePJpeg,
+                    "banner_3")).Id,
+
                 PictureProduct3Id = 0,
                 Text3 = "",
+                CaptionHtml3 = "",
                 Link3 = _webHelper.GetStoreLocation(),
                 AltText3 = "",
 
+                // Slide 4
                 Picture4Id = (await _pictureService.InsertPictureAsync(
-                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner4.jpg")),
-                    MimeTypes.ImagePJpeg, "banner_4")).Id,
+                    await _fileProvider.ReadAllBytesAsync(
+                        _fileProvider.Combine(imagesPath, "banner4.jpg")),
+                    MimeTypes.ImagePJpeg,
+                    "banner_4")).Id,
+
                 PictureProduct4Id = 0,
                 Text4 = "",
+                CaptionHtml4 = "",
                 Link4 = _webHelper.GetStoreLocation(),
                 AltText4 = "",
 
+                // Slide 5
                 Picture5Id = (await _pictureService.InsertPictureAsync(
-                    await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner5.jpg")),
-                    MimeTypes.ImagePJpeg, "banner_5")).Id,
+                    await _fileProvider.ReadAllBytesAsync(
+                        _fileProvider.Combine(imagesPath, "banner5.jpg")),
+                    MimeTypes.ImagePJpeg,
+                    "banner_5")).Id,
+
                 PictureProduct5Id = 0,
                 Text5 = "",
+                CaptionHtml5 = "",
                 Link5 = _webHelper.GetStoreLocation(),
-                AltText5 = "",
+                AltText5 = ""
             };
 
             await _settingService.SaveSettingAsync(settings);
 
-            // إعداد اللغات (Locales)
-            await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
-            {
-                ["Plugins.Widgets.NivoSlider.Picture1"] = "Picture 1",
-                ["Plugins.Widgets.NivoSlider.Picture2"] = "Picture 2",
-                ["Plugins.Widgets.NivoSlider.Picture3"] = "Picture 3",
-                ["Plugins.Widgets.NivoSlider.Picture4"] = "Picture 4",
-                ["Plugins.Widgets.NivoSlider.Picture5"] = "Picture 5",
-                ["Plugins.Widgets.NivoSlider.Picture"] = "Picture",
-                ["Plugins.Widgets.NivoSlider.Picture.Hint"] = "Upload picture.",
-                ["Plugins.Widgets.NivoSlider.Text"] = "Comment",
-                ["Plugins.Widgets.NivoSlider.Text.Hint"] = "Enter comment for picture. Leave empty if you don't want to display any text.",
-                ["Plugins.Widgets.NivoSlider.Link"] = "URL",
-                ["Plugins.Widgets.NivoSlider.Link.Hint"] = "Enter URL. Leave empty if you don't want this picture to be clickable.",
-                ["Plugins.Widgets.NivoSlider.AltText"] = "Image alternate text",
-                ["Plugins.Widgets.NivoSlider.AltText.Hint"] = "Enter alternate text that will be added to image."
-            });
+            /// Localization resources
+            await _localizationService.AddOrUpdateLocaleResourceAsync(
+                new Dictionary<string, string>
+                {
+                    ["Plugins.Widgets.NivoSlider.Picture"] = "Picture",
+                    ["Plugins.Widgets.NivoSlider.Picture.Hint"] = "Upload image",
+
+                    ["Plugins.Widgets.NivoSlider.Picture.Product"] =
+                    "Overlay Picture",
+
+                    ["Plugins.Widgets.NivoSlider.Text"] =
+                    "Text",
+
+                    ["Plugins.Widgets.NivoSlider.Link"] =
+                    "URL",
+
+                    ["Plugins.Widgets.NivoSlider.AltText"] =
+                    "Alt text",
+
+                    ["Plugins.Widgets.NivoSlider.Caption"] =
+                    "Caption (HTML)",
+
+                    ["Plugins.Widgets.NivoSlider.Caption.Hint"] =
+                    "HTML content displayed over the slide"
+                });
 
             await base.InstallAsync();
         }
@@ -143,20 +172,18 @@ namespace Nop.Plugin.Widgets.NivoSlider
         /// <summary>
         /// Uninstall plugin
         /// </summary>
-        /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task UninstallAsync()
         {
-            //settings
             await _settingService.DeleteSettingAsync<NivoSliderSettings>();
 
-            //locales
-            await _localizationService.DeleteLocaleResourcesAsync("Plugins.Widgets.NivoSlider");
+            await _localizationService.DeleteLocaleResourcesAsync(
+                "Plugins.Widgets.NivoSlider");
 
             await base.UninstallAsync();
         }
 
         /// <summary>
-        /// Gets a value indicating whether to hide this plugin on the widget list page in the admin area
+        /// Show plugin in widget list
         /// </summary>
         public bool HideInWidgetList => false;
     }
