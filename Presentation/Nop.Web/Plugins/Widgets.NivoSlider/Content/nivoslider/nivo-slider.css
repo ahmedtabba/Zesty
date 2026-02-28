@@ -147,3 +147,16 @@
 }
 
 /* إخفاء الصور الأصلية فقط داخل السلايدر */
+.nivo-overlay-caption {
+	position: absolute;
+	left: 20px; /* من الجهة اليسرى */
+	top: 50%; /* منتصف الصورة تقريباً */
+	transform: translateY(-50%);
+	color: #000;
+	background: rgba(255,255,255,0.7);
+	padding: 15px;
+	border-radius: 8px;
+	max-width: 40%; /* عشان ما يتداخل مع الصورة */
+	display: none;
+	z-index: 10;
+}
