@@ -80,9 +80,9 @@
 .nivo-caption a {
 	display:inline !important;
 }
-.nivo-overlay-caption {
+/*.nivo-overlay-caption {
     display:none;
-}
+}*/
 /* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav a {
 	position:absolute;
@@ -169,7 +169,6 @@
 	position: absolute !important;
 	left: 5% !important;
 	top: 50%	 !important;
-	transform: translateY(-50%) !important;
 	padding: clamp(10px,2%,25px) !important;
 	max-width: 100% !important;
 	color: #000 !important;
@@ -428,3 +427,14 @@
 	gap: 0.8vw;
 	cursor: pointer;
 }
+
+.nivo-overlay-caption {
+	transform: translateX(-6vw) translateY(-50%);
+	opacity: 0;
+	transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+	.nivo-overlay-caption.caption-show {
+		transform: translateX(0) translateY(-50%);
+		opacity: 1;
+	}

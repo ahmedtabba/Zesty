@@ -100,12 +100,23 @@
 
         slider.append(sliderProductImg);
 
-        // Caption overlay (على الجهة الثانية)
-        var sliderOverlay = $('<div/>').addClass('nivo-overlay-caption');
+        var sliderOverlay = $('<div/>')
+            .addClass('nivo-overlay-caption');
+
         var overlayHtml = vars.currentImage.attr('data-caption-html');
+
         if (overlayHtml) {
-            sliderOverlay.html(overlayHtml).hide(); // نخفّيه بالبداية
+
+            sliderOverlay.html(overlayHtml);
+
+            setTimeout(function () {
+
+                sliderOverlay.addClass('caption-show');
+
+            }, 300);
+
         }
+
         slider.append(sliderOverlay);
 
         // Detect Window Resize
@@ -407,21 +418,26 @@
 
             if (overlayHtml && overlayHtml.trim() !== "") {
 
-                sliderOverlay.fadeOut(settings.animSpeed / 2, function () {
+                // خروج القديم
+                sliderOverlay.removeClass('caption-show');
 
+                setTimeout(function () {
+
+                    // تغيير المحتوى
                     sliderOverlay.html(overlayHtml);
 
-                    sliderOverlay.fadeIn(settings.animSpeed / 2);
+                    // Force reflow
+                    sliderOverlay[0].offsetHeight;
 
-                });
+                    // دخول الجديد
+                    sliderOverlay.addClass('caption-show');
 
-            } else {
+                }, 400); // نفس مدة transition
 
-                sliderOverlay.fadeOut(settings.animSpeed / 2, function () {
+            }
+            else {
 
-                    sliderOverlay.html("");
-
-                });
+                sliderOverlay.removeClass('caption-show');
 
             }
 
