@@ -72,7 +72,7 @@
             }
 
         </div>  
-        @if (Model.ProductPrice.OldPrice != null && Model.ProductPrice.OldPriceValue > Model.ProductPrice.PriceValue)
+        @* @if (Model.ProductPrice.OldPrice != null && Model.ProductPrice.OldPriceValue > Model.ProductPrice.PriceValue)
         {
             var discount = Math.Round((Model.ProductPrice.OldPriceValue.Value - Model.ProductPrice.PriceValue.Value) / Model.ProductPrice.OldPriceValue.Value * 100);
             <div class="sale-badge">
@@ -84,7 +84,7 @@
             <div class="new-badge">
                 NEW
             </div>
-        }
+        } *@
 
 
     </div>

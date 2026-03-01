@@ -23,27 +23,33 @@
 
 /* BULLET NAVIGATION */
 
-.theme-custom .nivo-controlNav {
-	position: absolute;
-	bottom: 0;
-	z-index: 1;
-	width: 100%;
-	padding: 20px 0;
-	text-align: center;
-	font-size: 0;
-}
-.theme-custom .nivo-controlNav a {
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	margin: 0 7px;
-	box-shadow: 0 0 1px 0 rgba(0,0,0,0.2);
-	background-color: #fff;
-	font-size: 0;
-}
-.theme-custom .nivo-controlNav a.active {
-	background-color: #4ab2f1;
-}
+	.theme-custom .nivo-controlNav {
+		position: absolute;
+		bottom: 10px;
+		z-index: 1;
+		width: auto;
+		text-align: center;
+		font-size: 0;
+		left: 50%;
+		background-color: #282034 !important;
+		border-radius: 30px;
+	}
+        .theme-custom .nivo-controlNav a {
+            display: inline-block;
+            background-color: #fff;
+            border: none;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            font-size: 0;
+            margin: 0 6px;
+            vertical-align: middle;
+        }
+			.theme-custom .nivo-controlNav a.active {
+				background-color: #FBB040;
+				width: 11px;
+				height: 11px;
+			}
 
 /* DIRECTIONAL NAVIGATION */
 

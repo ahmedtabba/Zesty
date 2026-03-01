@@ -9,12 +9,13 @@
 
 <div class="slider-wrapper theme-custom">
     <div id="nivo-slider" class="nivoSlider">
-        @{
+          @{
             var dataSlide1 = new ViewDataDictionary(ViewData)
             {
                 {"pictureUrl", Model.Picture1Url},
                 {"productUrl", Model.Picture1ProductUrl},
                 { "text", Model.Text1},
+                { "captionHtml", Model.CaptionHtml1},
                 { "link", Model.Link1},
                 {"alttext", Model.AltText1 }
             };
@@ -27,6 +28,7 @@
             {
                 {"pictureUrl", Model.Picture2Url},
                 {"productUrl", Model.Picture2ProductUrl},
+                 { "captionHtml", Model.CaptionHtml2},
                 { "text", Model.Text2},
                 { "link", Model.Link2},
                 {"alttext", Model.AltText2 }
@@ -40,6 +42,7 @@
             {
                 {"pictureUrl", Model.Picture3Url},
                 {"productUrl", Model.Picture3ProductUrl},
+                 { "captionHtml", Model.CaptionHtml3},
                 { "text", Model.Text3},
                 { "link", Model.Link3},
                 {"alttext", Model.AltText3 },
@@ -54,6 +57,7 @@
             {
                 {"pictureUrl", Model.Picture4Url},
                 {"productUrl", Model.Picture4ProductUrl},
+                 { "captionHtml", Model.CaptionHtml4},
                 { "text", Model.Text4},
                 { "link", Model.Link4},
                 {"alttext", Model.AltText4 }
@@ -67,6 +71,7 @@
             {
                 {"pictureUrl", Model.Picture5Url},
                 {"productUrl", Model.Picture5ProductUrl},
+                 { "captionHtml", Model.CaptionHtml5},
                 { "text", Model.Text5},
                 { "link", Model.Link5},
                 {"alttext", Model.AltText5 }
