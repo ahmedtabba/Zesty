@@ -386,20 +386,7 @@
                 sliderProductImg.hide();
 
             }
-
-            var overlayHtml = nextImage.attr('data-caption-html');
-            if (overlayHtml) {
-                sliderOverlay.stop().fadeOut(settings.animSpeed / 2, function () {
-                    sliderOverlay.html(overlayHtml).fadeIn(settings.animSpeed / 2);
-                });
-            } else {
-                sliderOverlay.stop().fadeOut(settings.animSpeed / 2);
-            }
-
             vars.currentSlide++;
-
-
-
 
             // Trigger the slideshowEnd callback
             if (vars.currentSlide === vars.totalSlides) {
@@ -414,6 +401,29 @@
                 vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
             }
 
+            var overlayHtml = vars.currentImage.attr('data-caption-html');
+
+            sliderOverlay.stop(true, true);
+
+            if (overlayHtml && overlayHtml.trim() !== "") {
+
+                sliderOverlay.fadeOut(settings.animSpeed / 2, function () {
+
+                    sliderOverlay.html(overlayHtml);
+
+                    sliderOverlay.fadeIn(settings.animSpeed / 2);
+
+                });
+
+            } else {
+
+                sliderOverlay.fadeOut(settings.animSpeed / 2, function () {
+
+                    sliderOverlay.html("");
+
+                });
+
+            }
 
             // Set active links
             if (settings.controlNav) {

@@ -25,7 +25,7 @@
 
 .theme-custom .nivo-controlNav {
 	position: absolute;
-	bottom: 0;
+	bottom: 10px;
 	z-index: 1;
 	width: 100%;
 	padding: 20px 0;

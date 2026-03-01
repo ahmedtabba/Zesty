@@ -211,6 +211,7 @@
 .slick-carousel .item-box {
     width: 100% !important;
     margin: 10px 0px !important;
+    border: 1.2px solid #e4dbd1
 }
 
 .carousel-item .ribbon-position {

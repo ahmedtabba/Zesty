@@ -10593,16 +10593,17 @@ td.votes {
 
 .sale-badge {
     position: absolute;
-    top: 0px;
-    left: 0;
+    top: -5px;
+    left: -7px;
     background-color: #1e9e52;
     color: #fff;
-    padding: 8px 14px;
+    padding: 8px 15px;
     font-size: 14px;
     font-weight: 600;
     border-bottom-right-radius: 20px;
     z-index: 5;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    
 }
 
 .new-badge {
