@@ -95,7 +95,7 @@
                     .attr('src', productSrc)
                     .show()
                     .addClass('show-product');
-            }, 50);
+            }, 0);
         }
 
         slider.append(sliderProductImg);
@@ -239,9 +239,21 @@
             if (productSrc) {
 
                 sliderProductImg
-                    .attr('src', productSrc)
-                    .show()
-                    .addClass('show-product');
+                    .removeClass('show-product');
+
+                setTimeout(function () {
+
+                    sliderProductImg
+                        .attr('src', productSrc)
+                        .show();
+
+                    // Force reflow
+                    sliderProductImg[0].offsetHeight;
+
+                    sliderProductImg
+                        .addClass('show-product');
+
+                }, 50);
 
             }
             else {
@@ -386,10 +398,7 @@
 
             if (productSrc) {
 
-                sliderProductImg
-                    .attr('src', productSrc)
-                    .show()
-                    .removeClass('show-product');
+                sliderProductImg.removeClass('show-product');
 
             }
             else {
