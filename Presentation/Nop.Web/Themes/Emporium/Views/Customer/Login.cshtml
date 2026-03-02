@@ -94,16 +94,24 @@
                         {
                             <div class="inputs">
                                 <label asp-for="Email" asp-postfix=":"></label>
+                                <div class="input-image-wrapper" >
                                 <input asp-for="Email" class="email" autofocus="autofocus" />
+                                    <img src="../Themes/Emporium/Content/img/sms1.png" alt="person" class="input-icon-img">
                                 <span class="inputs-icons">&#x41;</span>
                                 <span asp-validation-for="Email"></span>
+
+                                </div>
                             </div>
                         }
                         <div class="inputs">
                             <label asp-for="Password" asp-postfix=":"></label>
-                            <input asp-for="Password" class="password" />
-                            <span class="inputs-icons">&#x78;</span>
-                            <span asp-validation-for="Password"></span>
+                            <div class="input-image-wrapper" >
+                                <input asp-for="Password" class="password" />
+                                <img src="../Themes/Emporium/Content/img/eye-slash.png" alt="person" class="input-icon-img">
+                                <span class="inputs-icons">&#x78;</span>
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                            
                         </div>
                         <div class="inputs reversed">
                             <span class="forgot-password">
