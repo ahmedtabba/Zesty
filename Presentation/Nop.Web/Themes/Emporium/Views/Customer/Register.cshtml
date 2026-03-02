@@ -53,11 +53,14 @@
                     {
                         <div class="inputs">
                             <label asp-for="FirstName" asp-postfix=":"></label>
-                            <input asp-for="FirstName" />
                             @if (Model.FirstNameRequired)
                             {
                                 <nop-required />
                             }
+                            <div class="input-image-wrapper">
+                            <input asp-for="FirstName" />
+                                <img src="../Themes/Emporium/Content/img/z.png" alt="person" class="input-icon-img">
+                            </div>
                             <span asp-validation-for="FirstName"></span>
                         </div>
                     }
@@ -91,9 +94,12 @@
                     }
                     <div class="inputs">
                         <label asp-for="Email" asp-postfix=":"></label>
-                        <input asp-for="Email" />
                         <nop-required />
+                        <div class="input-image-wrapper">
+                        <input asp-for="Email" />
+                            <img src="../Themes/Emporium/Content/img/sms1.png" alt="person" class="input-icon-img">
                         <span asp-validation-for="Email"></span>
+                        </div>
                     </div>
                     @if (Model.DateOfBirthEnabled)
                     {
@@ -139,8 +145,12 @@
                     }
                     <div class="inputs">
                         <label asp-for="Password" asp-postfix=":"></label>
-                        <input asp-for="Password" />
                         <nop-required />
+                        <div class="input-image-wrapper">
+                        <input asp-for="Password" />
+                        <img src="../Themes/Emporium/Content/img/eye-slash.png" alt="person" class="input-icon-img">
+
+                        </div>
                         <span asp-validation-for="Password"></span>
                     </div>
                     @if (Model.CompanyEnabled || Model.DisplayVatNumber)
@@ -149,12 +159,15 @@
                             {
                                 <div class="inputs">
                                     <label asp-for="Company" asp-postfix=":"></label>
-                                    <input asp-for="Company" />
                                     @if (Model.CompanyRequired)
                                     {
                                         <nop-required />
                                     }
+                                    <div class="input-image-wrapper">
+                                    <input asp-for="Company" />
+                                    <img src="../Themes/Emporium/Content/img/building.png" alt="person" class="input-icon-img">
                                     <span asp-validation-for="Company"></span>
+                                    </div>
                                 </div>
                             }
                             @if (Model.DisplayVatNumber)
@@ -168,8 +181,11 @@
                     }
                     <div class="inputs">
                         <label asp-for="ConfirmPassword" asp-postfix=":"></label>
-                        <input asp-for="ConfirmPassword" />
                         <nop-required />
+                        <div class="input-image-wrapper">
+                        <input asp-for="ConfirmPassword" />
+                            <img src="../Themes/Emporium/Content/img/eye-slash.png" alt="person" class="input-icon-img">
+                        </div>
                         <span asp-validation-for="ConfirmPassword"></span>
                     </div>
 
