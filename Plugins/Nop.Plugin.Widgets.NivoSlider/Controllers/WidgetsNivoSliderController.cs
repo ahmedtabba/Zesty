@@ -29,6 +29,11 @@ public class WidgetsNivoSliderController : BasePluginController
         _notificationService = notificationService;
     }
 
+    public async Task<IActionResult> Configure()
+    {
+        return RedirectToAction("List");
+    }
+
     public async Task<IActionResult> List()
     {
         if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
