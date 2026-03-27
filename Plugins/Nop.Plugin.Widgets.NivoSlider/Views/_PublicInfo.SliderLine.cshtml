@@ -2,22 +2,34 @@
 
 @{
     var pictureUrl = ViewData["pictureUrl"]?.ToString() ?? "";
+    var productUrl = ViewData["productUrl"]?.ToString() ?? "";
     var link = ViewData["link"]?.ToString() ?? "";
     var dataTransition = ViewData["dataTransition"]?.ToString() ?? "";
-    var text = ViewData["text"]?.ToString() ?? "";
     var alttext = ViewData["alttext"]?.ToString() ?? "";
+    var captionHtml = ViewData["captionHtml"]?.ToString() ?? "";
+   
+}
 
-    if (!string.IsNullOrEmpty(pictureUrl))
+@if (!string.IsNullOrEmpty(pictureUrl))
+{
+    if (!string.IsNullOrEmpty(link))
     {
-        if (!string.IsNullOrEmpty(link))
-        {
-            <a href="@link" aria-label="@alttext">
-                <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
-            </a>
-        }
-        else
-        {
-            <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
-        }
+        <a href="@link" aria-label="@alttext">
+            <img src="@pictureUrl"
+                 data-thumb="@pictureUrl"
+                 data-product="@productUrl"
+                 data-caption-html="@captionHtml"
+                 data-transition="@dataTransition"
+                 alt="@alttext" />
+        </a>
+    }
+    else
+    {
+        <img src="@pictureUrl"
+             data-thumb="@pictureUrl"
+             data-product="@productUrl"
+             data-caption-html="@captionHtml"
+             data-transition="@dataTransition"
+             alt="@alttext" />
     }
 }

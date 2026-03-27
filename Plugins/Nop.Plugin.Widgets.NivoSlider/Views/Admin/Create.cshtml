@@ -16,89 +16,96 @@
             Add New Slide
         </h1>
         <div class="float-right">
-            <button type="submit" name="save" class="btn btn-primary">
-                <i class="far fa-save"></i>
-                Save
+            <button type="submit" class="btn btn-primary">
+                <i class="far fa-save"></i> Save
             </button>
         </div>
     </div>
 
     <section class="content">
         <div class="container-fluid">
-
             <div class="card card-default">
                 <div class="card-body">
-
                     <div class="form-horizontal">
 
+                        <!-- Text -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="Text" />
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="Text" />
-                                <span asp-validation-for="Text"></span>
+                                <span asp-validation-for="Text" class="text-danger"></span>
                             </div>
-                        </div><div class="form-group row">
-                        <div class="col-md-3">
-                            <nop-label asp-for="PictureId" />
                         </div>
-                        <div class="col-md-9">
-                            <nop-editor asp-for="PictureId" />
-                            <span asp-validation-for="PictureId"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <nop-label asp-for="PictureProductId" />
-                        </div>
-                        <div class="col-md-9">
-                            <nop-editor asp-for="PictureProductId" />
-                            <span asp-validation-for="PictureProductId"></span>
-                        </div>
-                    </div>
 
+                        <!-- Slide Image -->
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PictureId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PictureId" />
+                                <span asp-validation-for="PictureId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Product Image (Optional) -->
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PictureProductId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PictureProductId" />
+                                <span asp-validation-for="PictureProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- CaptionHtml -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="CaptionHtml" />
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="CaptionHtml" asp-template="RichEditor" />
-                                <span asp-validation-for="CaptionHtml"></span>
+                                <span asp-validation-for="CaptionHtml" class="text-danger"></span>
                             </div>
                         </div>
 
+                        <!-- Link -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="Link" />
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="Link" />
-                                <span asp-validation-for="Link"></span>
+                                <span asp-validation-for="Link" class="text-danger"></span>
                             </div>
                         </div>
 
+                        <!-- AltText -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="AltText" />
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="AltText" />
-                                <span asp-validation-for="AltText"></span>
+                                <span asp-validation-for="AltText" class="text-danger"></span>
                             </div>
                         </div>
 
+                        <!-- DisplayOrder -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="DisplayOrder" />
                             </div>
                             <div class="col-md-9">
                                 <nop-editor asp-for="DisplayOrder" />
-                                <span asp-validation-for="DisplayOrder"></span>
+                                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                             </div>
                         </div>
 
+                        <!-- IsActive -->
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="IsActive" />
@@ -109,11 +116,8 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
-
         </div>
     </section>
-
 </form>
