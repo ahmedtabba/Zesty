@@ -1,0 +1,117 @@
+@model Nop.Plugin.Misc.ProductLabels.Models.ProductLabelModel
+
+@{
+    Layout = "_AdminLayout";
+    ViewBag.PageTitle = "Create Label";
+}
+
+<form asp-action="Create" method="post" id="productlabel-form">
+    <div class="content-header clearfix">
+        <h1 class="float-left">Create Label</h1>
+        <div class="float-right">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="List" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-body">
+
+                <!-- 🔥 PRODUCTS SELECT (many-to-many) -->
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label>Products</label>
+                    </div>
+                    <div class="col-md-9">
+
+                        <div id="selected-product-ids">
+                            @if (Model?.SelectedProductIds != null)
+                            {
+                                foreach (var id in Model.SelectedProductIds)
+                                {
+                                    <input type="hidden" name="SelectedProductIds" value="@id" />
+                                }
+                            }
+                        </div>
+
+                        <ul id="product-list">
+                            @if (Model?.ProductNames != null && Model.ProductNames.Any())
+                            {
+                                foreach (var name in Model.ProductNames)
+                                {
+                                    <li>@name</li>
+                                }
+                            }
+                            else
+                            {
+                                <li>No products selected</li>
+                            }
+                        </ul>
+
+                        <br />
+
+                        <button type="button" class="btn btn-primary" onclick="OpenProductPopup()">
+                            Select Products
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Label -->
+                <div class="form-group">
+                    <label>Label Text</label>
+                    <input asp-for="LabelText" class="form-control" />
+                </div>
+
+                <!-- Order -->
+                <div class="form-group">
+                    <label>Display Order</label>
+                    <input asp-for="DisplayOrder" class="form-control" />
+                </div>
+
+                <!-- Published -->
+                <div class="form-group">
+                    <label>
+                        <input asp-for="IsPublished" /> Published
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔥 REQUIRED BUTTON (nop popup system) -->
+    <input type="submit" id="btnRefreshProduct" style="display:none" />
+</form>
+
+<script>
+    function OpenProductPopup() {
+       var url = '@Url.Action("ProductSearchPopup", "ProductLabels", new { area = "Admin" })';
+        window.open(url, 'Select Product', 'width=1000,height=700');
+    }
+
+    // 🔥 called by popup: accepts arrays
+    function setProducts(ids, names) {
+        // clear existing hidden inputs
+        var container = document.getElementById('selected-product-ids');
+        container.innerHTML = '';
+
+        // set hidden inputs
+        ids.forEach(function (id) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'SelectedProductIds';
+            input.value = id;
+            container.appendChild(input);
+        });
+
+        // update names list
+        var list = document.getElementById('product-list');
+        list.innerHTML = '';
+        names.forEach(function (n) {
+            var li = document.createElement('li');
+            li.innerText = n;
+            list.appendChild(li);
+        });
+    }
+</script>

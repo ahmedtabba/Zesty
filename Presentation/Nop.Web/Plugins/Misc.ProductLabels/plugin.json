@@ -1,10 +1,16 @@
-{
+﻿{
   "Group": "Misc",
-  "FriendlyName": "Product Labels",
-  "SystemName": "Misc.ProductLabels",
-  "Version": "1.00",
-  "SupportedVersions": [ "4.50" ],
+  "FriendlyName": "Products Labels",
+  "SupportedVersions": [
+    "4.50"
+  ],
   "Author": "Saad Boulevard Team",
   "DisplayOrder": 1,
-  "FileName": "Nop.Plugin.Misc.ProductLabels.dll"
+  "FileName": "Nop.Plugin.Misc.ProductLabels.dll",
+  "Description": null,
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [],
+  "SystemName": "Misc.ProductLabels",
+  "Version": "1.01"
 }

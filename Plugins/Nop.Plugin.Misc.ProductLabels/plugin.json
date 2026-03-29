@@ -1,8 +1,8 @@
 {
   "Group": "Misc",
-  "FriendlyName": "Product Labels",
+  "FriendlyName": "Products Labels",
   "SystemName": "Misc.ProductLabels",
-  "Version": "1.00",
+  "Version": "1.01",
   "SupportedVersions": [ "4.50" ],
   "Author": "Saad Boulevard Team",
   "DisplayOrder": 1,
