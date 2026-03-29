@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using Nop.Core;
-using Nop.Core.Domain.Cms;
-using Nop.Services.Cms;
-using Nop.Services.Common;
-using Nop.Services.Plugins;
-using Nop.Web.Framework.Infrastructure;
-using Nop.Web.Framework.Menu;
+using Nop.Core.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Nop.Services.Cms;
+using Nop.Services.Plugins;
+using Nop.Web.Framework.Infrastructure;
+using Nop.Services.Common;
+using Nop.Web.Framework.Menu;
+using Nop.Services.Configuration;
 
 namespace Nop.Plugin.Misc.ProductLabels
 {
-    public class ProductLabelsPlugin : BasePlugin, IMiscPlugin, IWidgetPlugin, IAdminMenuPlugin
+    public class ProductLabelsPlugin : BasePlugin, IMiscPlugin, IWidgetPlugin
     {
-        public bool HideInWidgetList => false;
        private readonly IWebHelper _webHelper;
-        public ProductLabelsPlugin(IWebHelper webHelper)
+        public ProductLabelsPlugin(IWebHelper webHelper , ISettingService settingService)
         {
             _webHelper = webHelper;
         }
@@ -34,7 +34,7 @@ namespace Nop.Plugin.Misc.ProductLabels
             return "ProductLabels";
         }
 
-       
+
         public Task ManageSiteMapAsync(SiteMapNode rootNode)
         {
             var menuItem = new SiteMapNode
@@ -54,20 +54,21 @@ namespace Nop.Plugin.Misc.ProductLabels
             return Task.CompletedTask;
         }
 
-        
+
         public override string GetConfigurationPageUrl()
         {
             return  _webHelper.GetStoreLocation() + "/Admin/ProductLabels/Configure";
         }
 
-        public override Task InstallAsync()
+        public override async Task InstallAsync()
         {
-            return base.InstallAsync();
+            await base.InstallAsync();
         }
 
-        public override Task UninstallAsync()
+        public override async Task UninstallAsync()
         {
-            return base.UninstallAsync();
+            await base.UninstallAsync();
         }
+        public bool HideInWidgetList => false;
     }
 }

@@ -1,0 +1,83 @@
+@model Nop.Plugin.Misc.ProductLabels.Models.ProductSearchModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="content-header clearfix">
+    <h1>Select Product</h1>
+</div>
+
+<div class="content">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="text" id="search-term" class="form-control" placeholder="Search..." />
+    </div>
+
+    <table id="products-grid" class="table table-bordered table-hover"></table>
+
+    <button class="btn btn-primary" onclick="selectProduct()">Select</button>
+</div>
+
+<script>
+    var selectedProduct = null;
+
+    $(document).ready(function () {
+
+        $('#products-grid').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '@Url.Action("ProductSearchList", "ProductLabels", new { area = "Admin" })',
+                type: 'POST',
+                data: function (d) {
+                    d.SearchTerm = $('#search-term').val();
+                },
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                error: function (xhr, status, error) {
+                    console.error('ProductSearchList ajax error', status, error);
+                    console.error(xhr.responseText);
+                }
+            },  
+            columns: [
+                {
+                    title: "",
+                    data: "id",
+                    render: function (data, type, row) {
+                        return `<input type="checkbox" name="product" value="${data}" data-name="${row.name}" />`;
+                    }
+                },
+                { title: "Name", data: "name" }
+            ]
+        });
+
+        $('#search-term').on('keyup', function () {
+            $('#products-grid').DataTable().ajax.reload();
+        });
+    });
+
+    function selectProduct() {
+        var selected = document.querySelectorAll('input[name="product"]:checked');
+
+        if (!selected || selected.length === 0) {
+            alert("Select at least one product");
+            return;
+        }
+
+        var ids = [];
+        var names = [];
+        selected.forEach(function (el) {
+            ids.push(el.value);
+            names.push(el.getAttribute('data-name'));
+        });
+
+        if (window.opener && typeof window.opener.setProducts === 'function') {
+            window.opener.setProducts(ids, names);
+        } else if (window.opener && typeof window.opener.setProduct === 'function') {
+            window.opener.setProduct(ids[0], names[0]);
+        }
+        window.close();
+    }
+</script>

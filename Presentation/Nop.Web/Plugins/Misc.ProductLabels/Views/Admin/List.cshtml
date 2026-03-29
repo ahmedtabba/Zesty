@@ -1,0 +1,66 @@
+@model IList<Nop.Plugin.Misc.ProductLabels.Models.ProductLabelModel>
+
+@{
+    Layout = "_AdminLayout";
+    ViewBag.PageTitle = "Product Labels";
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">Product Labels</h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            Add New
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="card card-default">
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Products</th>
+                        <th>Label</th>
+                        <th>Published</th>
+                        <th>Display Order</th>
+                        <th style="width: 150px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.ProductNames != null && item.ProductNames.Any())
+                            {
+                                foreach (var name in item.ProductNames)
+                                {
+                                    <span class="badge badge-secondary mr-1">@name</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">No products</span>
+                            }
+                        </td>
+                        <td>@item.LabelText</td>
+                        <td>@(item.IsPublished ? "Yes" : "No")</td>
+                        <td>@item.DisplayOrder</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
+using Nop.Data;
+using Nop.Plugin.Misc.ProductLabels.Domain;
 using Nop.Plugin.Misc.ProductLabels.Services;
 
 namespace Nop.Plugin.Misc.ProductLabels.Infrastructure

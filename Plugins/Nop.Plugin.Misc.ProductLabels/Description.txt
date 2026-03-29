@@ -1,0 +1,8 @@
+Group: Misc
+FriendlyName: Product Labels
+SystemName: Misc.ProductLabels
+Version: 1.00
+SupportedVersions: 4.50
+Author: You
+FileName: Nop.Plugin.Misc.ProductLabels.dll
+DisplayOrder: 1

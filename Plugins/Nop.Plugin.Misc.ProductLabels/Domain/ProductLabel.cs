@@ -9,7 +9,6 @@ namespace Nop.Plugin.Misc.ProductLabels.Domain
 {
     public class ProductLabel : BaseEntity
     {
-        public int ProductId { get; set; }
         public string LabelText { get; set; }
         public bool IsPublished { get; set; }
         public int DisplayOrder { get; set; }
