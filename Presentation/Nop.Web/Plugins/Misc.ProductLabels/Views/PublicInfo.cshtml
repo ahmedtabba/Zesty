@@ -1,11 +1,11 @@
 @model Nop.Plugin.Misc.ProductLabels.Models.PublicInfoModel
-
+<link rel="stylesheet" href="~/Plugins/Misc.ProductLabels/Content/styles.css" />
 @if (Model.Labels != null && Model.Labels.Any())
 {
     <div class="product-labels">
         @foreach (var label in Model.Labels)
         {
-            <span class="badge bg-success" style="margin-right:5px;">
+            <span class="product-label-item">
                 @label.LabelText
             </span>
         }

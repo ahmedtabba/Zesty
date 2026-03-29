@@ -94,7 +94,7 @@ public class ProductLabelsController : BasePluginController
     {
         if (!ModelState.IsValid)
         {
-            // 🔥 لازم ترجع المنتجات مرة تانية
+           
             var products = await _productService.SearchProductsAsync(pageSize: 1000);
 
             model.AvailableProducts = products.Select(p => new SelectListItem

@@ -12,7 +12,7 @@ using Nop.Services.Configuration;
 
 namespace Nop.Plugin.Misc.ProductLabels
 {
-    public class ProductLabelsPlugin : BasePlugin, IMiscPlugin, IWidgetPlugin
+    public class ProductLabelsPlugin : BasePlugin, IMiscPlugin, IWidgetPlugin, IAdminMenuPlugin
     {
        private readonly IWebHelper _webHelper;
         public ProductLabelsPlugin(IWebHelper webHelper , ISettingService settingService)
