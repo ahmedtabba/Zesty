@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Plugin.Misc.ProductLabels.Components
 {
+    [ViewComponent(Name = "ProductLabels")]
     public class ProductLabelViewComponent : NopViewComponent
     {
         private readonly IProductLabelService _productLabelService;
@@ -24,11 +25,29 @@ namespace Nop.Plugin.Misc.ProductLabels.Components
         {
             int productId = 0;
 
+            // additionalData can be an int (productId), the ProductDetailsModel, or an anonymous object containing Id/ProductId
             if (additionalData is int id)
+            {
                 productId = id;
+            }
+            else if (additionalData != null)
+            {
+                var type = additionalData.GetType();
+                var prop = type.GetProperty("Id") ?? type.GetProperty("ProductId") ?? type.GetProperty("id") ?? type.GetProperty("productId");
+                if (prop != null)
+                {
+                    var val = prop.GetValue(additionalData);
+                    if (val is int i)
+                        productId = i;
+                    else if (val is long l)
+                        productId = (int)l;
+                    else if (val != null)
+                        int.TryParse(val.ToString(), out productId);
+                }
+            }
 
             if (productId == 0)
-                return Content("");
+                return Content(string.Empty);
 
             var labels = await _productLabelService.GetByProductIdAsync(productId);
 
@@ -44,7 +63,8 @@ namespace Nop.Plugin.Misc.ProductLabels.Components
                     }).ToList()
             };
 
-            return View("~/Plugins/Misc.ProductLabels/Views/Public/Default.cshtml", model);
+            // render the public view that displays labels
+            return View("~/Plugins/Misc.ProductLabels/Views/PublicInfo.cshtml", model);
         }
     }
 }

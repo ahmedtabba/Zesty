@@ -15,7 +15,11 @@
 
 		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<Content Include="Content\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="plugin.json">
@@ -37,6 +41,7 @@
 
 
 	<ItemGroup>
+		<Folder Include="Content\" />
 		<Folder Include="Services\" />
 		<Folder Include="Controllers\" />
 	</ItemGroup>

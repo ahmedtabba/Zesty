@@ -18,7 +18,7 @@
         <div class="card card-default">
             <div class="card-body">
 
-                <!-- 🔥 PRODUCTS SELECT (many-to-many) -->
+               
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label>Products</label>
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <!-- 🔥 REQUIRED BUTTON (nop popup system) -->
+   
     <input type="submit" id="btnRefreshProduct" style="display:none" />
 </form>
 
@@ -90,9 +90,9 @@
         window.open(url, 'Select Product', 'width=1000,height=700');
     }
 
-    // 🔥 called by popup: accepts arrays
+    
     function setProducts(ids, names) {
-        // clear existing hidden inputs
+        
         var container = document.getElementById('selected-product-ids');
         container.innerHTML = '';
 
