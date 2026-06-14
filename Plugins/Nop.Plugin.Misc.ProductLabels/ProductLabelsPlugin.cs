@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using Nop.Core;
 using Nop.Core.Configuration;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Nop.Services.Cms;
+using Nop.Services.Common;
+using Nop.Services.Configuration;
 using Nop.Services.Plugins;
 using Nop.Web.Framework.Infrastructure;
-using Nop.Services.Common;
 using Nop.Web.Framework.Menu;
-using Nop.Services.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nop.Plugin.Misc.ProductLabels
 {
@@ -37,10 +38,17 @@ namespace Nop.Plugin.Misc.ProductLabels
 
         public Task ManageSiteMapAsync(SiteMapNode rootNode)
         {
+            var catalogNode = rootNode.ChildNodes
+                .FirstOrDefault(x => x.SystemName == "Catalog");
+
+            if (catalogNode == null)
+                return Task.CompletedTask; 
+
             var menuItem = new SiteMapNode
             {
                 Title = "Product Labels",
                 Visible = true,
+                SystemName = "ProductLabels",
                 ControllerName = "ProductLabels",
                 ActionName = "List",
                 RouteValues = new RouteValueDictionary
@@ -49,7 +57,7 @@ namespace Nop.Plugin.Misc.ProductLabels
                 }
             };
 
-            rootNode.ChildNodes.Add(menuItem);
+            catalogNode.ChildNodes.Add(menuItem);
 
             return Task.CompletedTask;
         }
@@ -57,7 +65,7 @@ namespace Nop.Plugin.Misc.ProductLabels
 
         public override string GetConfigurationPageUrl()
         {
-            return  _webHelper.GetStoreLocation() + "/Admin/ProductLabels/Configure";
+            return  _webHelper.GetStoreLocation() + "Admin/ProductLabels/Configure";
         }
 
         public override async Task InstallAsync()
